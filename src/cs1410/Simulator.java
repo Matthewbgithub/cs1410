@@ -6,5 +6,9 @@ public class Simulator {
 	Car car1 = new Car();
 	System.out.println(car1.getProbability());
 	}
-
+	
+	public Queue chooseQueue(){
+		return null;
+	}
+	
 }

@@ -2,7 +2,8 @@ package cs1410;
 
 public class Car extends Vehicle{
 	
-	public void Car(){
+	public Car(){
+		probability = 0.2;
 	}
 	
 }

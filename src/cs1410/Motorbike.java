@@ -1,7 +1,7 @@
 package cs1410;
 
 public class Motorbike extends Vehicle{
-	public void Motorbike(){
+	public Motorbike(){
 		probability = 0;
 	}
 }
