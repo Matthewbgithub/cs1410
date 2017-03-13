@@ -35,6 +35,10 @@ public Truck() {
 		return probabilityOfT;
 	}
 	
+	private int getShoppingTime() {
+		return shoppingTime;
+	}
+	
 	private void setRefillTime(int time) {
 		refillTime = time;
 	}
@@ -60,4 +64,12 @@ public Truck() {
 		}
 	}
 	
+	private void changeProbability() {
+		if(isHappy) {
+			probabilityOfT = probabilityOfT * 1.05;
+		}
+		else {
+			probabilityOfT = probabilityOfT * 0.8;
+		}
+	}
 }
