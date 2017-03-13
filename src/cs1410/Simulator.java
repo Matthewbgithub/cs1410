@@ -22,28 +22,21 @@ public class Simulator
 	}
 	
 	//Return the total number of ticks that have gone past so far (time)
-	public integer getTicks()
+	public int getTicks()
 	{
-	
-	  return  null; 
-	
-	
+	  return  0; 
 	}
 	
 	//Calculate the total income generated
-	public integer calcIncome()
+	public int calcIncome()
 	{
-	
-	  return  null; 
-	
-	
+	  return 0; 
 	}
 	
 	//Returns the current price of petrol
 	public int getPetrolPrice()
 	{
-	   return  null; 
-	
+	   return  0; 
 	}
 	
 	//Gives the option to set the current price of petrol
@@ -51,22 +44,22 @@ public class Simulator
 	{
 	  	//Sets the price of the petrol to whatever the user enter into the simulator
 		intPetrolPrice = newPetrolPrice;
-	
+		return 0;
 	}
 	
 	// Checks if the queues are full: the amount of queues are based on the amount of pumps (use enters this)
 	// Return true if the queues are full
 	// So: queue.size compared against the size we intially set for it
-	public boolean checkQueuesFull()
+	public boolean checkQueueIsFull()
 	{
-	
+	return false;
 	
 	}
 	
 	// Checks the size of all queues, and return the smallest
 	public Queue searchSmallest()
 	{
-	 	 //e.g. 
+	 	 /*e.g. 
 		
 		"int TempOne = (QueueOne.Size) minus 10"
 	        "int TempTwo = (Queuetwo.Size) minus 10"
@@ -74,7 +67,8 @@ public class Simulator
 		"TempOne *Comparison* TempTwo"
 			
 			"Return Queue X"
-		//etc......
+		etc......*/
+		return null;
 	
 	}
 	

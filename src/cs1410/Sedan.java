@@ -6,14 +6,14 @@ public class Sedan extends Vehicle{
 	private int shoppingTime;
 	private int shoppingMoney;
 	
-	public Sedan(probabilityOfQ, shoppingTime, shoppingMoney){
-	this.probabilityofQ = probabiltyOfQ;
+	public Sedan(double probabilityOfQ, int shoppingTime, int shoppingMoney){
+	this.probabilityOfQ = probabiltyOfQ;
 	this.shoppingTime = shoppingTime;
 	this.shoppingMoney = shoppingMoney;
 	}
 	
 	public void setProbabilityOfQ(double probabilityOfQ){
-	this.probabilityofQ = probabiltyOfQ;
+	this.probabilityOfQ = probabiltyOfQ;
 	
 	}
 	public double getProbabilityOfQ(){

@@ -22,8 +22,5 @@ public class Motorbike extends Vehicle{
 		return space;
 	}
 	
-	private int getTankSize() {
-		return tankSize;
-	}
 	
 }

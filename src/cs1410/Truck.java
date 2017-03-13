@@ -16,15 +16,15 @@ public Truck() {
 	
 	int tankHigh = 40;
 	int tankLow = 30;
-	tankSize = random.nextDouble(tankHigh - tankLow) + tankLow;
+	tankSize = random.nextInt(tankHigh - tankLow) + tankLow;
 	
 	int timeHigh = 6;
 	int timeLow = 4;
-	shoppingTime = random.nextDouble(timeHigh - timeLow) + timeLow;
+	shoppingTime = random.nextInt(timeHigh - timeLow) + timeLow;
 	
 	int moneyHigh = 20;
 	int moneyLow = 15;
-	shoppingMoney = random.nextDouble(moneyHigh - moneyLow) + moneyLow;
+	shoppingMoney = random.nextInt(moneyHigh - moneyLow) + moneyLow;
 }
 	
 	private void setProbabilityOfT(double probability) {
@@ -35,7 +35,7 @@ public Truck() {
 		return probabilityOfT;
 	}
 	
-	private int getShoppingTime() {
+	private double getShoppingTime() {
 		return shoppingTime;
 	}
 	
@@ -49,10 +49,6 @@ public Truck() {
 	
 	private int getSpace() {
 		return space;
-	}
-	
-	private int getTankSize() {
-		return tankSize;
 	}
 	
 	private boolean isHappy() {
