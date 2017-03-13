@@ -1,4 +1,4 @@
-package cs1410;
+	package cs1410;
 
 public class Sedan extends Vehicle{
 
@@ -6,7 +6,7 @@ public class Sedan extends Vehicle{
 	private int shoppingTime;
 	private int shoppingMoney;
 	
-	public Vehicle(probabilityOfQ, shoppingTime, shoppingMoney){
+	public Sedan(probabilityOfQ, shoppingTime, shoppingMoney){
 	this.probabilityofQ = probabiltyOfQ;
 	this.shoppingTime = shoppingTime;
 	this.shoppingMoney = shoppingMoney;
