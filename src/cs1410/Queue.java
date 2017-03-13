@@ -18,7 +18,7 @@ public class Queue {
 		//changes space left in queue
 	}
 	public int getCurrentLength(){
-		//will calulate and return the length of all the items in the queue
+		//will calculate and return the length of all the items in the queue
 		return 1;
 	}
 }
