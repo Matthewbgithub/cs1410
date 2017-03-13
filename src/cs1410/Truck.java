@@ -8,8 +8,16 @@ public class Truck extends Vehicle{
 	private Random random;
 	private int refillTime;
 	private boolean isHappy;
+	public static final int space = 2;
+	private int tankSize;
 	
 public Truck() {
+	probabilityOfT = 0.02;
+	
+	int tankHigh = 40;
+	int tankLow = 30;
+	tankSize = random.nextDouble(tankHigh - tankLow) + tankLow;
+	
 	int timeHigh = 6;
 	int timeLow = 4;
 	shoppingTime = random.nextDouble(timeHigh - timeLow) + timeLow;
@@ -35,6 +43,14 @@ public Truck() {
 		return refillTime;
 	}
 	
+	private int getSpace() {
+		return space;
+	}
+	
+	private int getTankSize() {
+		return tankSize;
+	}
+	
 	private boolean isHappy() {
 		if(refillTime <= 8) {
 			return true;
@@ -43,4 +59,5 @@ public Truck() {
 			return false;
 		}
 	}
+	
 }
