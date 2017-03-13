@@ -36,7 +36,7 @@ public Truck() {
 	}
 	
 	private boolean isHappy() {
-		if(refillTime > 8) {
+		if(refillTime <= 8) {
 			return true;
 		}
 		else {
