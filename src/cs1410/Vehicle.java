@@ -4,10 +4,9 @@ public class Vehicle {
 	protected int tankSize;
 	protected double shoppingprobability;
 	protected double probabilityOfQ;
-	protected int qSpace;
+	protected double qSpace;
 	
 	public void Vehicle(){
-		
 	}
 	
 //Set methods------
@@ -16,7 +15,7 @@ public class Vehicle {
 	}
 	
 //Get methods------
-	public int getLength(){
+	public double getLength(){
 		return qSpace;
 	}
 	public int getTankSize(){

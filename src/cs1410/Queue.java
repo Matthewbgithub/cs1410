@@ -1,24 +1,53 @@
 package cs1410;
+import java.util.*;
 
 public class Queue {
+	private ArrayList<Vehicle> vehicleArray;
 	private int qLength;
+	private double currentLength=0.0;
+	
+	public Queue(int length){
+		//intialize the arraylist
+		vehicleArray = new ArrayList<Vehicle>();
+		//set length
+		this.qLength = length;
+	}
+	
 	public void setLength(int length){
 		qLength = length;
 	}
+	
 	public int getLength(){
 		return qLength;
 	}
-	public boolean checkspace(int sizeToAdd){
+	public double getCurrentLength(){
+		//return the length of all the items in the queue
+		return currentLength;
+	}
+	
+	public boolean checkspace(Vehicle toAdd){
 		//checks whether the space passed as a parameter will fit into the queue
-		boolean result = true;
-		return result;
+		double size = toAdd.getLength();
+		if ((currentLength + size) <= qLength){
+			return true;
+		}else{
+			return false;
+		}
 	}
 	public void removeFirstItem(){
-		//removes first item from array
 		//changes space left in queue
+		if(!vehicleArray.isEmpty()){
+		currentLength -= vehicleArray.get(0).getLength();
+		//removes first item from array
+		vehicleArray.remove(0);
+		}
 	}
-	public int getCurrentLength(){
-		//will calculate and return the length of all the items in the queue
-		return 1;
+	
+	public void add(Vehicle vehicle){
+		vehicleArray.add(vehicle);
+		currentLength += vehicle.getLength();
+	}
+	public String toString(){
+		return vehicleArray.toString();
 	}
 }

@@ -7,6 +7,7 @@ public class Sedan extends Vehicle{
 	private int shoppingMoney;
 	
 	public Sedan(double probabilityOfQ, int shoppingTime, int shoppingMoney){
+		qSpace = 1.5;
 	this.probabilityOfQ = probabiltyOfQ;
 	this.shoppingTime = shoppingTime;
 	this.shoppingMoney = shoppingMoney;

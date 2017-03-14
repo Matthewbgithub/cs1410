@@ -8,23 +8,23 @@ public class Truck extends Vehicle{
 	private Random random;
 	private int refillTime;
 	private boolean isHappy;
-	public static final int space = 2;
 	private int tankSize;
 	
 public Truck() {
+	qSpace = 2;
 	probabilityOfT = 0.02;
 	
 	int tankHigh = 40;
 	int tankLow = 30;
-	tankSize = random.nextInt(tankHigh - tankLow) + tankLow;
+	//tankSize = random.nextInt(tankHigh - tankLow) + tankLow;
 	
 	int timeHigh = 6;
 	int timeLow = 4;
-	shoppingTime = random.nextInt(timeHigh - timeLow) + timeLow;
+	//shoppingTime = random.nextInt(timeHigh - timeLow) + timeLow;
 	
 	int moneyHigh = 20;
 	int moneyLow = 15;
-	shoppingMoney = random.nextInt(moneyHigh - moneyLow) + moneyLow;
+	//shoppingMoney = random.nextInt(moneyHigh - moneyLow) + moneyLow;
 }
 	
 	private void setProbabilityOfT(double probability) {
@@ -45,10 +45,6 @@ public Truck() {
 	
 	private int getRefillTime() {
 		return refillTime;
-	}
-	
-	private int getSpace() {
-		return space;
 	}
 	
 	private boolean isHappy() {

@@ -11,8 +11,31 @@ public class Simulator
 	
 	public static void main(String[] args)
 	{
+		//adds some things to a queue 
 	Car car1 = new Car();
-	System.out.println(car1.getProbability());
+	Motorbike bike1 = new Motorbike();
+	Truck truck1 = new Truck();
+	Queue q1 = new Queue(5);
+	q1.add(car1);
+	System.out.println("current length: " + q1.getCurrentLength());
+	q1.add(bike1);
+	q1.add(truck1);
+	System.out.println(q1.toString());
+	q1.checkspace(car1);
+	q1.add(car1);
+	System.out.println(q1.checkspace(car1));
+	System.out.println("current length: " + q1.getCurrentLength());
+	q1.removeFirstItem();
+	System.out.println("current length: " + q1.getCurrentLength());
+	q1.removeFirstItem();
+	System.out.println("current length: " + q1.getCurrentLength());
+	q1.removeFirstItem();
+	System.out.println("current length: " + q1.getCurrentLength());
+	q1.removeFirstItem();
+	System.out.println("current length: " + q1.getCurrentLength());
+	q1.removeFirstItem();
+	System.out.println("current length: " + q1.getCurrentLength());
+
 	}
 	
 	//Allows vehicle to choose queue - most likely will envoke the smallest queue method
