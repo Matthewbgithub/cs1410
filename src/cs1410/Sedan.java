@@ -1,24 +1,19 @@
 	package cs1410;
-
-public class Sedan extends Vehicle{
-
-	private  double probabiltyOfQ;
-	private int shoppingTime;
-	private int shoppingMoney;
 	
-	public Sedan(double probabilityOfQ, int shoppingTime, int shoppingMoney){
+public class Sedan extends Vehicle{
+	private int probToAppearQ;
+	public Sedan(){
 		qSpace = 1.5;
-	this.probabilityOfQ = probabiltyOfQ;
-	this.shoppingTime = shoppingTime;
-	this.shoppingMoney = shoppingMoney;
+		shoppingTime = 10;
+		tankSize = rnd.nextInt(3)+12;
 	}
 	
-	public void setProbabilityOfQ(double probabilityOfQ){
-	this.probabilityOfQ = probabiltyOfQ;
+	public void setProbabilityOfQ(){
+		
 	
 	}
 	public double getProbabilityOfQ(){
-	return probabilityOfQ;
+	return probToAppearQ;
 	}
 	
 	public void setShoppingTime(int shoppingTime){

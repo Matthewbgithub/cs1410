@@ -15,7 +15,7 @@ public class Simulator
 	Car car1 = new Car();
 	Motorbike bike1 = new Motorbike();
 	Truck truck1 = new Truck();
-	Queue q1 = new Queue(5);
+	Queue q1 = new Queue();
 	q1.add(car1);
 	System.out.println("current length: " + q1.getCurrentLength());
 	q1.add(bike1);
@@ -36,6 +36,8 @@ public class Simulator
 	q1.removeFirstItem();
 	System.out.println("current length: " + q1.getCurrentLength());
 
+	
+	System.out.println(car1.getTankSize());
 	}
 	
 	//Allows vehicle to choose queue - most likely will envoke the smallest queue method

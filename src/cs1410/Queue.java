@@ -3,14 +3,12 @@ import java.util.*;
 
 public class Queue {
 	private ArrayList<Vehicle> vehicleArray;
-	private int qLength;
+	private int qLength=3;
 	private double currentLength=0.0;
 	
-	public Queue(int length){
+	public Queue(){
 		//intialize the arraylist
 		vehicleArray = new ArrayList<Vehicle>();
-		//set length
-		this.qLength = length;
 	}
 	
 	public void setLength(int length){

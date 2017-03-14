@@ -1,14 +1,9 @@
 package cs1410;
-import java.util.Random;
 
 public class Truck extends Vehicle{
 	private double probabilityOfT;
-	private double shoppingTime;
-	private double shoppingMoney;
-	private Random random;
 	private int refillTime;
 	private boolean isHappy;
-	private int tankSize;
 	
 public Truck() {
 	qSpace = 2;
@@ -16,15 +11,15 @@ public Truck() {
 	
 	int tankHigh = 40;
 	int tankLow = 30;
-	//tankSize = random.nextInt(tankHigh - tankLow) + tankLow;
+	//tankSize = rnd.nextInt(tankHigh - tankLow) + tankLow;
 	
 	int timeHigh = 6;
 	int timeLow = 4;
-	//shoppingTime = random.nextInt(timeHigh - timeLow) + timeLow;
+	//shoppingTime = rnd.nextInt(timeHigh - timeLow) + timeLow;
 	
 	int moneyHigh = 20;
 	int moneyLow = 15;
-	//shoppingMoney = random.nextInt(moneyHigh - moneyLow) + moneyLow;
+	//shoppingMoney = rnd.nextInt(moneyHigh - moneyLow) + moneyLow;
 }
 	
 	private void setProbabilityOfT(double probability) {
