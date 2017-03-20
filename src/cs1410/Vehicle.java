@@ -8,6 +8,7 @@ public class Vehicle {
 	protected double shoppingMoney;
 	protected double qSpace;
 	protected int shoppingTime;
+	protected double refillTime;
 	protected Random rnd;
 	
 	public void Vehicle(){
@@ -31,5 +32,9 @@ public class Vehicle {
 	
 	public int getArrivalTime(){
 		return 1;
+	}
+	
+	public double getRefillTime(){
+		return refillTime;	
 	}
 }
