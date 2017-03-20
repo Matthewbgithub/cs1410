@@ -3,16 +3,12 @@ import java.util.*;
 
 public class Queue {
 	private ArrayList<Vehicle> vehicleArray;
-	private int qLength=3;
+	private final int qLength=3;
 	private double currentLength=0.0;
 	
 	public Queue(){
 		//intialize the arraylist
 		vehicleArray = new ArrayList<Vehicle>();
-	}
-	
-	public void setLength(int length){
-		qLength = length;
 	}
 	
 	public int getLength(){
@@ -41,10 +37,16 @@ public class Queue {
 		}
 	}
 	
-	public void add(Vehicle vehicle){
-		vehicleArray.add(vehicle);
-		currentLength += vehicle.getLength();
+	public boolean add(Vehicle vehicle){ //add a parameter to decide whether its being called from queue or till
+		if(checkspace(vehicle)){
+			vehicleArray.add(vehicle);
+			currentLength += vehicle.getLength();
+			return true;
+		}else{
+			return false;
+		}
 	}
+	
 	public String toString(){
 		return vehicleArray.toString();
 	}

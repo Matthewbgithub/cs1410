@@ -11,7 +11,7 @@ public class Simulator
 	
 	public static void main(String[] args)
 	{
-		Station station = new Station();
+		Station station = new Station(3,3);
 	}
 		
 		//adds some things to a queue 

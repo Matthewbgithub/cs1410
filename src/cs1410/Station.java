@@ -6,17 +6,42 @@ public class Station {
 	private ArrayList<Pump> pumpList;
 	private ArrayList<Till> tillList;
 	
-	public Station(){
+	public Station(int pumpNo, int tillNo){
 		pumpList = new ArrayList<Pump>();
 		tillList = new ArrayList<Till>();
 		
-		Car largeCar = new Car();
-		Pump pump1 = new Pump();
-		pumpList.add(pump1);
-		pumpList.get(0).getQueue().add(largeCar);
-		System.out.println("should contain 1 car" + pumpList.get(0).getQueue().toString());
-		
+		for(int i = 0; i < pumpNo; i++){
+			Pump pump = new Pump();
+			pumpList.add(pump);
 		}
+		for(int i = 0; i < tillNo; i++){
+			Till till = new Till();
+			tillList.add(till);
+		}
+		//now, 'pumpno' of pumps have been created and 'tillno' of tills
+		Car car = new Car();
+		Truck truck = new Truck();
+		Motorbike bike = new Motorbike();
+		pumpList.get(0).add(car);
+		pumpList.get(0).add(car);
+		pumpList.get(1).add(bike);
+		pumpList.get(2).add(truck);
+		pumpList.get(2).add(truck);
+		System.out.println(choosePump().toString());
+	}
+	public Queue choosePump(){
+		double small = pumpList.get(0).getQueue().getCurrentLength();
+		int pumpNo = 0;
+		int i;
+		for(i = 1; i < (pumpList.size() -1); i++){
+			if(pumpList.get(i).getQueue().getCurrentLength() < small){
+				small = pumpList.get(i).getQueue().getCurrentLength();
+				pumpNo = i;
+			}
+			
+		}
+		return pumpList.get(pumpNo).getQueue();
+	}
 	
 	public void queueTest(){
 		Car car1 = new Car();
