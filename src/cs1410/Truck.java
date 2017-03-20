@@ -2,24 +2,19 @@ package cs1410;
 
 public class Truck extends Vehicle{
 	private double probabilityOfT;
-	private int refillTime;
 	private boolean isHappy;
 	
 public Truck() {
 	qSpace = 2;
 	probabilityOfT = 0.02;
+	tankSize = rnd.nextInt(11)+30;
 	
-	int tankHigh = 40;
-	int tankLow = 30;
-	//tankSize = rnd.nextInt(tankHigh - tankLow) + tankLow;
-	
-	int timeHigh = 6;
-	int timeLow = 4;
-	//shoppingTime = rnd.nextInt(timeHigh - timeLow) + timeLow;
-	
-	int moneyHigh = 20;
-	int moneyLow = 15;
-	//shoppingMoney = rnd.nextInt(moneyHigh - moneyLow) + moneyLow;
+	if(refillTime <= 8) {
+		shoppingProb = 1;
+		shoppingTime = rnd.nextInt(3)+4;
+		shoppingMoney = rnd.nextInt(6)+15;
+		isHappy = true;
+	}
 }
 	
 	private void setProbabilityOfT(double probability) {
@@ -40,15 +35,6 @@ public Truck() {
 	
 	private int getRefillTime() {
 		return refillTime;
-	}
-	
-	private boolean isHappy() {
-		if(refillTime <= 8) {
-			return true;
-		}
-		else {
-			return false;
-		}
 	}
 	
 	private void changeProbability() {
