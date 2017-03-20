@@ -19,9 +19,8 @@ public class Queue {
 		return currentLength;
 	}
 	
-	public boolean checkspace(Vehicle toAdd){
+	public boolean checkspace(double size){
 		//checks whether the space passed as a parameter will fit into the queue
-		double size = toAdd.getLength();
 		if ((currentLength + size) <= qLength){
 			return true;
 		}else{
@@ -37,13 +36,23 @@ public class Queue {
 		}
 	}
 	
-	public boolean add(Vehicle vehicle){ //add a parameter to decide whether its being called from queue or till
-		if(checkspace(vehicle)){
-			vehicleArray.add(vehicle);
-			currentLength += vehicle.getLength();
-			return true;
+	public boolean add(Vehicle vehicle, String caller){ //add a parameter to decide whether its being called from queue or till
+		if(caller == "pump"){
+			if(checkspace(vehicle.getLength())){
+				vehicleArray.add(vehicle);
+				currentLength += vehicle.getLength();
+				return true;
+			}else{
+				return false;
+			}
 		}else{
-			return false;
+			if(checkspace(1)){
+				vehicleArray.add(vehicle);
+				currentLength += vehicle.getTillLength();
+				return true;
+			}else{
+				return false;
+			}
 		}
 	}
 	

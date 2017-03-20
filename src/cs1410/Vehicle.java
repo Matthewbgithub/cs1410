@@ -24,6 +24,9 @@ public class Vehicle {
 	public double getLength(){
 		return qSpace;
 	}
+	public int getTillLength(){
+		return 1;
+	}
 	public int getTankSize(){
 		return this.tankSize;
 	}

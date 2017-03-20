@@ -7,7 +7,7 @@ public class Till {
 		tillQueue = new Queue();
 	}
 	public boolean add(Vehicle vehicle){
-		return tillQueue.add(vehicle);
+		return tillQueue.add(vehicle, "till");
 	}
 	public Queue getQueue(){
 		return tillQueue;
