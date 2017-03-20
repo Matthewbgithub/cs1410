@@ -52,7 +52,7 @@ public class Queue {
 		}else{
 			if(checkspace(1)){
 				vehicleArray.add(vehicle);
-				currentLength += vehicle.getTillLength();
+				currentLength += 1;
 				return true;
 			}else{
 				return false;
