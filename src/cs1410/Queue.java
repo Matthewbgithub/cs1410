@@ -1,5 +1,10 @@
 package cs1410;
 import java.util.*;
+/**
+*  This class handles adding and removing vehicle objects from the queues at the tills and pumps
+* @Version 1.3
+*
+*/
 
 public class Queue {
 	private ArrayList<Vehicle> vehicleArray;
@@ -10,10 +15,10 @@ public class Queue {
 		//intialize the arraylist
 		vehicleArray = new ArrayList<Vehicle>();
 	}
-	
-	public int getLength(){
-		return qLength;
-	}
+	/**
+	* Gets the length of the queue at a certain time
+	* @
+	*/
 	public double getCurrentLength(){
 		//return the length of all the items in the queue
 		return currentLength;
