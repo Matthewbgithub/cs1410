@@ -1,8 +1,18 @@
+/**
+*Represents a subclass of vehicle
+* @author
+* @version
+*/
+
 package cs1410;
 import java.util.Random;
 
 public class Car extends Vehicle{
 	private double probToAppearP;
+	
+	/**
+	* Creates a <code> Car </code> and automatically sets the queue space to 1
+	*/
 	public Car(){
 		qSpace = 1;
 		random = new Random();
@@ -16,11 +26,17 @@ public class Car extends Vehicle{
 			shoppingMoney = rnd.nextDouble(6)+5;
 	}
 		//set arrival probability
+		/**
+		* @param set a double which is the probability of q
+		*/
 	private void setProbabilityOfP(double probability) {
 		probToAppearP = probability;
 	}
 	
 		//get arrival probability
+		/**
+		* @return probability set in the parameter
+		*/
 	private double getProbabilityOfP() {
 		return probToAppearP;	
 	}
