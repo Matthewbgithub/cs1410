@@ -15,17 +15,22 @@ public class Sedan extends Vehicle{
 		}
 	}
 	
+	//set arrival probability
 	public void setProbabilityOfQ(double probability){
 		probToAppearQ = probability;
 	}
+	
+	//get arrival probability
 	public double getProbabilityOfQ(){
 	return probToAppearQ;
 	}
 	
+	//set time spent shopping
 	public void setShoppingTime(int shoppingTime){
 	this.shoppingTime = shoppingTime;	
 	}
 	
+	//get time spent shopping
 	public int getShoppingTime(){
 	return shoppingTime;
 	}
