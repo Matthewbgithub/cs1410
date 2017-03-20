@@ -10,4 +10,9 @@ public class Car extends Vehicle{
 		refillTime = tankSize / 6;
 	}
 	
+	public void setShoppingProb(){
+		if(refillTime < 5) {
+			shoppingProb = 0.3;
+	}
+
 }
