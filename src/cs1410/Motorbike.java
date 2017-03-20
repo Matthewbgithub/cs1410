@@ -12,10 +12,12 @@ public class Motorbike extends Vehicle{
 		refillTime = tankSize / 6;
 	}
 	
+	//set arrival probability
 	private void setProbabilityOfP(double probability) {
 		probToAppearP = probability;
 	}
 	
+	//get arrival probability
 	private double getProbabilityOfP() {
 		return probToAppearP;	
 	}
