@@ -29,7 +29,7 @@ public class Station {
 		pumpList.get(2).add(truck);
 		System.out.println(choosePump().toString());
 	}
-	public Queue choosePump(){
+	public Pump choosePump(){
 		double small = pumpList.get(0).getQueue().getCurrentLength();
 		int pumpNo = 0;
 		int i;
@@ -40,7 +40,7 @@ public class Station {
 			}
 			
 		}
-		return pumpList.get(pumpNo).getQueue();
+		return pumpList.get(pumpNo);
 	}
 	
 	public void queueTest(){
