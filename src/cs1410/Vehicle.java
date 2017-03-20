@@ -38,4 +38,8 @@ public class Vehicle {
 	public double getRefillTime(){
 		return refillTime;	
 	}
+	
+	public double getShopQSpace(){
+		return shopQSpace;
+	}
 }
