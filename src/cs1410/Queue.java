@@ -27,16 +27,20 @@ public class Queue {
 			return false;
 		}
 	}
-	public void removeFirstItem(){
+	public void removeFirstItem(String caller){
 		//changes space left in queue
 		if(!vehicleArray.isEmpty()){
-		currentLength -= vehicleArray.get(0).getLength();
+			if(caller == "pump"){
+				currentLength -= vehicleArray.get(0).getLength();
+			}else{
+				currentLength -= 1;
+			}
 		//removes first item from array
 		vehicleArray.remove(0);
 		}
 	}
 	
-	public boolean add(Vehicle vehicle, String caller){ //add a parameter to decide whether its being called from queue or till
+	public boolean add(Vehicle vehicle, String caller){ //add a parameter to decide whether its being called from pump or till
 		if(caller == "pump"){
 			if(checkspace(vehicle.getLength())){
 				vehicleArray.add(vehicle);

@@ -57,15 +57,15 @@ public class Station {
 		q1.add(car1, "pump");
 		System.out.println(q1.checkspace(car1.getLength()));
 		System.out.println("current length: " + q1.getCurrentLength());
-		q1.removeFirstItem();
+		q1.removeFirstItem("pump");
 		System.out.println("current length: " + q1.getCurrentLength());
-		q1.removeFirstItem();
+		q1.removeFirstItem("pump");
 		System.out.println("current length: " + q1.getCurrentLength());
-		q1.removeFirstItem();
+		q1.removeFirstItem("pump");
 		System.out.println("current length: " + q1.getCurrentLength());
-		q1.removeFirstItem();
+		q1.removeFirstItem("pump");
 		System.out.println("current length: " + q1.getCurrentLength());
-		q1.removeFirstItem();
+		q1.removeFirstItem("pump");
 		System.out.println("current length: " + q1.getCurrentLength());
 
 		System.out.println(car1.getTankSize());
