@@ -39,7 +39,7 @@ public Truck() {
 	}
 	
 	//get refill time
-	private int getRefillTime() {
+	public double getRefillTime() {
 		return refillTime;
 	}
 	
