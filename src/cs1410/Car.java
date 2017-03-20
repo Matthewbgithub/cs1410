@@ -15,7 +15,6 @@ public class Car extends Vehicle{
 	*/
 	public Car(){
 		qSpace = 1;
-		random = new Random();
 		tankSize = rnd.nextInt(3)+7;
 		refillTime = tankSize / 6;
 		
@@ -23,7 +22,7 @@ public class Car extends Vehicle{
 		if(refillTime < 5) {
 			shoppingProb = 0.3;
 			shoppingTime = rnd.nextInt(3)+2;
-			shoppingMoney = rnd.nextDouble(6)+5;
+			shoppingMoney = rnd.nextInt(6)+5;
 	}
 		//set arrival probability
 		/**
