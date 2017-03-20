@@ -15,9 +15,8 @@ public class Sedan extends Vehicle{
 		}
 	}
 	
-	public void setProbabilityOfQ(){
-		
-	
+	public void setProbabilityOfQ(double probability){
+		probToAppearQ = probability;
 	}
 	public double getProbabilityOfQ(){
 	return probToAppearQ;
