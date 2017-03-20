@@ -13,15 +13,7 @@ public class Simulator
 	{
 		Station station = new Station(3,3);
 	}
-		
-		//adds some things to a queue 
-
-	//Allows vehicle to choose queue - most likely will envoke the smallest queue method
-	public Queue chooseQueue()
-	{
-		return null;
-	}
-	
+			
 	//Return the total number of ticks that have gone past so far (time)
 	public int getTicks()
 	{
@@ -54,22 +46,6 @@ public class Simulator
 	public boolean checkQueueIsFull()
 	{
 	return false;
-	
-	}
-	
-	// Checks the size of all queues, and return the smallest
-	public Queue searchSmallest()
-	{
-	 	 /*e.g. 
-		
-		"int TempOne = (QueueOne.Size) minus 10"
-	        "int TempTwo = (Queuetwo.Size) minus 10"
-			
-		"TempOne *Comparison* TempTwo"
-			
-			"Return Queue X"
-		etc......*/
-		return null;
 	
 	}
 	
