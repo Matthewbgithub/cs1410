@@ -2,6 +2,7 @@ package cs1410;
 import java.util.Random;
 
 public class Car extends Vehicle{
+	private double probToAppearP;
 	private Random random;
 	public Car(){
 		qSpace = 1;
@@ -14,5 +15,11 @@ public class Car extends Vehicle{
 			shoppingTime = random.nextInt(3)+2;
 			shoppingMoney = random.nextDouble(9)+8;
 	}
-
+	private void setProbabilityOfP(double probability) {
+		probToAppearP = probability;
+	}
+	
+	private double getProbabilityOfP() {
+		return probToAppearP;	
+	}
 }
