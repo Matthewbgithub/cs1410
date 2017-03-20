@@ -7,6 +7,7 @@ public class Car extends Vehicle{
 		qSpace = 1;
 		random = new Random();
 		tankSize = random.nextInt(3)+7;
+		refillTime = tankSize / 6;
 	}
 	
 }
