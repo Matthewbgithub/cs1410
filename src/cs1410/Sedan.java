@@ -2,7 +2,7 @@
 	import java.util.Random;
 	
 public class Sedan extends Vehicle{
-	private int probToAppearQ;
+	private double probToAppearQ;
 	public Sedan(){
 		qSpace = 1.5;
 		tankSize = rnd.nextInt(3)+12;
