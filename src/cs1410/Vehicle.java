@@ -9,6 +9,7 @@ public class Vehicle {
 	protected double qSpace;
 	protected int shoppingTime;
 	protected double refillTime;
+	static final int shopQSpace = 1;
 	protected Random rnd;
 	
 	public void Vehicle(){
