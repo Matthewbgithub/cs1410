@@ -3,9 +3,11 @@ package cs1410;
 public class Ticker {
 
 	private int tick;
+	private int maxTicks;
 	
 	public Ticker() {
 		tick = 0;
+		maxTicks = 1440;
 	}
 	
 	/**
@@ -16,10 +18,12 @@ public class Ticker {
 	}
 	
 	/**
-	 * Increment the tick by one
+	 * Increment the tick by one if it is less than the maximum number of ticks
 	 */
 	public void increment() {
+		if(tick < maxTicks) {
 		tick++;
+		}
 	}
 	
 	/**
