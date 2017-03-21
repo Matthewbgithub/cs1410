@@ -1,6 +1,11 @@
 package cs1410;
 
 import java.util.Random;
+/**
+ * A superclass which holds all the relevant fields and methods that will be used by the subclasses(specific vehicle types)
+ * @author 
+ * @version 1.00
+ */
 
 public class Vehicle {
 	protected int tankSize;
