@@ -12,8 +12,7 @@ public class Motorbike extends Vehicle{
 	* Creates a <code> Motorbike </code> 
 	* Sets the tank size, shopping probability, shopping money, space in queue and shopping time
 	* 
-	*/
-		
+	*/	
 	public Motorbike(){
 		name = "Motorbike";
 		tankSize = 5;
