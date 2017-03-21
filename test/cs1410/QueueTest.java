@@ -2,9 +2,16 @@ package cs1410;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+
 import org.junit.Test;
 
 public class QueueTest{
+	ArrayList<Vehicle>vehicleArray = new ArrayList<Vehicle>();
+	
+	Car c1 = new Car();
+	Car c2 = new Car();
+	Car c3 = new Car();
 
 	@Test
 	public void testQueue() {
@@ -12,8 +19,11 @@ public class QueueTest{
 	}
 
 	@Test
-	public void testGetCurrentLength() {
-		fail("Not yet implemented");
+	public void testGetCurrentLength(Queue queue) {
+		vehicleArray.add(c1);
+		vehicleArray.add(c2);
+		vehicleArray.add(c3);
+		assertEquals(3, queue.getCurrentLength());
 	}
 
 	@Test

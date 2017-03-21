@@ -17,6 +17,7 @@ public Truck() {
 	rnd = new Random();
 	qSpace = 2;
 	tankSize = rnd.nextInt(11)+30;
+	refillTime = tankSize / 6;
 	
 	/**
 	 * if refill time is less than or equal to 8 minutes, the truck driver will definitely shop
