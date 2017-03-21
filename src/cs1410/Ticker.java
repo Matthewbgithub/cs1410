@@ -3,11 +3,10 @@ package cs1410;
 public class Ticker {
 
 	private int tick;
-	private int maxTicks;
+	private static final int maxTicks = 1440;
 	
 	public Ticker() {
 		tick = 0;
-		maxTicks = 1440;
 	}
 	
 	/**
