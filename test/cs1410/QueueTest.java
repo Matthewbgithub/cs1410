@@ -7,7 +7,9 @@ import java.util.ArrayList;
 import org.junit.Test;
 
 public class QueueTest{
+	
 	ArrayList<Vehicle>vehicleArray = new ArrayList<Vehicle>();
+	Queue queue = new Queue();
 	
 	Car c1 = new Car();
 	Car c2 = new Car();
@@ -15,15 +17,15 @@ public class QueueTest{
 
 	@Test
 	public void testQueue() {
-		fail("Not yet implemented");
+		
 	}
 
 	@Test
-	public void testGetCurrentLength(Queue queue) {
+	public void testGetCurrentLength() {
 		vehicleArray.add(c1);
 		vehicleArray.add(c2);
 		vehicleArray.add(c3);
-		assertEquals(3, queue.getCurrentLength());
+		assertEquals(3.0, vehicleArray.size());
 	}
 
 	@Test
