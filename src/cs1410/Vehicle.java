@@ -11,8 +11,10 @@ public class Vehicle {
 	protected double refillTime;
 	static final int shopQSpace = 1;
 	protected Random rnd;
+	protected String name;
 	
-	public void Vehicle(){
+	public Vehicle(){
+		rnd = new Random();
 	}
 	
 //Set methods------
@@ -21,6 +23,9 @@ public class Vehicle {
 	}
 	
 //Get methods------
+	public String getName(){
+		return name;
+	}
 	public double getLength(){
 		return qSpace;
 	}
@@ -30,7 +35,9 @@ public class Vehicle {
 	public double getProbability(){
 		return shoppingProb;
 	}
-	
+	public double getShoppingMoney(){
+		return shoppingMoney;
+	}
 	public int getArrivalTime(){
 		return 1;
 	}
@@ -41,5 +48,15 @@ public class Vehicle {
 	
 	public double getShopQSpace(){
 		return shopQSpace;
+	}
+//other
+	public boolean staysToShop(){
+		if(rnd.nextDouble()<= shoppingProb){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	public void changeProbability(){
 	}
 }

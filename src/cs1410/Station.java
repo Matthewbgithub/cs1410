@@ -1,14 +1,25 @@
 package cs1410;
-
+import java.util.Random;
 import java.util.ArrayList;
 
 public class Station {
+	private double income;
+	private double loss;
+	private double petrolPrice;
+	private double probabilityP;
+	private double probabilityQ;
 	private ArrayList<Pump> pumpList;
 	private ArrayList<Till> tillList;
+	private Random rnd;
+	private boolean isTruck;
 	
-	public Station(int pumpNo, int tillNo){
+	public Station(int pumpNo, int tillNo, double p, double q, boolean isTruck){
+		probabilityP = p;
+		probabilityQ = q;
 		pumpList = new ArrayList<Pump>();
 		tillList = new ArrayList<Till>();
+		rnd = new Random();
+		this.isTruck = isTruck;
 		
 		for(int i = 0; i < pumpNo; i++){
 			Pump pump = new Pump();
@@ -18,56 +29,112 @@ public class Station {
 			Till till = new Till();
 			tillList.add(till);
 		}
-		//now, 'pumpno' of pumps have been created and 'tillno' of tills
-		Car car = new Car();
-		Truck truck = new Truck();
-		Motorbike bike = new Motorbike();
-		pumpList.get(0).add(car);
-		pumpList.get(0).add(car);
-		pumpList.get(1).add(bike);
-		pumpList.get(2).add(truck);
-		pumpList.get(2).add(truck);
-		System.out.println(choosePump().toString());
 	}
 	public Pump choosePump(){
 		double small = pumpList.get(0).getQueue().getCurrentLength();
 		int pumpNo = 0;
 		int i;
-		for(i = 1; i < (pumpList.size() -1); i++){
+		for(i = 1; i < (pumpList.size()); i++){
 			if(pumpList.get(i).getQueue().getCurrentLength() < small){
 				small = pumpList.get(i).getQueue().getCurrentLength();
 				pumpNo = i;
 			}
-			
 		}
 		return pumpList.get(pumpNo);
 	}
-	
-	public void queueTest(){
-		Car car1 = new Car();
-		Motorbike bike1 = new Motorbike();
-		Truck truck1 = new Truck();
-		Queue q1 = new Queue();
-		q1.add(car1,"pump");
-		System.out.println("current length: " + q1.getCurrentLength());
-		q1.add(bike1, "pump");
-		q1.add(truck1, "pump");
-		System.out.println(q1.toString());
-		q1.checkspace(car1.getLength());
-		q1.add(car1, "pump");
-		System.out.println(q1.checkspace(car1.getLength()));
-		System.out.println("current length: " + q1.getCurrentLength());
-		q1.removeFirstItem("pump");
-		System.out.println("current length: " + q1.getCurrentLength());
-		q1.removeFirstItem("pump");
-		System.out.println("current length: " + q1.getCurrentLength());
-		q1.removeFirstItem("pump");
-		System.out.println("current length: " + q1.getCurrentLength());
-		q1.removeFirstItem("pump");
-		System.out.println("current length: " + q1.getCurrentLength());
-		q1.removeFirstItem("pump");
-		System.out.println("current length: " + q1.getCurrentLength());
-
-		System.out.println(car1.getTankSize());
+	public Till chooseTill(){
+		double small = tillList.get(0).getQueue().getCurrentLength();
+		int tillNo = 0;
+		int i;
+		for(i = 1; i < (tillList.size()); i++){
+			if(tillList.get(i).getQueue().getCurrentLength() < small){
+				small = tillList.get(i).getQueue().getCurrentLength();
+				tillNo = i;
+			}
+		}
+		return tillList.get(tillNo);
+	}
+	/**
+	* Called on each tick, will generate vehicles if the probability matches
+	*/
+	public void generateVehicle(){
+		if((rnd.nextInt(100)+1)/10 <= probabilityP){
+			Car car = new Car();
+			System.out.println("created car.");
+			addVehicleToPump(car);
+		}
+		if((rnd.nextInt(100)+1)/10 <= probabilityP){
+			Motorbike motorbike = new Motorbike();
+			System.out.println("created motorbike");
+			addVehicleToPump(motorbike);
+		}
+		if((rnd.nextInt(100)+1)/10 <= probabilityQ){
+			Sedan sedan = new Sedan();
+			System.out.println("created sedan");
+			addVehicleToPump(sedan);
+		}
+		if(isTruck){
+			if((rnd.nextInt(100)+1)/10 <= Truck.getProbabilityOfT()){
+				Truck truck = new Truck();
+				System.out.println("created truck");
+				addVehicleToPump(truck);
+			}
 		}
 	}
+	/**
+	* decides if the vehicle can be added to a pump, if there are no available pumps the loss calculation method is called
+	*/
+	private boolean addVehicleToPump(Vehicle vehicle){
+		if(choosePump().getQueue().checkspace(vehicle.getLength())){
+			System.out.println(vehicle.getName() + " has been added to " + choosePump().getQueue().toString() + " which has a current length of " + choosePump().getQueue().getCurrentLength());
+			choosePump().add(vehicle);
+			if(vehicle.getName() == "Truck"){
+				vehicle.changeProbability();
+			}
+			return true;
+		}else{
+			System.out.print(vehicle.getName() + " has not been added to a queue ");
+			vehicleLeaveBecauseQueueFull(vehicle);
+			return false;
+		}
+	}
+	/**
+	* calculates the loss using the tanksize loss and also the shopping amount
+	*/
+	private void vehicleLeaveBecauseQueueFull(Vehicle vehicle){
+		double newLoss = petrolPrice * vehicle.tankSize + vehicle.getShoppingMoney();
+		loss += newLoss;
+		System.out.println("at a loss of " + newLoss);;
+	}
+	/**
+	*Gives the option to set the current price of petrol
+	*/
+	public void setPetrolPrice(double newPetrolPrice)
+	{
+	  	//Sets the price of the petrol to whatever the user enter into the simulator
+		petrolPrice = newPetrolPrice;
+	}
+	/**
+	*Calculate the total income generated
+	*/
+	public double calcIncome()
+	{
+	  return income; 
+	}
+	/**
+	*Returns the current price of petrol
+	*/
+	public double getPetrolPrice()
+	{
+	   return  petrolPrice; 
+	}
+	public ArrayList<Pump> getPumpList(){
+		return pumpList;
+	}
+	public ArrayList<Till> getTillList(){
+		return tillList;
+	}
+	public double getLoss(){
+		return loss;
+	}
+}

@@ -4,6 +4,8 @@
 public class Sedan extends Vehicle{
 	private double probToAppearQ;
 	public Sedan(){
+		name = "Sedan";
+		rnd = new Random();
 		qSpace = 1.5;
 		tankSize = rnd.nextInt(3)+12;
 		refillTime = tankSize / 6;
@@ -11,20 +13,9 @@ public class Sedan extends Vehicle{
 		if(refillTime < 10) {
 			shoppingProb = 0.4;
 			shoppingTime = rnd.nextInt(4)+2;
-			shoppingMoney = rnd.nextDouble(9)+8;
+			shoppingMoney = rnd.nextInt(9)+8;
 		}
 	}
-	
-	//set arrival probability
-	public void setProbabilityOfQ(double probability){
-		probToAppearQ = probability;
-	}
-	
-	//get arrival probability
-	public double getProbabilityOfQ(){
-	return probToAppearQ;
-	}
-	
 	//set time spent shopping
 	public void setShoppingTime(int shoppingTime){
 	this.shoppingTime = shoppingTime;	

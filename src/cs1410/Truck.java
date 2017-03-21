@@ -1,12 +1,15 @@
 package cs1410;
 
+import java.util.Random;
+
 public class Truck extends Vehicle{
-	private double probabilityOfT;
+	private static double probabilityOfT = 0.02;
 	private boolean isHappy;
 	
 public Truck() {
+	name = "Truck";
+	rnd = new Random();
 	qSpace = 2;
-	probabilityOfT = 0.02;
 	tankSize = rnd.nextInt(11)+30;
 	
 	//if refill time is less than or equal to 8 minutes, the truck driver will definitely shop
@@ -15,16 +18,17 @@ public Truck() {
 		shoppingTime = rnd.nextInt(3)+4;
 		shoppingMoney = rnd.nextInt(6)+15;
 		isHappy = true;
+	}else{
+		isHappy = false;
 	}
 }
-	
 	//set arrival probability
 	private void setProbabilityOfT(double probability) {
 		probabilityOfT = probability;	
 	}
 	
 	//get arrival probability
-	private double getProbabilityOfT() {
+	public static double getProbabilityOfT() {
 		return probabilityOfT;
 	}
 	
@@ -44,12 +48,14 @@ public Truck() {
 	}
 	
 	//changes the probability of other trucks arriving depending on if the truck driver is happy or not
-	private void changeProbability() {
+	public void changeProbability() {
 		if(isHappy) {
-			probabilityOfT = probabilityOfT * 1.05;
+			probabilityOfT *= 1.05;
+			System.out.println("Happy trucker ("+ probabilityOfT +")");
 		}
 		else {
-			probabilityOfT = probabilityOfT * 0.8;
+			probabilityOfT *= 0.8;
+			System.out.println("Unhappy trucker ("+ probabilityOfT +")");
 		}
 	}
 }

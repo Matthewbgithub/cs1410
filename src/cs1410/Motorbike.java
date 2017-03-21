@@ -15,32 +15,12 @@ public class Motorbike extends Vehicle{
 	*/
 		
 	public Motorbike(){
+		name = "Motorbike";
 		tankSize = 5;
-		shoppingProb = 0;
+		shoppingProb = -1;
 		shoppingMoney = 0;
 		qSpace = 0.75;
 		shoppingTime = 0;
 		refillTime = tankSize / 6;
 	}
-	
-	//set arrival probability
-	/**
-	* @param sets the probability of the appearance of the motorbike using a double
-	*/
-		
-	private void setProbabilityOfP(double probability) {
-		probToAppearP = probability;
-	}
-	
-	//get arrival probability
-	/**
-	* @return probability set by user
-	
-	*/
-	private double getProbabilityOfP() {
-		return probToAppearP;	
-	}
-	
-	
-	
 }

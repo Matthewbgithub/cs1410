@@ -12,7 +12,7 @@ public class Pump
 		pumpQueue = new Queue();
 	}
 	public boolean add(Vehicle vehicle){
-		return pumpQueue.add(vehicle, "queue");
+		return pumpQueue.add(vehicle, "pump");
 	}
 	public Queue getQueue(){
 		return pumpQueue;
