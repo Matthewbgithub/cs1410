@@ -43,7 +43,7 @@ public Truck() {
 	}
 	
 	//get time spent shopping
-	private double getShoppingTime() {
+	public double getShoppingTime() {
 		return shoppingTime;
 	}
 	
