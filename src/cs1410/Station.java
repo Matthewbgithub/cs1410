@@ -3,7 +3,7 @@ import java.util.Random;
 import java.util.ArrayList;
 
 public class Station {
-	private double income;
+	private static double income;
 	private double loss;
 	private double petrolPrice;
 	private double probabilityP;
@@ -58,7 +58,7 @@ public class Station {
 	* Called on each tick, will generate vehicles if the probability matches
 	*/
 	public void generateVehicle(){
-		if((rnd.nextInt(100)+1)/10 <= probabilityP){
+		/*if((rnd.nextInt(100)+1)/10 <= probabilityP){
 			Car car = new Car();
 			System.out.println("created car.");
 			addVehicleToPump(car);
@@ -67,30 +67,51 @@ public class Station {
 			Motorbike motorbike = new Motorbike();
 			System.out.println("created motorbike");
 			addVehicleToPump(motorbike);
-		}
+		}*/
 		if((rnd.nextInt(100)+1)/10 <= probabilityQ){
 			Sedan sedan = new Sedan();
 			System.out.println("created sedan");
 			addVehicleToPump(sedan);
 		}
-		if(isTruck){
+		/*if(isTruck){
 			if((rnd.nextInt(100)+1)/10 <= Truck.getProbabilityOfT()){
 				Truck truck = new Truck();
 				System.out.println("created truck");
 				addVehicleToPump(truck);
 			}
-		}
+		}*/
 	}
 	/**
 	* decides if the vehicle can be added to a pump, if there are no available pumps the loss calculation method is called
 	*/
 	private boolean addVehicleToPump(Vehicle vehicle){
+		
 		if(choosePump().getQueue().checkspace(vehicle.getLength())){
 			System.out.println(vehicle.getName() + " has been added to " + choosePump().getQueue().toString() + " which has a current length of " + choosePump().getQueue().getCurrentLength());
-			choosePump().add(vehicle);
-			if(vehicle.getName() == "Truck"){
-				vehicle.changeProbability();
+			vehicle.setPumpEnterTickNo(Simulator.getTicks());
+			vehicle.setPump(choosePump());
+			vehicle.getPump().add(vehicle);
+			System.out.println(vehicle.getPump().getQueue().toString());
+			if(vehicle.fillComplete()){
+				//enter shop
+				income =+ vehicle.getTankSize() * petrolPrice;
+				vehicle.setTill(chooseTill());
+				//add a false check to see if theres no space in the tills
+				vehicle.getTill().add(vehicle);
+				vehicle.setTillEnterTickNo(Simulator.getTicks());
+				if(vehicle.shopComplete()){
+					System.out.println(vehicle.getName() + " has left after visiting the shop");
+					removeFromShop(vehicle.getTill());
+				}
+			}else{
+				//leave
+				System.out.println(vehicle.getName() + " has left before entering the shop.");
+				removeBeforeShop(vehicle.getPump());
 			}
+			
+			/*if(vehicle.getName() == "Truck"){
+				vehicle.changeProbability();
+			}*/
 			return true;
 		}else{
 			System.out.print(vehicle.getName() + " has not been added to a queue ");
@@ -106,6 +127,12 @@ public class Station {
 		loss += newLoss;
 		System.out.println("at a loss of " + newLoss);;
 	}
+	private void removeFromShop(Till till){
+		till.getQueue().removeFirstItem("till");
+	}
+	private void removeBeforeShop(Pump pump){
+		pump.getQueue().removeFirstItem("pump");
+	}
 	/**
 	*Gives the option to set the current price of petrol
 	*/
@@ -117,9 +144,12 @@ public class Station {
 	/**
 	*Calculate the total income generated
 	*/
-	public double calcIncome()
+	public static double getIncome()
 	{
 	  return income; 
+	}
+	public static void setIncome(double i){
+		income = i;
 	}
 	/**
 	*Returns the current price of petrol
