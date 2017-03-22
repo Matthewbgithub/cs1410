@@ -25,7 +25,7 @@ public class QueueTest{
 		vehicleArray.add(c1);
 		vehicleArray.add(c2);
 		vehicleArray.add(c3);
-		assertEquals(3.0, vehicleArray.size());
+		assertEquals(3, vehicleArray.size());
 	}
 
 	@Test

@@ -96,6 +96,7 @@ public class Station {
 				//enter shop
 				income =+ vehicle.getTankSize() * petrolPrice;
 				vehicle.setTill(chooseTill());
+				//add a false check to see if theres no space in the tills
 				vehicle.getTill().add(vehicle);
 				vehicle.setTillEnterTickNo(Simulator.getTicks());
 				if(vehicle.shopComplete()){
