@@ -102,7 +102,7 @@ public class Vehicle {
 		int cTicks = Simulator.getTicks();;
 		while( timeTaken > cTicks){
 			//wait
-			//System.out.println("waiting....");
+			System.out.println("waiting....");
 			cTicks = Simulator.getTicks();
 			Simulator.incrementTick();
 		}
