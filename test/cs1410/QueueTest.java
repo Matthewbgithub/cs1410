@@ -8,7 +8,7 @@ import org.junit.Test;
 
 public class QueueTest{
 	
-	ArrayList<Vehicle>vehicleArray = new ArrayList<Vehicle>();
+	//ArrayList<Vehicle>vehicleArray = new ArrayList<Vehicle>();
 	Queue queue = new Queue();
 	private final int qLength=3;
 	private double currentLength=0.0;
@@ -41,12 +41,12 @@ public class QueueTest{
 
 	@Test
 	public void testCheckspace() {
-		vehicleArray.add(c1);
-		vehicleArray.add(c2);
-		vehicleArray.add(c3);
+		queue.add(c1);
+		queue.add(c2);
+		queue.add(c3);
 		currentLength = 3.0;
-		vehicleArray.add(m1);
-		//assertEquals(false , Queue.checkSpace());
+		queue.add(m1);
+		assertEquals(false , queue.checkSpace(3.00));
 	}
 
 	@Test
