@@ -26,27 +26,19 @@ public class QueueTest{
 
 	@Test
 	public void testGetCurrentLength() {
-		vehicleArray.add(c1);
-		vehicleArray.add(c2);
-		vehicleArray.add(c3);
-		assertEquals(3, vehicleArray.size());
-		
-		vehicleArray.add(m1);
-		vehicleArray.add(s1);
-		vehicleArray.add(s2);
-		assertEquals(3, qLength);
-			
-
+		queue.add(c1, "pump");
+		queue.add(c2, "pump");
+		queue.add(c3. "pump");
+		assertEquals(3, queue.getCurrentLength());
 	}
 
 	@Test
 	public void testCheckspace() {
-		queue.add(c1);
-		queue.add(c2);
-		queue.add(c3);
-		currentLength = 3.0;
-		queue.add(m1);
-		assertEquals(false , queue.checkSpace(3.00));
+		queue.add(c1, "pump");
+		queue.add(c2, "pump");
+		queue.add(c3. "pump");
+		//assertEquals(true, queue.checkSpace(3.00));
+		assertEquals(false, queue.checkSpace(s1.getLength());
 	}
 
 	@Test
