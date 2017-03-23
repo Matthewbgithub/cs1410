@@ -182,60 +182,7 @@ public class Vehicle {
 	public double getRefillTime(){
 		return refillTime;	
 	}
-<<<<<<< HEAD
-	protected int getPumpArrival(){
-		return pumpQueueArrival;
-=======
-	
-	public double getShopQSpace(){
-		return shopQSpace;
-	}
-	protected int getPumpEnterTickNo(){
-		return pumpEnterTickNo;
-	}
-	protected int getStartFillingTickNo(){
-		return startFillingTickNo;
-	}
-//other
-	protected boolean fillComplete(){
-		//start to fill minus enter queue time to get wait time
-		//add the fill time to that
-		double start = getStartFillingTickNo();
-		double enter = getPumpEnterTickNo();
-		double tank = getTankSize();
-		
-		double timeTaken = (enter + tank);
-		int cTicks = Simulator.getTicks();;
-		while( timeTaken > cTicks){
-			//wait
-			System.out.println("waiting....");
-			cTicks = Simulator.getTicks();
-			Simulator.incrementTick();
-		}
-		double time12 = timeTaken /6;
-		//rnd.nextInt(10)+1)/10
-		if(time12 < getTimeToRefillIn() && ( 0.1<= getProbability())){
-			//enter shop
-			return true;
-		}else{
-			//leaves shop
-			return false;
-		}
-	}
-	
-	protected boolean shopComplete(){
-		//start to fill minus enter queue time to get wait time
-		//add the fill time to that
-		int time = ((Simulator.getTicks() * 6) * getTimeToRefillIn());
-		while( getStartFillingTickNo() < time){
-			//wait
-			//System.out.println("waiting....");
-			Simulator.incrementTick();
-		}
-		spend();
-		return true;
->>>>>>> origin/master
-	}
+
 	protected int getFillingStartTime(){
 		return fillingStartTime;
 	}
