@@ -1,6 +1,5 @@
 package cs1410;
 
-import java.util.Iterator;
 import java.util.Random;
 /**
  * A superclass which holds all the relevant fields and methods that will be used by the subclasses(specific vehicle types)
@@ -120,9 +119,6 @@ public class Vehicle {
 	protected void setTillQueueArrival(int tickNo){
 		tillQueueArrival = tickNo;
 	}
-	/*public void setProbability(double prob){
-		this.shoppingProb = prob;
-	}*/
 	protected void setPumpQueueArrival(int tickNo){
 		pumpQueueArrival = tickNo;
 	}
@@ -158,9 +154,6 @@ public class Vehicle {
 	public Till getTill(){
 		return currentTill;
 	}
-	/*public int getTimeToRefillIn(){
-		return timeToRefillIn;
-	}*/
 	public String getName(){
 		return name;
 	}

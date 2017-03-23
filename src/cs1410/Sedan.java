@@ -4,6 +4,12 @@
 public class Sedan extends Vehicle{
 	public Sedan(Station s){
 		currentStation = s;
+		generate();
+	}
+	public Sedan(){
+		generate();
+	}
+	private void generate(){
 		name = "Sedan";
 		rnd = new Random();
 		qSpace = 1.5;

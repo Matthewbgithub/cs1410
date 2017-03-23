@@ -15,6 +15,12 @@ public class Motorbike extends Vehicle{
 	*/	
 	public Motorbike(Station s){
 		currentStation = s;
+		generate();
+	}
+	public Motorbike(){
+		generate();
+	}
+	private void generate(){
 		name = "Motorbike";
 		qSpace = 0.75;
 		tankSize = 5;

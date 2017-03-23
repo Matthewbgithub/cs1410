@@ -14,6 +14,12 @@ public class Truck extends Vehicle{
 	
 public Truck(Station s) {
 	currentStation = s;
+	generate();
+}
+public Truck(){
+	generate();
+}
+private void generate(){
 	name = "Truck";
 	rnd = new Random();
 	qSpace = 2;

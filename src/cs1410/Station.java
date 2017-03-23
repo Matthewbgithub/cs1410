@@ -45,11 +45,7 @@ public class Station {
 	//goes through each vehicle in the pumps asking it whether it wants to do anything
 	public void scanPumpsForChanges(int tick){
 		for(Pump pumps : pumpList){
-				/*for(Vehicle vehicles : pumps.getQueue().getArray()){
-					//System.out.println(vehicles.getName()+" is being checked for actions from a pump");
-					vehicles.nextTickAction(tick);
-				}*/
-				
+							
 				for(Iterator<Vehicle> v = pumps.getQueue().getArray().iterator(); v.hasNext();){
 				  Vehicle vehicle = v.next();
 				  vehicle.nextTickAction(tick);
@@ -64,10 +60,7 @@ public class Station {
 	//goes through each vehicle in the tills asking whether it wants to do anything
 	public void scanTillsForChanges(int tick){
 		for(Till tills : tillList){
-			/*for(Vehicle vehicles : tills.getQueue().getArray()){
-				//System.out.println(vehicles.getName()+" is being checked for actions from a till");
-				vehicles.nextTickAction(tick);
-			}*/
+			
 			for (Iterator<Vehicle> v = tills.getQueue().getArray().iterator(); v.hasNext(); ) {
 			    Vehicle vehicle = v.next();
 			    vehicle.nextTickAction(tick);	
