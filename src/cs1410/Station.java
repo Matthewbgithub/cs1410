@@ -1,6 +1,7 @@
 package cs1410;
 import java.util.Random;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Station {
 	private static double income;
@@ -28,6 +29,54 @@ public class Station {
 		for(int i = 0; i < tillNo; i++){
 			Till till = new Till();
 			tillList.add(till);
+		}
+	}
+	
+	public void tick(int tick){
+		//generate vehicles and add to correct queue
+		//vehicle stores time of arrival
+		generateVehicle();
+		//goes through each vehicle in the pumps asking it whether it wants to do anything
+		scanPumpsForChanges(tick);
+		//goes through each vehicle in the tills asking whether it wants to do anything
+		scanTillsForChanges(tick);
+	}
+	
+	//goes through each vehicle in the pumps asking it whether it wants to do anything
+	public void scanPumpsForChanges(int tick){
+		for(Pump pumps : pumpList){
+				/*for(Vehicle vehicles : pumps.getQueue().getArray()){
+					//System.out.println(vehicles.getName()+" is being checked for actions from a pump");
+					vehicles.nextTickAction(tick);
+				}*/
+				
+				for(Iterator<Vehicle> v = pumps.getQueue().getArray().iterator(); v.hasNext();){
+				  Vehicle vehicle = v.next();
+				  vehicle.nextTickAction(tick);
+				  if(vehicle.removeFromPump) {
+					  //updates pump queue length
+					  vehicle.getPump().getQueue().setCurrentLength(vehicle.getPump().getQueue().getCurrentLength() - vehicle.getLength());
+				    v.remove(); // Removes the 'current' item
+				  }
+				}
+		}
+	}
+	//goes through each vehicle in the tills asking whether it wants to do anything
+	public void scanTillsForChanges(int tick){
+		for(Till tills : tillList){
+			/*for(Vehicle vehicles : tills.getQueue().getArray()){
+				//System.out.println(vehicles.getName()+" is being checked for actions from a till");
+				vehicles.nextTickAction(tick);
+			}*/
+			for (Iterator<Vehicle> v = tills.getQueue().getArray().iterator(); v.hasNext(); ) {
+			    Vehicle vehicle = v.next();
+			    vehicle.nextTickAction(tick);	
+			    if(vehicle.removeFromTill && vehicle.removeFromPump){
+			    	vehicle.getPump().getQueue().removeFirstItem("pump");
+			    	vehicle.getTill().getQueue().setCurrentLength(vehicle.getTill().getQueue().getCurrentLength() - 1);
+			    	v.remove();	
+				}
+			}
 		}
 	}
 	public Pump choosePump(){
@@ -58,28 +107,28 @@ public class Station {
 	* Called on each tick, will generate vehicles if the probability matches
 	*/
 	public void generateVehicle(){
-		/*if((rnd.nextInt(100)+1)/10 <= probabilityP){
-			Car car = new Car();
+		if((rnd.nextInt(100)+1)/10 <= probabilityP){
+			Car car = new Car(this);
 			System.out.println("created car.");
 			addVehicleToPump(car);
 		}
 		if((rnd.nextInt(100)+1)/10 <= probabilityP){
-			Motorbike motorbike = new Motorbike();
+			Motorbike motorbike = new Motorbike(this);
 			System.out.println("created motorbike");
 			addVehicleToPump(motorbike);
-		}*/
+		}
 		if((rnd.nextInt(100)+1)/10 <= probabilityQ){
-			Sedan sedan = new Sedan();
+			Sedan sedan = new Sedan(this);
 			System.out.println("created sedan");
 			addVehicleToPump(sedan);
 		}
-		/*if(isTruck){
+		if(isTruck){
 			if((rnd.nextInt(100)+1)/10 <= Truck.getProbabilityOfT()){
-				Truck truck = new Truck();
+				Truck truck = new Truck(this);
 				System.out.println("created truck");
 				addVehicleToPump(truck);
 			}
-		}*/
+		}
 	}
 	/**
 	* decides if the vehicle can be added to a pump, if there are no available pumps the loss calculation method is called
@@ -87,31 +136,15 @@ public class Station {
 	private boolean addVehicleToPump(Vehicle vehicle){
 		
 		if(choosePump().getQueue().checkspace(vehicle.getLength())){
-			System.out.println(vehicle.getName() + " has been added to " + choosePump().getQueue().toString() + " which has a current length of " + choosePump().getQueue().getCurrentLength());
-			vehicle.setPumpEnterTickNo(Simulator.getTicks());
-			vehicle.setPump(choosePump());
-			vehicle.getPump().add(vehicle);
-			System.out.println(vehicle.getPump().getQueue().toString());
-			if(vehicle.fillComplete()){
-				//enter shop
-				income =+ vehicle.getTankSize() * petrolPrice;
-				vehicle.setTill(chooseTill());
-				//add a false check to see if theres no space in the tills
-				vehicle.getTill().add(vehicle);
-				vehicle.setTillEnterTickNo(Simulator.getTicks());
-				if(vehicle.shopComplete()){
-					System.out.println(vehicle.getName() + " has left after visiting the shop");
-					removeFromShop(vehicle.getTill());
-				}
-			}else{
-				//leave
-				System.out.println(vehicle.getName() + " has left before entering the shop.");
-				removeBeforeShop(vehicle.getPump());
-			}
 			
-			/*if(vehicle.getName() == "Truck"){
-				vehicle.changeProbability();
-			}*/
+			//set arrival in queue time
+			vehicle.setPumpQueueArrival(Simulator.getTicks());
+			//tells the vehicle what pump it is in
+			vehicle.setPump(choosePump());
+			//add to pump
+			vehicle.getPump().add(vehicle);
+			System.out.println(vehicle.getName() + " has been added to " + vehicle.getPump().getQueue().toString() + " (pump) which has a current length of " + vehicle.getPump().getQueue().getCurrentLength());
+			
 			return true;
 		}else{
 			System.out.print(vehicle.getName() + " has not been added to a queue ");
@@ -119,18 +152,31 @@ public class Station {
 			return false;
 		}
 	}
+	public boolean addToTill(int tick,Vehicle vehicle){
+		if(chooseTill().getQueue().checkspace(vehicle.getLength())){
+			vehicle.enterShopQueue(tick);
+			vehicle.setTill(chooseTill());
+			vehicle.getTill().add(vehicle);
+			System.out.println(vehicle.getName() + " added to " + vehicle.getTill().getQueue().toString() + " (till) which has a current length of " + vehicle.getTill().getQueue().getCurrentLength());
+			return true;
+		}else{
+			System.out.println("could not join a till queue as they were all full");
+			vehicle.getPump().getQueue().removeFirstItem("pump");
+			return false;
+		}
+	}
 	/**
 	* calculates the loss using the tanksize loss and also the shopping amount
 	*/
-	private void vehicleLeaveBecauseQueueFull(Vehicle vehicle){
+	public void vehicleLeaveBecauseQueueFull(Vehicle vehicle){
 		double newLoss = petrolPrice * vehicle.tankSize + vehicle.getShoppingMoney();
 		loss += newLoss;
 		System.out.println("at a loss of " + newLoss);;
 	}
-	private void removeFromShop(Till till){
+	public void removeFromShop(Till till){
 		till.getQueue().removeFirstItem("till");
 	}
-	private void removeBeforeShop(Pump pump){
+	public void removeBeforeShop(Pump pump){
 		pump.getQueue().removeFirstItem("pump");
 	}
 	/**

@@ -13,19 +13,17 @@ public class Car extends Vehicle{
 	/**
 	* Creates a <code> Car </code> and automatically sets the queue space to 1
 	*/
-	public Car(){
+	public Car(Station s){
+		currentStation = s;
 		name = "Car";
 		rnd = new Random();
 		qSpace = 1;
 		tankSize = rnd.nextInt(3) + 7;
+		timeToRefillIn = 10;
 		refillTime = tankSize / 6;
 		
-		//if the refill time is less than 5 minutes, the probability of shopping is 0.3
-		if(refillTime < 5) {
-			shoppingProb = 0.3;
-			shoppingTime = rnd.nextInt(3)+2;
-			shoppingMoney = rnd.nextInt(6)+5;
-		}
+		shoppingProb = 0.3;
+		shoppingTime = rnd.nextInt(3)+2;
+		shoppingMoney = rnd.nextInt(6)+5;
 	}
-		
 }

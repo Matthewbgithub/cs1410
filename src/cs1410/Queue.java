@@ -24,7 +24,9 @@ public class Queue {
 		//return the length of all the items in the queue
 		return currentLength;
 	}
-	
+	public void setCurrentLength(double length){
+		currentLength = length;
+	}
 	/**
 	 * Checks whether a certain type of vehicle given its size will fit within the length of the queue
 	 * @param size a number space units the vehicle has as a non-integer value
@@ -52,6 +54,7 @@ public class Queue {
 				currentLength -= 1;
 			}
 		//removes first item from array
+			System.out.println(vehicleArray.get(0).toString());
 		vehicleArray.remove(0);
 		}
 	}
@@ -84,5 +87,8 @@ public class Queue {
 	
 	public String toString(){
 		return vehicleArray.toString();
+	}
+	public ArrayList<Vehicle> getArray(){
+		return vehicleArray;
 	}
 }

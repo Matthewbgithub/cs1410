@@ -13,13 +13,16 @@ public class Motorbike extends Vehicle{
 	* Sets the tank size, shopping probability, shopping money, space in queue and shopping time
 	* 
 	*/	
-	public Motorbike(){
+	public Motorbike(Station s){
+		currentStation = s;
 		name = "Motorbike";
-		tankSize = 5;
-		shoppingProb = -1;
-		shoppingMoney = 0;
 		qSpace = 0.75;
-		shoppingTime = 0;
+		tankSize = 5;
+		timeToRefillIn = 0;
 		refillTime = tankSize / 6;
+		
+		shoppingProb = -1;
+		shoppingTime = 0;
+		shoppingMoney = 0;
 	}
 }
