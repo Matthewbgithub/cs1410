@@ -12,21 +12,30 @@ public class Truck extends Vehicle{
 	private boolean isHappy;
 	
 	
-public Truck() {
+public Truck(Station s) {
+	currentStation = s;
+	generate();
+}
+public Truck(){
+	generate();
+}
+private void generate(){
 	name = "Truck";
 	rnd = new Random();
 	qSpace = 2;
 	tankSize = rnd.nextInt(11)+30;
+	timeToRefillIn = 8;
 	refillTime = tankSize / 6;
 	
+	shoppingProb = 1;
+	shoppingTime = rnd.nextInt(3)+4;
+	shoppingMoney = rnd.nextInt(6)+15;
 	/**
 	 * if refill time is less than or equal to 8 minutes, the truck driver will definitely shop
 	 * if refill time is greater the 8 minutes then the driver is unhappy
 	 */
 	if(refillTime <= 8) {
-		shoppingProb = 1;
-		shoppingTime = rnd.nextInt(3)+4;
-		shoppingMoney = rnd.nextInt(6)+15;
+		
 		isHappy = true;
 	}else{
 		isHappy = false;

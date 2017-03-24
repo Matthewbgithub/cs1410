@@ -14,32 +14,119 @@ public class Vehicle {
 	protected double qSpace;
 	protected int shoppingTime;
 	protected double refillTime;
-	static final int shopQSpace = 1;
 	protected Random rnd;
 	protected String name;
-	protected int pumpEnterTickNo;
-	protected int tillEnterTickNo;
-	protected int startFillingTickNo;
+	
+	protected int pumpQueueArrival;
+	protected int tillQueueArrival;
+	protected int fillingStartTime;
+	protected int shoppingStartTime;
+	
 	protected int timeToRefillIn;
 	protected Pump currentPump;
 	protected Till currentTill;
+	protected Station currentStation;
 	
+	protected boolean hasStartedFilling = false;
+	protected boolean isShopping = false;
+	protected boolean isInTheShopQueue = false;
+	
+	protected boolean removeFromPump = false;
+	protected boolean removeFromTill = false;
+	
+	protected boolean paid = false;
 	public Vehicle(){
 		rnd = new Random();
+		
 	}
 	
-//Set methods------
-	protected void setTillEnterTickNo(int tickNo){
-		tillEnterTickNo = tickNo;
+
+//other
+	protected void nextTickAction(int tick){
+		if(isShopping){
+			isInTheShopQueue = false;
+			//actions when inside the shop
+			if(!paid){
+				double tickShopShouldBeDone = tillQueueArrival + shoppingTime;
+				if( tickShopShouldBeDone < tick){
+					//add the money
+					spend();
+					//then leave both the till and the pump
+					System.out.println(this.getName() + " has left the shop and pump.");
+					removeFromPump = true;
+					removeFromTill = true;
+				}
+			}
+		}else if(isInTheShopQueue){
+			//is queuing for the shop
+			hasStartedFilling = false;
+			if(getTill().getQueue().getArray().get(0) == this){
+				enterShopQueue(tick);
+			}
+		}else if(hasStartedFilling){
+			//is filling up			
+			double timeFillingShouldBeDone = pumpQueueArrival + tankSize;
+			if( timeFillingShouldBeDone < tick){
+				if(goesToShop()){
+					//need to check if full--------------------------------------------------------------------------------------
+					currentStation.addToTill(tick, this);
+					//-----------------------------------------------------------------------------------
+					System.out.println(this.getName() + " has entered the shop.");
+				}else{
+					System.out.println(this.getName() +" has left before going to the shop.");
+					removeFromPump = true;
+				}
+			}
+		}else{
+		//is in the queue to begin filling up
+			//if at the front of the queue
+			if(getPump().getQueue().getArray().get(0) == this){
+				startsFilling(tick);
+			}
+		}
 	}
-	public void setProbability(double prob){
-		this.shoppingProb = prob;
+	
+	public boolean staysToShop(){
+		if(rnd.nextDouble()<= shoppingProb){
+			return true;
+		}else{
+			return false;
+		}
 	}
-	protected void setPumpEnterTickNo(int tickNo){
-		pumpEnterTickNo = tickNo;
+	private boolean goesToShop(){
+		double refillTimeTaken = (fillingStartTime - pumpQueueArrival + tankSize)/6;
+		if(refillTimeTaken < timeToRefillIn && ( rnd.nextInt(10)+1)/10 <= getProbability()){
+			return true;
+		}else{
+			return false;
+		}
 	}
-	protected void setStartFillingTickNo(int tickNo){
-		startFillingTickNo = tickNo;
+	private void spend(){
+		Station.setIncome(Station.getIncome() + getShoppingMoney());
+		paid = true;
+	}
+	public void changeProbability(){
+	}
+//Set methods-------------------------------------------
+	protected void startsFilling(int tick){
+		hasStartedFilling = true;
+		fillingStartTime = tick;
+	}
+	protected void enterShopQueue(int tick){
+		isShopping = true;
+		tillQueueArrival = tick;
+	}
+	protected void setTillQueueArrival(int tickNo){
+		tillQueueArrival = tickNo;
+	}
+	protected void setPumpQueueArrival(int tickNo){
+		pumpQueueArrival = tickNo;
+	}
+	protected void setFillingStartTime(int tickNo){
+		fillingStartTime = tickNo;
+	}
+	protected void setShoppingStartTime(int tickNo){
+		shoppingStartTime = tickNo;
 	}
 	protected void setPump(Pump p){
 		currentPump = p;
@@ -48,15 +135,24 @@ public class Vehicle {
 		currentTill = t;
 	}
 	
-//Get methods------
+//Get methods------------------------------------------
+	protected boolean removeFromPump(){
+		return removeFromPump;
+	}
+	protected boolean removeFromTill(){
+		return removeFromTill;
+	}
+	protected boolean hasStartedFilling(){
+		return hasStartedFilling;
+	}
+	protected boolean isInTheShop(){
+		return isShopping;
+	}
 	public Pump getPump(){
 		return currentPump;
 	}
 	public Till getTill(){
 		return currentTill;
-	}
-	public int getTimeToRefillIn(){
-		return timeToRefillIn;
 	}
 	public String getName(){
 		return name;
@@ -76,69 +172,11 @@ public class Vehicle {
 	public double getShoppingTime(){
 		return shoppingTime;
 	}
-	
 	public double getRefillTime(){
 		return refillTime;	
 	}
-	
-	public double getShopQSpace(){
-		return shopQSpace;
-	}
-	protected int getPumpEnterTickNo(){
-		return pumpEnterTickNo;
-	}
-	protected int getStartFillingTickNo(){
-		return startFillingTickNo;
-	}
-//other
-	protected boolean fillComplete(){
-		//start to fill minus enter queue time to get wait time
-		//add the fill time to that
-		double start = getStartFillingTickNo();
-		double enter = getPumpEnterTickNo();
-		double tank = getTankSize();
-		
-		double timeTaken = (enter + tank);
-		int cTicks = Simulator.getTicks();;
-		while( timeTaken > cTicks){
-			//wait
-			System.out.println("waiting....");
-			cTicks = Simulator.getTicks();
-			Simulator.incrementTick();
-		}
-		double time12 = timeTaken /6;
-		//rnd.nextInt(10)+1)/10
-		if(time12 < getTimeToRefillIn() && ( 0.1<= getProbability())){
-			//enter shop
-			return true;
-		}else{
-			//leaves shop
-			return false;
-		}
-	}
-	
-	protected boolean shopComplete(){
-		//start to fill minus enter queue time to get wait time
-		//add the fill time to that
-		int time = ((Simulator.getTicks() * 6) * getTimeToRefillIn());
-		while( getStartFillingTickNo() < time){
-			//wait
-			//System.out.println("waiting....");
-			Simulator.incrementTick();
-		}
-		spend();
-		return true;
-	}
-	public boolean staysToShop(){
-		if(rnd.nextDouble()<= shoppingProb){
-			return true;
-		}else{
-			return false;
-		}
-	}
-	private void spend(){
-		Station.setIncome(Station.getIncome() + getShoppingMoney());
-	}
-	public void changeProbability(){
+
+	protected int getFillingStartTime(){
+		return fillingStartTime;
 	}
 }

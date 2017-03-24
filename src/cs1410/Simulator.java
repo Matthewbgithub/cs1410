@@ -12,7 +12,8 @@ public class Simulator
 		
 			for(i = 0; i< 200; i++){
 				System.out.println("tick: " + i);
-				station.generateVehicle();
+				station.tick(i);
+				//station.generateVehicle();
 			}
 			System.out.println("-------------------------------------");
 			System.out.println("this has caused loss of " + station.getLoss());
@@ -29,12 +30,6 @@ public class Simulator
 	public static int getTicks()
 	{
 	  return  i; 
-	}
-	public static void incrementTick(){
-		if(i<200){
-		i++;
-		System.out.println("tick: " + i);
-		}
 	}
 	
 	

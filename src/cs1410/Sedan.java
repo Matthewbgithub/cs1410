@@ -2,7 +2,14 @@
 	import java.util.Random;
 	
 public class Sedan extends Vehicle{
+	public Sedan(Station s){
+		currentStation = s;
+		generate();
+	}
 	public Sedan(){
+		generate();
+	}
+	private void generate(){
 		name = "Sedan";
 		rnd = new Random();
 		qSpace = 1.5;
@@ -14,13 +21,4 @@ public class Sedan extends Vehicle{
 		shoppingTime = rnd.nextInt(4)+2;
 		shoppingMoney = rnd.nextInt(9)+8;
 	}
-	/*public void refillCheck(){
-		if(refillTime < 10) {
-			
-		}
-	}*/
-	
-	
-	
-	
 }

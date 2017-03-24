@@ -8,6 +8,10 @@ import org.junit.Test;
 
 public class QueueTest{
 	
+<<<<<<< HEAD
+=======
+	//ArrayList<Vehicle>vehicleArray = new ArrayList<Vehicle>();
+>>>>>>> origin/master
 	Queue queue = new Queue();
 	private final int qLength=3;
 	private double currentLength=0.0;
@@ -25,6 +29,7 @@ public class QueueTest{
 
 	@Test
 	public void testGetCurrentLength() {
+<<<<<<< HEAD
 	queue.add(c1, "pump");
 	queue.add(c2, "pump");
 	queue.add(c3, "pump");
@@ -33,15 +38,29 @@ public class QueueTest{
 			
 
 	
+=======
+		queue.add(c1, "pump");
+		queue.add(c2, "pump");
+		queue.add(c3. "pump");
+		assertEquals(3, queue.getCurrentLength());
+	}
+>>>>>>> origin/master
 
 	@Test
 	public void testCheckspace() {
 		queue.add(c1, "pump");
 		queue.add(c2, "pump");
+<<<<<<< HEAD
 		queue.add(c3, "pump");
 		//assertEquals(true, queue.checkSpace(3.00));
 		assertEquals(false, queue.checkSpace(s1.getLength());
 }
+=======
+		queue.add(c3. "pump");
+		//assertEquals(true, queue.checkSpace(3.00));
+		assertEquals(false, queue.checkSpace(s1.getLength());
+	}
+>>>>>>> origin/master
 
 	@Test
 	public void testRemoveFirstItem() {
