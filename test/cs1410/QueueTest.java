@@ -8,7 +8,6 @@ import org.junit.Test;
 
 public class QueueTest{
 	
-	ArrayList<Vehicle>vehicleArray = new ArrayList<Vehicle>();
 	Queue queue = new Queue();
 	private final int qLength=3;
 	private double currentLength=0.0;
@@ -26,28 +25,23 @@ public class QueueTest{
 
 	@Test
 	public void testGetCurrentLength() {
-		vehicleArray.add(c1);
-		vehicleArray.add(c2);
-		vehicleArray.add(c3);
-		assertEquals(3, vehicleArray.size());
-		
-		vehicleArray.add(m1);
-		vehicleArray.add(s1);
-		vehicleArray.add(s2);
-		assertEquals(3, qLength);
+	queue.add(c1, "pump");
+	queue.add(c2, "pump");
+	queue.add(c3, "pump");
+	assertEquals(3.0, queue.getCurrentLength());
+	}
 			
 
-	}
+	
 
 	@Test
 	public void testCheckspace() {
-		vehicleArray.add(c1);
-		vehicleArray.add(c2);
-		vehicleArray.add(c3);
-		currentLength = 3.0;
-		vehicleArray.add(m1);
-		//assertEquals(false , Queue.checkSpace());
-	}
+		queue.add(c1, "pump");
+		queue.add(c2, "pump");
+		queue.add(c3, "pump");
+		//assertEquals(true, queue.checkSpace(3.00));
+		assertEquals(false, queue.checkSpace(s1.getLength());
+}
 
 	@Test
 	public void testRemoveFirstItem() {
