@@ -8,13 +8,9 @@ import org.junit.Test;
 
 public class QueueTest{
 	
-<<<<<<< HEAD
-=======
-	//ArrayList<Vehicle>vehicleArray = new ArrayList<Vehicle>();
->>>>>>> origin/master
+
 	Queue queue = new Queue();
-	private final int qLength=3;
-	private double currentLength=0.0;
+	
 	
 	Car c1 = new Car();
 	Car c2 = new Car();
@@ -29,47 +25,43 @@ public class QueueTest{
 
 	@Test
 	public void testGetCurrentLength() {
-<<<<<<< HEAD
+
 	queue.add(c1, "pump");
 	queue.add(c2, "pump");
 	queue.add(c3, "pump");
-	assertEquals(3.0, queue.getCurrentLength());
+	assertNotEquals(2.0, queue.getCurrentLength());
+	assertNotEquals(4.0, queue.getCurrentLength());
+	//assertEquals(3.0, queue.getCurrentLength());
 	}
-			
 
-	
-=======
-		queue.add(c1, "pump");
-		queue.add(c2, "pump");
-		queue.add(c3. "pump");
-		assertEquals(3, queue.getCurrentLength());
-	}
->>>>>>> origin/master
 
-	@Test
+@Test
 	public void testCheckspace() {
 		queue.add(c1, "pump");
 		queue.add(c2, "pump");
-<<<<<<< HEAD
-		queue.add(c3, "pump");
-		//assertEquals(true, queue.checkSpace(3.00));
-		assertEquals(false, queue.checkSpace(s1.getLength());
+		//assertFalse(false, queue.checkSpace(1.5));
 }
-=======
-		queue.add(c3. "pump");
-		//assertEquals(true, queue.checkSpace(3.00));
-		assertEquals(false, queue.checkSpace(s1.getLength());
-	}
->>>>>>> origin/master
+
+		
+		
 
 	@Test
 	public void testRemoveFirstItem() {
-		fail("Not yet implemented");
+		queue.add(s1, "pump");
+		queue.add(m1, "pump");
+		queue.add(m2, "pump");
+		//assertEquals(1.5, queue.removeFirstItem("pump"));
+		
 	}
 
 	@Test
 	public void testAdd() {
-		fail("Not yet implemented");
+		queue.add(c1, "pump");
+
+		assertEquals(true, queue.add(m1,  "pump"));
+		assertEquals(false, queue.add(s1, "pump"));
+
+		assertEquals(true, queue.add(c3, "tills"));
 	}
 
 	
