@@ -31,7 +31,7 @@ public class QueueTest{
 	queue.add(c3, "pump");
 	assertNotEquals(2.0, queue.getCurrentLength());
 	assertNotEquals(4.0, queue.getCurrentLength());
-	//assertEquals(3.0, queue.getCurrentLength());
+	assertEquals(3.0, queue.getCurrentLength(), 0);
 	}
 
 
@@ -39,7 +39,8 @@ public class QueueTest{
 	public void testCheckspace() {
 		queue.add(c1, "pump");
 		queue.add(c2, "pump");
-		//assertFalse(false, queue.checkSpace(1.5));
+		assertEquals(false, queue.checkspace(1.5));
+		assertEquals(true, queue.checkspace(0.75));
 }
 
 		
@@ -50,7 +51,7 @@ public class QueueTest{
 		queue.add(s1, "pump");
 		queue.add(m1, "pump");
 		queue.add(m2, "pump");
-		//assertEquals(1.5, queue.removeFirstItem("pump"));
+		assertEquals(1.5, queue.removeFirstItem("pump"));
 		
 	}
 
