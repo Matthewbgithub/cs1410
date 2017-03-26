@@ -34,13 +34,19 @@ private void generate(){
 	 * if refill time is less than or equal to 8 minutes, the truck driver will definitely shop
 	 * if refill time is greater the 8 minutes then the driver is unhappy
 	 */
-	if(refillTime <= 8) {
+	if((refillTime )<= 8) {
 		
 		isHappy = true;
 	}else{
 		isHappy = false;
 	}
 }
+	protected static void happy(){
+		probabilityOfT *= 1.05;
+	}
+	protected static void unHappy(){
+		probabilityOfT *= 0.8;
+	}
 	//set arrival probability
 	private void setProbabilityOfT(double probability) {
 		probabilityOfT = probability;	

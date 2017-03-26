@@ -6,7 +6,7 @@ import java.util.Iterator;
 public class Station {
 	private static double income;
 	private double loss;
-	private double petrolPrice;
+	private static double petrolPrice;
 	private double probabilityP;
 	private double probabilityQ;
 	private ArrayList<Pump> pumpList;
@@ -193,7 +193,7 @@ public class Station {
 	/**
 	*Returns the current price of petrol
 	*/
-	public double getPetrolPrice()
+	public static double getPetrolPrice()
 	{
 	   return  petrolPrice; 
 	}
