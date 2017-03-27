@@ -7,6 +7,7 @@ public class Simulator
 	public static void main(String[] args)
 	{
 		//pump number, till number, p, q, trucks?
+		Station station = new Station(3, 3, 0.02, 0.04, true);
 		station.setPetrolPrice(1.20);
 		
 
