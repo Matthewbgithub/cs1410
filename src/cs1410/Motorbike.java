@@ -5,9 +5,8 @@
 */
 
 package cs1410;
-
+import java.util.Random;
 public class Motorbike extends Vehicle{
-	private double probToAppearP;
 	/**
 	* Creates a <code> Motorbike </code> 
 	* Sets the tank size, shopping probability, shopping money, space in queue and shopping time
@@ -22,13 +21,14 @@ public class Motorbike extends Vehicle{
 	}
 	private void generate(){
 		name = "Motorbike";
+		rnd = new Random();
 		qSpace = 0.75;
 		tankSize = 5;
-		timeToRefillIn = 0;
+		timeToRefillIn = 999;
 		refillTime = tankSize / 6;
 		
-		shoppingProb = -1;
-		shoppingTime = 0;
+		shoppingProb = 1;
+		shoppingTime = rnd.nextInt(2)+2;
 		shoppingMoney = 0;
 	}
 }

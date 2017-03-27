@@ -78,11 +78,11 @@ private void generate(){
 	public void changeProbability() {
 		if(isHappy) {
 			probabilityOfT *= 1.05;
-			System.out.println("Happy trucker ("+ probabilityOfT +")");
+			System.out.print("Happy trucker ("+ probabilityOfT +")");
 		}
 		else {
 			probabilityOfT *= 0.8;
-			System.out.println("Unhappy trucker ("+ probabilityOfT +")");
+			System.out.print("Unhappy trucker ("+ probabilityOfT +")");
 		}
 	}
 }

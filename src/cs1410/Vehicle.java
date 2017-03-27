@@ -52,13 +52,12 @@ public class Vehicle {
 				if( tickShopShouldBeDone < tick){
 					if (this.getName() == "Truck"){
 						Truck.happy();
-						System.out.println("happy truck"+ Truck.getProbabilityOfT());
-
+						System.out.print("happy truck"+ Truck.getProbabilityOfT());
 					}
 					//add the money
 					spend();
 					//then leave both the till and the pump
-					System.out.println(this.getName() + " has left the shop and pump.");
+					System.out.print(this.getName() + " has left the shop and pump.");
 					removeFromPump = true;
 					removeFromTill = true;
 				}
@@ -77,13 +76,13 @@ public class Vehicle {
 					//need to check if full--------------------------------------------------------------------------------------
 					currentStation.addToTill(tick, this);
 					//-----------------------------------------------------------------------------------
-					System.out.println(this.getName() + " has entered the shop.");
+					System.out.print(this.getName() + " has entered the shop.");
 				}else{
-					System.out.println(this.getName() +" has left before going to the shop.");
+					System.out.print(this.getName() +" has left before going to the shop.");
 					removeFromPump = true;
 					if (this.getName() == "Truck"){
 						Truck.unHappy();
-						System.out.println("sad truck" + Truck.getProbabilityOfT());
+						System.out.print("sad truck" + Truck.getProbabilityOfT());
 					}
 				}
 			}
