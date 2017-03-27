@@ -11,6 +11,7 @@ public class StationTestv2 {
 	private Vehicle m1;
 	private Vehicle m2;
 	private Vehicle s1;
+	
 	Vehicle vehicle = new Vehicle();
 	Pump pump = new Pump();
 	
@@ -26,10 +27,14 @@ public class StationTestv2 {
 	
 	@Test
 	public void testVehicleLeaveBecauseQueueFull() {
-		Simulator simulator = new Simulator();
-		Station station = new Station(1, 1, 0, 0, false);
+		//Simulator simulator = new Simulator();
+		//Station station = new Station(1, 1, 0, 0, false);
+		pump.add(c1);
+		pump.add(c2);
+		pump.add(c3);
+		assertEquals(3.0, pump.getQueue().getCurrentLength(), 0);
+		assertEquals(false, pump.getQueue().checkspace(0.75));
 		
-		assertEquals(true, pump.add(c1));
 		//assertEquals(true, station.addVehicleToPump(s1));
 		//assertNotEquals(true, station.addVehicleToPump(m1));
 		
