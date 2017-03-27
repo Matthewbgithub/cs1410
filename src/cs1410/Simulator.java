@@ -26,8 +26,8 @@ public class Simulator
 			for(Pump i : station.getPumpList()){
 				System.out.println(i.getQueue().toString());
 			}
-				System.out.println("The pump queues look like ");
-			for(Pump tick : station.getPumpList()){
+				System.out.println("The till queues look like ");
+			for(Till tick : station.getTillList()){
 				System.out.println(tick.getQueue().toString());
 			}
 			System.out.println("-------------------------------------");
