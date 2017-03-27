@@ -2,6 +2,7 @@ package cs1410;
 
 import static org.junit.Assert.*;
 
+import org.junit.Before;
 import org.junit.Test;
 
 public class StationTestv2 {
@@ -15,7 +16,7 @@ public class StationTestv2 {
 	Vehicle vehicle = new Vehicle();
 	Pump pump = new Pump();
 	
-	
+	@Before
 	public void setUp(){
 		c1 = new Car();
 		c2 = new Car();
@@ -27,32 +28,15 @@ public class StationTestv2 {
 	
 	@Test
 	public void testVehicleLeaveBecauseQueueFull() {
-		//Simulator simulator = new Simulator();
-		//Station station = new Station(1, 1, 0, 0, false);
 		pump.add(c1);
 		pump.add(c2);
 		pump.add(c3);
-		assertEquals(3.0, pump.getQueue().getCurrentLength(), 0);
 		assertEquals(false, pump.getQueue().checkspace(0.75));
+		assertEquals(3.0, pump.getQueue().getCurrentLength(), 0);		
+	}
+
+	public void testChoosePump(){
 		
-		//assertEquals(true, station.addVehicleToPump(s1));
-		//assertNotEquals(true, station.addVehicleToPump(m1));
-		
-	}
-
-	@Test
-	public void testGetIncome() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetPetrolPrice() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetPumpList() {
-		fail("Not yet implemented");
 	}
 
 }
