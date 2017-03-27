@@ -51,7 +51,13 @@ public class QueueTest{
 		queue.add(s1, "pump");
 		queue.add(m1, "pump");
 		queue.add(m2, "pump");
-		assertEquals(1.5, queue.removeFirstItem("pump"));
+		assertEquals(3.0, queue.getCurrentLength(), 0);
+		queue.removeFirstItem("pump");
+		assertEquals(1.5, queue.getCurrentLength(), 0);
+		queue.removeFirstItem("pump");
+		assertEquals(0.75, queue.getCurrentLength(), 0);
+		queue.removeFirstItem("pump");
+		assertEquals(0.0, queue.getCurrentLength(), 0);
 		
 	}
 
