@@ -128,7 +128,9 @@ public class Station {
 	/**
 	* decides if the vehicle can be added to a pump, if there are no available pumps the loss calculation method is called
 	*/
-	public boolean addVehicleToPump(Vehicle vehicle){
+	
+		
+		private boolean addVehicleToPump(Vehicle vehicle){
 		if(!pumpList.isEmpty()){
 			if(choosePump().getQueue().checkspace(vehicle.getLength())){
 				
@@ -147,7 +149,11 @@ public class Station {
 				return false;
 			}
 		} return false;
+		
 	}
+	
+	
+	
 	public boolean addToTill(int tick,Vehicle vehicle){
 		if(!tillList.isEmpty()){
 			if(chooseTill().getQueue().checkspace(vehicle.getLength())){

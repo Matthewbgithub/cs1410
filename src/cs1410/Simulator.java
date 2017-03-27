@@ -7,7 +7,9 @@ public class Simulator
 	public static void main(String[] args)
 	{
 		//pump number, till number, p, q, trucks?
-		Station station = new Station(3, 3, 0.05, 0.03, true);
+
+		Station station = new Station(3, 3, 0.02, 0.04, true);
+
 		station.setPetrolPrice(1.20);
 		
 
@@ -26,8 +28,8 @@ public class Simulator
 			for(Pump i : station.getPumpList()){
 				System.out.println(i.getQueue().toString());
 			}
-				System.out.println("The pump queues look like ");
-			for(Pump tick : station.getPumpList()){
+				System.out.println("The till queues look like ");
+			for(Till tick : station.getTillList()){
 				System.out.println(tick.getQueue().toString());
 			}
 			System.out.println("-------------------------------------");
