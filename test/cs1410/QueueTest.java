@@ -4,72 +4,80 @@ import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 
+import org.junit.Before;
 import org.junit.Test;
 
 public class QueueTest{
 	
-<<<<<<< HEAD
-=======
-	//ArrayList<Vehicle>vehicleArray = new ArrayList<Vehicle>();
->>>>>>> origin/master
-	Queue queue = new Queue();
-	private final int qLength=3;
-	private double currentLength=0.0;
+	private Vehicle c1;
+	private Vehicle c2;
+	private Vehicle c3;
+	private Vehicle m1;
+	private Vehicle m2;
+	private Vehicle s1;
 	
-	Car c1 = new Car();
-	Car c2 = new Car();
-	Car c3 = new Car();
-	Motorbike m1 = new Motorbike();
-	Motorbike m2 = new Motorbike();
-	Sedan s1 = new Sedan();
-	Sedan s2 = new Sedan();
-	Truck t1 = new Truck();
-
+	
+	Queue queue = new Queue();
+	
+	@Before
+	public void setUp(){
+	c1 = new Car();
+	c2 = new Car();
+	c3 = new Car();
+	m1 = new Motorbike();
+	m2 = new Motorbike();
+	s1 = new Sedan();
+	
+	
+	}
 	
 
 	@Test
 	public void testGetCurrentLength() {
-<<<<<<< HEAD
+
 	queue.add(c1, "pump");
 	queue.add(c2, "pump");
 	queue.add(c3, "pump");
-	assertEquals(3.0, queue.getCurrentLength());
+	assertNotEquals(2.0, queue.getCurrentLength());
+	assertNotEquals(4.0, queue.getCurrentLength());
+	assertEquals(3.0, queue.getCurrentLength(), 0);
 	}
-			
 
-	
-=======
-		queue.add(c1, "pump");
-		queue.add(c2, "pump");
-		queue.add(c3. "pump");
-		assertEquals(3, queue.getCurrentLength());
-	}
->>>>>>> origin/master
 
-	@Test
+@Test
 	public void testCheckspace() {
 		queue.add(c1, "pump");
 		queue.add(c2, "pump");
-<<<<<<< HEAD
-		queue.add(c3, "pump");
-		//assertEquals(true, queue.checkSpace(3.00));
-		assertEquals(false, queue.checkSpace(s1.getLength());
+		assertEquals(false, queue.checkspace(1.5));
+		assertEquals(true, queue.checkspace(0.75));
 }
-=======
-		queue.add(c3. "pump");
-		//assertEquals(true, queue.checkSpace(3.00));
-		assertEquals(false, queue.checkSpace(s1.getLength());
-	}
->>>>>>> origin/master
+
+		
+		
 
 	@Test
 	public void testRemoveFirstItem() {
-		fail("Not yet implemented");
+		queue.add(s1, "pump");
+		queue.add(m1, "pump");
+		queue.add(m2, "pump");
+		assertEquals(3.0, queue.getCurrentLength(), 0);
+		queue.removeFirstItem("pump");
+		assertEquals(1.5, queue.getCurrentLength(), 0);
+		queue.removeFirstItem("pump");
+		assertEquals(0.75, queue.getCurrentLength(), 0);
+		queue.removeFirstItem("pump");
+		assertEquals(0.0, queue.getCurrentLength(), 0);
+		
 	}
 
 	@Test
 	public void testAdd() {
-		fail("Not yet implemented");
+		queue.add(c1, "pump");
+
+		assertEquals(true, queue.add(m1,  "pump"));
+		assertEquals(false, queue.add(s1, "pump"));
+
+		assertEquals(true, queue.add(c3, "tills"));
 	}
 
 	

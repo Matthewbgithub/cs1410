@@ -16,11 +16,15 @@ public class Ticker {
 		return tick;
 	}
 	
+	public int getMaxTicks() {
+		return maxTicks;
+	}
+	
 	/**
 	 * Increment the tick by one if it is less than the maximum number of ticks
 	 */
 	public void increment() {
-		if(tick < maxTicks) {
+		if(tick <= maxTicks) {
 		tick++;
 		}
 	}
@@ -33,4 +37,3 @@ public class Ticker {
 	}
 	
 }
-
