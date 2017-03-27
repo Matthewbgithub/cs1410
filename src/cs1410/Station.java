@@ -208,7 +208,7 @@ public class Station {
 	public ArrayList<Till> getTillList(){
 		return tillList;
 	}
-	public double getLoss(){
-		return loss;
+	public String getLoss(){
+		return String.format("%.2f", loss);
 	}
 }
