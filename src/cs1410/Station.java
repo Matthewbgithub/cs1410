@@ -126,7 +126,7 @@ public class Station {
 	/**
 	* decides if the vehicle can be added to a pump, if there are no available pumps the loss calculation method is called
 	*/
-	private boolean addVehicleToPump(Vehicle vehicle){
+	public boolean addVehicleToPump(Vehicle vehicle){
 		
 		if(choosePump().getQueue().checkspace(vehicle.getLength())){
 			
