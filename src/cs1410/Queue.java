@@ -54,7 +54,7 @@ public class Queue {
 				currentLength -= 1;
 			}
 		//removes first item from array
-			System.out.println(vehicleArray.get(0).toString());
+			System.out.print(vehicleArray.get(0).toString());
 		vehicleArray.remove(0);
 		}
 	}
