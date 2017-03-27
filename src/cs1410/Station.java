@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class Station {
-	private static String income;
+	private static double income;
 	private double loss;
 	private static double petrolPrice;
 	private double probabilityP;
@@ -192,9 +192,8 @@ public class Station {
 	{
 	  return income; 
 	}
-	public static String getIncome()
-	{
-	  return String.format("£" + "%.2f", income);
+	public static void setIncome(double i){
+		income = i;
 	}
 	/**
 	*Returns the current price of petrol
