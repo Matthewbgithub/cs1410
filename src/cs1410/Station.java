@@ -209,6 +209,6 @@ public class Station {
 		return tillList;
 	}
 	public String getLoss(){
-		return String.format("%.2f", loss);
+		return String.format("£" + "%.2f", loss);
 	}
 }
