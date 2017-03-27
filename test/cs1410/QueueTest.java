@@ -4,23 +4,32 @@ import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 
+import org.junit.Before;
 import org.junit.Test;
 
 public class QueueTest{
 	
-
+	private Vehicle c1;
+	private Vehicle c2;
+	private Vehicle c3;
+	private Vehicle m1;
+	private Vehicle m2;
+	private Vehicle s1;
+	
+	
 	Queue queue = new Queue();
 	
+	@Before
+	public void setUp(){
+	c1 = new Car();
+	c2 = new Car();
+	c3 = new Car();
+	m1 = new Motorbike();
+	m2 = new Motorbike();
+	s1 = new Sedan();
 	
-	Car c1 = new Car();
-	Car c2 = new Car();
-	Car c3 = new Car();
-	Motorbike m1 = new Motorbike();
-	Motorbike m2 = new Motorbike();
-	Sedan s1 = new Sedan();
-	Sedan s2 = new Sedan();
-	Truck t1 = new Truck();
-
+	
+	}
 	
 
 	@Test
