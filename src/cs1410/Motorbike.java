@@ -1,5 +1,4 @@
 /**
-* Represents the Motobike class which is a subclass of Vehicle
 * @author
 * @version`
 */
