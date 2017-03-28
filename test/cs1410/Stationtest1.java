@@ -161,6 +161,15 @@ public class Stationtest1 {
 	public void testGetLoss() {
 		fail("Not yet implemented");
 	}
+	
+	@Test
+	public void testVehicleLeaveBecauseQueueFull() {
+		pump.add(c1);
+		pump.add(c2);
+		pump.add(c3);
+		assertEquals(false, pump.getQueue().checkspace(0.75));
+		assertEquals(3.0, pump.getQueue().getCurrentLength(), 0);		
+	}
 }
 
 	
