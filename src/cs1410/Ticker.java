@@ -3,7 +3,7 @@ package cs1410;
 public class Ticker {
 
 	private int tick;
-	private static int maxTicks = 0;
+	private static int maxTicks = 1440;
 	
 	public Ticker(int ticks) {
 		maxTicks = ticks;
