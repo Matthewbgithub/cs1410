@@ -17,6 +17,7 @@ public class Stationtest1 {
 	private Vehicle s2;
 	
 	
+	
 	Pump pump = new Pump();
 	Till till = new Till();
 	
@@ -104,14 +105,19 @@ public class Stationtest1 {
 	@Test
 	public void testAddVehicleToPump(){
 		Station station = new Station(2, 3, 0, 0, false);
-		station.addVehicleToPump(c1); //adds a car to the pump 
+		
+		station.addVehicleToPump(c1); //adds a car to the pump
 		assertEquals(1.0, station.getPumpList().get(0).getQueue().getCurrentLength(), 0); //checks the first pump has a car in it
+		
 		station.addVehicleToPump(c2); //adds a car to the pump
 		assertEquals(1.0, station.getPumpList().get(1).getQueue().getCurrentLength(), 0); //checks it goes to the second pump
+		
 		station.addVehicleToPump(m1); //adds a motor bike to the pump
 		assertEquals(1.75, station.getPumpList().get(0).getQueue().getCurrentLength(), 0); //checks it goes to first pump
+		
 		station.addVehicleToPump(s1); //adds a sedan to the pump
 		assertEquals(2.5, station.getPumpList().get(1).getQueue().getCurrentLength(), 0); //checks it goes to the second pump
+		
 		station.addVehicleToPump(c3); //adds a car to pump
 		assertEquals(2.75, station.getPumpList().get(0).getQueue().getCurrentLength(), 0); //checks it goes to first pump
 		assertEquals(false, station.addVehicleToPump(s2) );//tries to add sedan to pump but both are full
@@ -157,10 +163,10 @@ public class Stationtest1 {
 	}
 
 
-	@Test
-	public void testGetLoss() {
-		fail("Not yet implemented");
-	}
+	//@Test
+	//public void testGetLoss() {
+		//fail("Not yet implemented");
+	//}
 	
 	@Test
 	public void testVehicleLeaveBecauseQueueFull() {
