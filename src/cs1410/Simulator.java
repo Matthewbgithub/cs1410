@@ -3,7 +3,7 @@ package cs1410;
 public class Simulator
 {
 	
-	private static Ticker ticker = new Ticker(100000);
+	private static Ticker ticker = new Ticker();
 	public static void main(String[] args)
 	{
 		//pump number, till number, p, q, trucks?
