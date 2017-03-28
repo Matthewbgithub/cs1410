@@ -82,8 +82,7 @@ public class Station {
 	public Pump choosePump(){
 		double small = pumpList.get(0).getQueue().getCurrentLength();
 		int pumpNo = 0;
-		int i;
-		for(i = 1; i < (pumpList.size()); i++){
+		for(int i = 1; i < (pumpList.size()); i++){
 			if(pumpList.get(i).getQueue().getCurrentLength() < small){
 				small = pumpList.get(i).getQueue().getCurrentLength();
 				pumpNo = i;
@@ -139,7 +138,7 @@ public class Station {
 	*/
 	
 		
-		private boolean addVehicleToPump(Vehicle vehicle){
+		public boolean addVehicleToPump(Vehicle vehicle){
 		if(!pumpList.isEmpty()){
 			if(choosePump().getQueue().checkspace(vehicle.getLength())){
 				
