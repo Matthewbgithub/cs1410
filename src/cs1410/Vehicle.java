@@ -52,10 +52,12 @@ public class Vehicle {
 				if( tickShopShouldBeDone < tick){
 					if (this.getName() == "Truck"){
 						Truck.happy();
+						this.currentStation.incrementHappyTrucks();
 						System.out.print("happy truck"+ Truck.getProbabilityOfT());
 					}
 					//add the money
-					spend();
+					spendFilling();
+					spendShopping();
 					//then leave both the till and the pump
 					System.out.print(this.getName() + " has left the shop and pump.");
 					removeFromPump = true;
@@ -79,9 +81,11 @@ public class Vehicle {
 					System.out.print(this.getName() + " has entered the shop.");
 				}else{
 					System.out.print(this.getName() +" has left before going to the shop.");
+					spendFilling();
 					removeFromPump = true;
 					if (this.getName() == "Truck"){
 						Truck.unHappy();
+						this.currentStation.incrementSadTrucks();
 						System.out.print("sad truck" + Truck.getProbabilityOfT());
 					}
 				}
@@ -110,8 +114,12 @@ public class Vehicle {
 			return false;
 		}
 	}
-	private void spend(){
-		Station.setIncome(Station.getIncome() + getShoppingMoney() + (tankSize * Station.getPetrolPrice()));
+	private void spendFilling(){
+		Station.setIncome(Station.getIncome() + (tankSize * Station.getPetrolPrice()));
+		paid = true;
+	}
+	private void spendShopping(){
+		Station.setIncome(Station.getIncome() + getShoppingMoney());
 		paid = true;
 	}
 	public void changeProbability(){

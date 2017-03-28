@@ -14,6 +14,11 @@ public class Station {
 	private Random rnd;
 	private boolean isTruck;
 	
+	private int vehiclesGenerated = 0;
+	private int happyTrucks = 0;
+	private int sadTrucks = 0;
+	
+	
 	public Station(int pumpNo, int tillNo, double p, double q, boolean isTruck){
 		probabilityP = p;
 		probabilityQ = q;
@@ -105,22 +110,26 @@ public class Station {
 		if((rnd.nextInt(100)+1)/10 <= probabilityP){
 			Car vehicle = new Car(this);
 			System.out.print("Created " + vehicle.getName() + ", ");
+			this.incrementVehiclesGenerated();
 			addVehicleToPump(vehicle);
 		}
 		if((rnd.nextInt(100)+1)/10 <= probabilityP){
 			Motorbike vehicle = new Motorbike(this);
 			System.out.print("Created " + vehicle.getName() + ", ");
+			this.incrementVehiclesGenerated();
 			addVehicleToPump(vehicle);
 		}
 		if((rnd.nextInt(100)+1)/10 <= probabilityQ){
 			Sedan vehicle = new Sedan(this);
 			System.out.print("Created " + vehicle.getName() + ", ");
+			this.incrementVehiclesGenerated();
 			addVehicleToPump(vehicle);
 		}
 		if(isTruck){
 			if((rnd.nextInt(100)+1)/10 <= Truck.getProbabilityOfT()){
 				Truck vehicle = new Truck(this);
 				System.out.print("Created " + vehicle.getName() + ", ");
+				this.incrementVehiclesGenerated();
 				addVehicleToPump(vehicle);
 			}
 		}
@@ -198,6 +207,9 @@ public class Station {
 	{
 	  return income; 
 	}
+	public static String getFormattedIncome(){
+		return String.format("£" + "%,.2f", income);
+	}
 	public static void setIncome(double i){
 		income = i;
 	}
@@ -215,6 +227,24 @@ public class Station {
 		return tillList;
 	}
 	public String getLoss(){
-		return String.format("Â£" + "%.2f", loss);
+		return String.format("£" + "%,.2f", loss);
+	}
+	public int happyTrucks(){
+		return happyTrucks;
+	}
+	public int sadTrucks(){
+		return sadTrucks;
+	}
+	public int vehiclesGenerated(){
+		return vehiclesGenerated;
+	}
+	public void incrementHappyTrucks(){
+		happyTrucks++;
+	}
+	public void incrementVehiclesGenerated(){
+		vehiclesGenerated++;
+	}
+	public void incrementSadTrucks(){
+		sadTrucks++;
 	}
 }

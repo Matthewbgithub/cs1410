@@ -3,7 +3,7 @@ package cs1410;
 public class Simulator
 {
 	
-	private static Ticker ticker = new Ticker();
+	private static Ticker ticker = new Ticker(100000);
 	public static void main(String[] args)
 	{
 		//pump number, till number, p, q, trucks?
@@ -14,23 +14,25 @@ public class Simulator
 		
 
 		for(ticker.getTick(); ticker.getTick() <= ticker.getMaxTicks(); ticker.increment()) {
-			delay(10);
+			delay(0);
 				System.out.print("Tick: " + ticker.getTick() + ": ");
 				station.tick(ticker.getTick());
 				System.out.println();
 				//station.generateVehicle();
 			}
 			System.out.println("-------------------------------------");
-			System.out.println("this has caused loss of " + station.getLoss());
-			System.out.println("there has been profit of: " + station.getIncome());
+			System.out.println("This has caused loss of " + station.getLoss());
+			System.out.println("There has been profit of: " + station.getFormattedIncome());
+			System.out.println("There was " + station.happyTrucks() + " happy Trucks and " + station.sadTrucks() + " sad Trucks. ");
+			System.out.println("There was " + station.vehiclesGenerated() + " vehicles generated. ");
 			System.out.println("Truck happiness: " + Truck.getProbabilityOfT());
-			System.out.println("The pump queues look like ");			
+			System.out.println("The pump queues look like: ");			
 			for(Pump i : station.getPumpList()){
-				System.out.println(i.getQueue().toString());
+				System.out.println("\t" + i.getQueue().toString());
 			}
 				System.out.println("The till queues look like ");
 			for(Till tick : station.getTillList()){
-				System.out.println(tick.getQueue().toString());
+				System.out.println("\t" + tick.getQueue().toString());
 			}
 			System.out.println("-------------------------------------");
 	}
