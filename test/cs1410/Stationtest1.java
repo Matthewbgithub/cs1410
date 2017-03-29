@@ -17,7 +17,6 @@ public class Stationtest1 {
 	private Vehicle s2;
 	
 	
-	
 	Pump pump = new Pump();
 	Till till = new Till();
 	
@@ -111,25 +110,35 @@ public class Stationtest1 {
 
 	@Test
 	public void testAddToTill() {
-		fail("Not yet implemented");
+		Station station = new Station(2, 2, 0, 0, false);
+		station.addToTill(1, m1);
+		assertEquals(1.0, station.getTillList().get(0).getQueue().getCurrentLength(), 0);
+		station.addToTill(2, s1);
+		assertEquals(1.0, station.getTillList().get(1).getQueue().getCurrentLength(), 0);
+		station.addToTill(3, c1);
+		assertEquals(2.0, station.getTillList().get(0).getQueue().getCurrentLength(), 0);
+		station.addToTill(4, c2);
+		assertEquals(2.0, station.getTillList().get(1).getQueue().getCurrentLength(), 0);
+		station.addToTill(5, m2);
+		assertEquals(3.0, station.getTillList().get(0).getQueue().getCurrentLength(), 0);
+		station.addToTill(6, c3);
+		assertEquals(3.0, station.getTillList().get(1).getQueue().getCurrentLength(), 0);
+		station.addToTill(7, s2);
+		assertEquals(false , station.getTillList().get(1).getQueue().getCurrentLength());
+		
 	}
 	
 	@Test
 	public void testAddVehicleToPump(){
 		Station station = new Station(2, 3, 0, 0, false);
-		
-		station.addVehicleToPump(c1); //adds a car to the pump
+		station.addVehicleToPump(c1); //adds a car to the pump 
 		assertEquals(1.0, station.getPumpList().get(0).getQueue().getCurrentLength(), 0); //checks the first pump has a car in it
-		
 		station.addVehicleToPump(c2); //adds a car to the pump
 		assertEquals(1.0, station.getPumpList().get(1).getQueue().getCurrentLength(), 0); //checks it goes to the second pump
-		
 		station.addVehicleToPump(m1); //adds a motor bike to the pump
 		assertEquals(1.75, station.getPumpList().get(0).getQueue().getCurrentLength(), 0); //checks it goes to first pump
-		
 		station.addVehicleToPump(s1); //adds a sedan to the pump
 		assertEquals(2.5, station.getPumpList().get(1).getQueue().getCurrentLength(), 0); //checks it goes to the second pump
-		
 		station.addVehicleToPump(c3); //adds a car to pump
 		assertEquals(2.75, station.getPumpList().get(0).getQueue().getCurrentLength(), 0); //checks it goes to first pump
 		assertEquals(false, station.addVehicleToPump(s2) );//tries to add sedan to pump but both are full
@@ -177,7 +186,17 @@ public class Stationtest1 {
 
 	@Test
 	public void testGetLoss() {
-		fail("Not yet implemented");
+
+		Station station = new Station(1, 1, 0, 0, false);
+		station.addVehicleToPump(c1);  
+		station.addVehicleToPump(c2);	
+		station.addVehicleToPump(c3); 
+		station.addVehicleToPump(m1);
+		assertEquals(3.0, station.getPumpList().get(0).getQueue().getCurrentLength(), 0);
+		station.vehicleLeaveBecauseQueueFull(m1);
+		//assertEquals("£6.00", station.getLoss());
+		
+		
 	}
 	
 	@Test
