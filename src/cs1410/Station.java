@@ -56,11 +56,11 @@ public class Station {
 				for(Iterator<Vehicle> v = pumps.getQueue().getArray().iterator(); v.hasNext();){
 				  Vehicle vehicle = v.next();
 				  vehicle.nextTickAction(tick);
-				  if(vehicle.removeFromPump) {
+				  /*if(vehicle.removeFromPump) {
 					  //updates pump queue length
 					  vehicle.getPump().getQueue().setCurrentLength(vehicle.getPump().getQueue().getCurrentLength() - vehicle.getLength());
 				    v.remove(); // Removes the 'current' item
-				  }
+				  }*/
 				}
 		}
 	}
@@ -71,7 +71,7 @@ public class Station {
 			for (Iterator<Vehicle> v = tills.getQueue().getArray().iterator(); v.hasNext(); ) {
 			    Vehicle vehicle = v.next();
 			    vehicle.nextTickAction(tick);	
-			    if(vehicle.removeFromTill && vehicle.removeFromPump){
+			    if(vehicle.removeFromStation){
 			    	vehicle.getPump().getQueue().removeFirstItem("pump");
 			    	vehicle.getTill().getQueue().setCurrentLength(vehicle.getTill().getQueue().getCurrentLength() - 1);
 			    	v.remove();	

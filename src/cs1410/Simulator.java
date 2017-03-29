@@ -3,12 +3,12 @@ package cs1410;
 public class Simulator
 {
 	
-	private static Ticker ticker = new Ticker(100000);
+	private static Ticker ticker = new Ticker(1440);
 	public static void main(String[] args)
 	{
 		//pump number, till number, p, q, trucks?
 
-		Station station = new Station(3, 3, 0.02, 0.04, true);
+		Station station = new Station(1, 1, 0.05, 0.05, true);
 
 		station.setPetrolPrice(1.20);
 		

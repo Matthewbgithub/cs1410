@@ -24,7 +24,7 @@ public class Motorbike extends Vehicle{
 		rnd = new Random();
 		qSpace = 0.75;
 		tankSize = 5;
-		timeToRefillIn = 999;
+		timeToRefillIn = -1;
 		refillTime = tankSize / 6;
 		
 		shoppingProb = 1;
