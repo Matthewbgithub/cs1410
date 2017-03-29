@@ -4,7 +4,7 @@ public class Simulator
 {
 	
 
-	private static Ticker ticker = new Ticker(1440);
+	private static Ticker ticker = new Ticker();
 
 	public static void main(String[] args)
 	{

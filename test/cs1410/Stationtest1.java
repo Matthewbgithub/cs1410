@@ -37,12 +37,24 @@ public class Stationtest1 {
 
 	@Test
 	public void testScanPumpsForChanges() {
-		fail("Not yet implemented");
+		Station station = new Station(2, 3, 0, 0, false);
+		station.addVehicleToPump(c1);
+		station.addVehicleToPump(c2);
+		station.addVehicleToPump(m1);
+		station.addVehicleToPump(s1);
+		
+		
 	}
 
 	@Test
 	public void testScanTillsForChanges() {
-		fail("Not yet implemented");
+		Station station = new Station(3, 1, 0, 0, false);
+		station.addToTill(1, c1);
+		station.addToTill(2, c2);
+		station.addToTill(3, c3);
+		assertEquals(3, station.getTillList().get(0).getQueue().getCurrentLength(), 0);
+		till.getQueue().removeFirstItem("till");
+		assertEquals(2.0, till.getQueue().getCurrentLength(), 0);
 	}
 
 	@Test
@@ -163,10 +175,10 @@ public class Stationtest1 {
 	}
 
 
-	//@Test
-	//public void testGetLoss() {
-		//fail("Not yet implemented");
-	//}
+	@Test
+	public void testGetLoss() {
+		fail("Not yet implemented");
+	}
 	
 	@Test
 	public void testVehicleLeaveBecauseQueueFull() {
