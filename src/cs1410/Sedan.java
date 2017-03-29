@@ -15,7 +15,7 @@ public class Sedan extends Vehicle{
 	}
 	
 	/**
-	 * Creates a new Sedan vehicle and randomises its tank size and time & money spent on shopping
+	 * Creates a new Sedan vehicle, setting inherited fields and randomises its tank size and time & money spent on shopping
 	 */
 	private void generate(){
 		name = "Sedan";
