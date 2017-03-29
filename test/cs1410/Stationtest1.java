@@ -98,7 +98,22 @@ public class Stationtest1 {
 
 	@Test
 	public void testAddToTill() {
-		fail("Not yet implemented");
+		Station station = new Station(2, 2, 0, 0, false);
+		station.addToTill(1, m1);
+		assertEquals(1.0, station.getTillList().get(0).getQueue().getCurrentLength(), 0);
+		station.addToTill(2, s1);
+		assertEquals(1.0, station.getTillList().get(1).getQueue().getCurrentLength(), 0);
+		station.addToTill(3, c1);
+		assertEquals(2.0, station.getTillList().get(0).getQueue().getCurrentLength(), 0);
+		station.addToTill(4, c2);
+		assertEquals(2.0, station.getTillList().get(1).getQueue().getCurrentLength(), 0);
+		station.addToTill(5, m2);
+		assertEquals(3.0, station.getTillList().get(0).getQueue().getCurrentLength(), 0);
+		station.addToTill(6, c3);
+		assertEquals(3.0, station.getTillList().get(1).getQueue().getCurrentLength(), 0);
+		station.addToTill(7, s2);
+		assertEquals(false , station.getTillList().get(1).getQueue().getCurrentLength());
+		
 	}
 	
 	@Test
@@ -159,7 +174,17 @@ public class Stationtest1 {
 
 	@Test
 	public void testGetLoss() {
-		fail("Not yet implemented");
+		Station station = new Station(1, 1, 0, 0, false);
+		station.addVehicleToPump(c1);  
+		station.addVehicleToPump(c2);	
+		station.addVehicleToPump(c3); 
+		station.addVehicleToPump(m1);
+		assertEquals(3.0, station.getPumpList().get(0).getQueue().getCurrentLength(), 0);
+		station.vehicleLeaveBecauseQueueFull(m1);
+		//assertEquals("£6.00", station.getLoss());
+		
+		
+		
 	}
 	
 	@Test
