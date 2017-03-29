@@ -211,7 +211,7 @@ public class Station {
 	public void vehicleLeaveBecauseQueueFull(Vehicle vehicle){
 		double newLoss = petrolPrice * vehicle.tankSize + vehicle.getShoppingMoney();
 		loss += newLoss;
-		System.out.print("at a loss of Â£" + newLoss);;
+		System.out.print("at a loss of £" + newLoss);;
 	}
 	/**
 	 * Removes the first item from the till arraylist
@@ -239,7 +239,7 @@ public class Station {
 	  return income; 
 	}
 	public static String getFormattedIncome(){
-		return String.format("Â£" + "%,.2f", income);
+		return String.format("£" + "%.02f", income);
 	}
 	public static void setIncome(double i){
 		income = i;
@@ -258,7 +258,7 @@ public class Station {
 		return tillList;
 	}
 	public String getFormattedLoss(){
-		return String.format("Â£" + "%,.2f", loss);
+		return String.format("£" + "%.02f", loss);
 	}
 	public double getLoss(){
 		return loss;

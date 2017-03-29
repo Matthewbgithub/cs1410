@@ -93,9 +93,13 @@ public class Stationtest1 {
 
 	@Test
 	public void testGenerateVehicle() {
-		
-		//assertEquals()
-	}
+		Station station = new Station(1, 1, 1, 1, false);
+		station.generateVehicle();
+		station.addVehicleToPump(c1);
+		assertEquals("Car0", station.getPumpList().get(0).getQueue().getArray().get(0).getName());
+		assertEquals("Motorbike0", station.getPumpList().get(0).getQueue().getArray().get(0).getName());
+		assertEquals("Sedan0", station.getPumpList().get(0).getQueue().getArray().get(0).getName());
+		}
 
 	//@Test
 	/*public void testAddToTill() {
@@ -184,7 +188,7 @@ public class Stationtest1 {
 		station.addVehicleToPump(m1);
 		assertEquals(3.0, station.getPumpList().get(0).getQueue().getCurrentLength(), 0);
 		station.vehicleLeaveBecauseQueueFull(m1);
-		assertEquals("£12.00", station.getLoss());
+		assertEquals(12.0, station.getLoss(), 0);
 		
 		
 		
