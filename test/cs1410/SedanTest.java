@@ -2,18 +2,33 @@ package cs1410;
 
 import static org.junit.Assert.*;
 
+import org.junit.Before;
 import org.junit.Test;
 
+	
 public class SedanTest {
 
-	@Test
-	public void testSedanStation() {
-		fail("Not yet implemented");
+	private Vehicle s1;
+	Vehicle vehicle = new Vehicle();
+	Station station = new Station(1, 1, 0, 0, false);
+	Sedan sedan = new Sedan();
+	
+	@Before
+	public void setUp(){
+	s1 = new Sedan();
 	}
-
+	
 	@Test
-	public void testSedan() {
-		fail("Not yet implemented");
+	public void testGenerate() {
+		Station station = new Station(1, 1, 0, 0, false);
+		station.addVehicleToPump(s1);
+		assertEquals("Sedan0", station.getPumpList().get(0).getQueue().getArray().get(0).getName());
+		assertEquals(1.5, station.getPumpList().get(0).getQueue().getArray().get(0).getLength(), 0);
+		//assertEquals(10, station.getPumpList().get(0).getQueue().getArray().get(0).getRefillTime(), 0);
+		assertEquals(0.4, station.getPumpList().get(0).getQueue().getArray().get(0).getProbability(), 0);
+		assertNotEquals(19, station.getPumpList().get(0).getQueue().getArray().get(0).getTankSize(), 0);
+		assertNotEquals(11, station.getPumpList().get(0).getQueue().getArray().get(0).getTankSize(), 0);
+		
 	}
 
 }
