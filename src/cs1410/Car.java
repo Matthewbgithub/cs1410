@@ -20,6 +20,9 @@ public class Car extends Vehicle{
 	public Car(){
 		generate();
 	}
+	/**
+	 * Creates a new Car, sets inherited fields and randomises the tank size and shopping time & money spent
+	 */
 	private void generate(){
 		name = "Car";
 		rnd = new Random();

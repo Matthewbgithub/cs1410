@@ -4,15 +4,15 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class SimulatorTest {
+public class SedanTest {
 
 	@Test
-	public void testMain() {
+	public void testSedanStation() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	public void testGetTicks() {
+	public void testSedan() {
 		fail("Not yet implemented");
 	}
 

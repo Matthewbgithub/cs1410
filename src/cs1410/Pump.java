@@ -1,5 +1,9 @@
 package cs1410;
-
+/**
+ * Represents a pump in which vehicles queue up to and fill their tank with
+ * @author
+ * @version
+ */
 public class Pump
 {
 	Queue pumpQueue;

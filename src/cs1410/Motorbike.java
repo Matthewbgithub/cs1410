@@ -9,8 +9,6 @@ import java.util.Random;
 public class Motorbike extends Vehicle{
 	/**
 	* Creates a <code> Motorbike </code> 
-	* Sets the tank size, shopping probability, shopping money, space in queue and shopping time
-	* 
 	*/	
 	public Motorbike(Station s){
 		currentStation = s;
@@ -18,7 +16,11 @@ public class Motorbike extends Vehicle{
 	}
 	public Motorbike(){
 		generate();
-	}
+	}	
+	
+	/**
+	 * Sets the tank size, shopping probability, shopping money, space in queue and shopping time
+	 */
 	private void generate(){
 		name = "Motorbike";
 		rnd = new Random();

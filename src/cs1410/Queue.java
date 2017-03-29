@@ -24,6 +24,10 @@ public class Queue {
 		//return the length of all the items in the queue
 		return currentLength;
 	}
+	/**
+	 * Sets the current length of the queue
+	 * @param length a double, which is the length of the queue
+	 */
 	public void setCurrentLength(double length){
 		currentLength = length;
 	}
@@ -42,8 +46,8 @@ public class Queue {
 	}
 	
 	/**
-	 * 
-	 * @param caller
+	 * Removes the first item in the arraylist of vehicles
+	 * @param caller a String determining whether the queue is for a till or pump
 	 */
 	public void removeFirstItem(String caller){
 		//changes space left in queue
@@ -61,11 +65,11 @@ public class Queue {
 	
 	/**
 	 * 
-	 * @param vehicle
-	 * @param caller
-	 * @return
+	 * @param vehicle a Vehicle being added to the arraylist of vehicles
+	 * @param caller a String to decide whether it's being called from pump or till
+	 * @return a boolean value, returning true if the vehicle fits in the queue and false otherwise
 	 */
-	public boolean add(Vehicle vehicle, String caller){ //add a parameter to decide whether its being called from pump or till
+	public boolean add(Vehicle vehicle, String caller){
 		if(caller == "pump"){
 			if(checkspace(vehicle.getLength())){
 				vehicleArray.add(vehicle);
@@ -84,10 +88,17 @@ public class Queue {
 			}
 		}
 	}
-	
+	/**
+	* Overrides the toString method for the arraylist of vehicles
+	* @return the String format of the vehicleArray
+	*/
 	public String toString(){
 		return vehicleArray.toString();
 	}
+	/**
+	* Gets the arraylist of vehicles
+	* @return the vehicle arraylist
+	*/
 	public ArrayList<Vehicle> getArray(){
 		return vehicleArray;
 	}
