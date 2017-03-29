@@ -2,7 +2,11 @@ package cs1410;
 import java.util.Random;
 import java.util.ArrayList;
 import java.util.Iterator;
-
+/**
+ * Represents the petrol station
+ * @author 
+ * @version
+ */
 public class Station {
 	private static double income;
 	private double loss;
@@ -18,7 +22,13 @@ public class Station {
 	private int happyTrucks = 0;
 	private int sadTrucks = 0;
 	
-	
+	/**
+	 * @param pumpNo the number of pumps in the station
+	 * @param tillNo the number of tills in the station
+	 * @param p double representing the probability of p
+	 * @param q double representing the probability of q
+	 * @param isTruck boolean determining whether the simulation contains trucks or not
+	 */
 	public Station(int pumpNo, int tillNo, double p, double q, boolean isTruck){
 		probabilityP = p;
 		probabilityQ = q;
@@ -49,7 +59,10 @@ public class Station {
 		scanTillsForChanges(tick);
 	}
 	
-	//goes through each vehicle in the pumps asking it whether it wants to do anything
+	/**
+	 * Goes through each vehicle in the pumps asking whether it wants to do anything
+	 * @param tick the current tick
+	 */
 	public void scanPumpsForChanges(int tick){
 		for(Pump pumps : pumpList){
 							
@@ -64,7 +77,10 @@ public class Station {
 				}
 		}
 	}
-	//goes through each vehicle in the tills asking whether it wants to do anything
+	/**
+	 * Goes through each vehicle in the tills asking whether it wants to do anything
+	 * @param tick the current tick
+	 */
 	public void scanTillsForChanges(int tick){
 		for(Till tills : tillList){
 			
@@ -79,6 +95,10 @@ public class Station {
 			}
 		}
 	}
+	/**
+	 * Chooses the pump with the shortest queue for the vehicle
+	 * @return the pump number
+	 */
 	public Pump choosePump(){
 		double small = pumpList.get(0).getQueue().getCurrentLength();
 		int pumpNo = 0;
@@ -90,6 +110,10 @@ public class Station {
 		}
 		return pumpList.get(pumpNo);
 	}
+	/**
+	 * Chooses the till with the shortest queue for the vehicle
+	 * @return the till number
+	 */
 	public Till chooseTill(){
 		double small = tillList.get(0).getQueue().getCurrentLength();
 		int tillNo = 0;
@@ -134,10 +158,10 @@ public class Station {
 		}
 	}
 	/**
-	* decides if the vehicle can be added to a pump, if there are no available pumps the loss calculation method is called
-	*/
-	
-		
+	 * Decides if the vehicle can be added to a pump, if there are no available pumps the loss calculation method is called
+	 * @param vehicle a Vehicle to be added to a pump
+	 * @return a boolean, which is true if the vehicle is sucessfully added to a queue and false otherwise
+	 */
 		public boolean addVehicleToPump(Vehicle vehicle){
 		if(!pumpList.isEmpty()){
 			if(choosePump().getQueue().checkspace(vehicle.getLength())){
@@ -159,9 +183,12 @@ public class Station {
 		} return false;
 		
 	}
-	
-	
-	
+	/**
+	 * Adds a vehicle to a till
+	 * @param tick the current tick
+	 * @param vehicle the Vehicle to be added to the till
+	 * @return a boolean, which is true if sucessfully added to till queue and false otherwise
+	 */
 	public boolean addToTill(int tick,Vehicle vehicle){
 		if(!tillList.isEmpty()){
 			if(chooseTill().getQueue().checkspace(vehicle.getLength())){
@@ -178,13 +205,18 @@ public class Station {
 		}return false;
 	}
 	/**
-	* calculates the loss using the tanksize loss and also the shopping amount
+	* Calculates the loss using the tanksize loss and also the shopping amount
+	* @param vehicle the Vehicle that will leave because the queue is full
 	*/
 	public void vehicleLeaveBecauseQueueFull(Vehicle vehicle){
 		double newLoss = petrolPrice * vehicle.tankSize + vehicle.getShoppingMoney();
 		loss += newLoss;
 		System.out.print("at a loss of £" + newLoss);;
 	}
+	/**
+	 * Removes the first item from the till arraylist
+	 * @param till
+	 */
 	public void removeFromShop(Till till){
 		till.getQueue().removeFirstItem("till");
 	}
