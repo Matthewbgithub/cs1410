@@ -3,7 +3,9 @@ package cs1410;
 public class Simulator
 {
 	
+
 	private static Ticker ticker = new Ticker(1440);
+
 	public static void main(String[] args)
 	{
 		//pump number, till number, p, q, trucks?
@@ -21,7 +23,7 @@ public class Simulator
 				//station.generateVehicle();
 			}
 			System.out.println("-------------------------------------");
-			System.out.println("This has caused loss of " + station.getLoss());
+			System.out.println("This has caused loss of: " + station.getLoss());
 			System.out.println("There has been profit of: " + station.getFormattedIncome());
 			System.out.println("There was " + station.happyTrucks() + " happy Trucks and " + station.sadTrucks() + " sad Trucks. ");
 			System.out.println("There was " + station.vehiclesGenerated() + " vehicles generated. ");
@@ -30,7 +32,7 @@ public class Simulator
 			for(Pump i : station.getPumpList()){
 				System.out.println("\t" + i.getQueue().toString());
 			}
-				System.out.println("The till queues look like ");
+				System.out.println("The till queues look like: ");
 			for(Till tick : station.getTillList()){
 				System.out.println("\t" + tick.getQueue().toString());
 			}
