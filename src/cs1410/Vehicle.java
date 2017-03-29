@@ -21,6 +21,7 @@ public class Vehicle {
 	protected int tillQueueArrival;
 	protected int fillingStartTime;
 	protected int shoppingStartTime;
+	protected int creationTime;
 	
 	protected int timeToRefillIn;
 	protected Pump currentPump;
@@ -31,62 +32,97 @@ public class Vehicle {
 	protected boolean isShopping = false;
 	protected boolean isInTheShopQueue = false;
 	
-	protected boolean removeFromPump = false;
-	protected boolean removeFromTill = false;
+	//protected boolean removeFromPump = false;
+	protected boolean removeFromStation = false;
+	protected boolean willBuyItems = false;
+	protected boolean isBrowsing = false;
 	
 	protected boolean paid = false;
 	public Vehicle(){
 		rnd = new Random();
-		
+		creationTime = Simulator.getTicks();
 	}
 	
 
 //other
 	protected void nextTickAction(int tick){
 		if(isShopping){
-			isInTheShopQueue = false;
-			//actions when inside the shop
+			//is at the front of queue and will pay then leave
 			if(!paid){
-				
-				double tickShopShouldBeDone = tillQueueArrival + shoppingTime;
-				if( tickShopShouldBeDone < tick){
-					if (this.getName() == "Truck"){
+				//add the money
+				spendFilling();
+				if(willBuyItems){
+					spendShopping();
+				}
+				//then leave both the till and the pump
+				System.out.print(this.getName() + " paid and left shop.");
+				removeFromStation = true;
+			}
+		}else if(isInTheShopQueue){
+			//is at the front of the queue
+			if(getTill().getQueue().getArray().get(0) == this){
+				isInTheShopQueue = false;
+				isShopping = true;
+			}
+			
+		}else if(isBrowsing){
+			
+			if(hasStartedFilling){
+				setShoppingStartTime(tick);
+				System.out.print("(" + this.getName() + " shopstart = " + shoppingStartTime + ")");
+			}
+			hasStartedFilling = false;
+			if(willBuyItems){
+				double tickBrowseShouldBeDone = shoppingStartTime + shoppingTime;
+				if( tickBrowseShouldBeDone < tick){
+					if (this.getName().equals("Truck")){
 						Truck.happy();
 						this.currentStation.incrementHappyTrucks();
 						System.out.print("happy truck"+ Truck.getProbabilityOfT());
 					}
-					//add the money
-					spendFilling();
-					spendShopping();
-					//then leave both the till and the pump
-					System.out.print(this.getName() + " has left the shop and pump.");
-					removeFromPump = true;
-					removeFromTill = true;
+					//move into till
+					if(currentStation.addToTill(tick, this)){
+						System.out.print(this.getName() + " gone into till " + this.getTill().getNo() + ". ");
+						isInTheShopQueue = true;
+						isBrowsing = true;
+					}else{
+						System.out.print(this.getName() + " is waiting for a till. ");
+
+					}
+					
 				}
 			}
-		}else if(isInTheShopQueue){
-			//is queuing for the shop
-			hasStartedFilling = false;
-			if(getTill().getQueue().getArray().get(0) == this){
-				enterShopQueue(tick);
-			}
-		}else if(hasStartedFilling){
-			//is filling up			
-			double timeFillingShouldBeDone = pumpQueueArrival + tankSize;
+		}
+		else if(hasStartedFilling){
+			//is filling up			pumpQueueArrival
+			double timeFillingShouldBeDone = fillingStartTime + tankSize;
 			if( timeFillingShouldBeDone < tick){
+				//need to check if full--------------------------------------------------------------------------------------				
+				//-----------------------------------------------------------------------------------
 				if(goesToShop()){
-					//need to check if full--------------------------------------------------------------------------------------
-					currentStation.addToTill(tick, this);
-					//-----------------------------------------------------------------------------------
-					System.out.print(this.getName() + " has entered the shop.");
+					willBuyItems = true;
+					System.out.print(this.getName() + " is currently browsing. ");
+					isBrowsing = true;
+					if (this.getName().contains("Truck")){
+						Truck.happy();
+						this.currentStation.incrementHappyTrucks();
+						System.out.print("Happy truck" + Truck.getProbabilityOfT());
+					}
 				}else{
-					System.out.print(this.getName() +" has left before going to the shop.");
-					spendFilling();
-					removeFromPump = true;
-					if (this.getName() == "Truck"){
+					willBuyItems = false;
+					
+					if(currentStation.addToTill(tick, this)){
+						System.out.print(this.getName() + " is in the shop to pay for fuel. ");
+						isInTheShopQueue = true;
+					}else{
+						System.out.print(this.getName() + " is waiting for a till. ");
+					}
+					//System.out.print(this.getName() +" has left before going to the shop.");
+					//spendFilling();
+					if (this.getName().contains("Truck")){
 						Truck.unHappy();
 						this.currentStation.incrementSadTrucks();
-						System.out.print("sad truck" + Truck.getProbabilityOfT());
+						System.out.print("Sad truck" + Truck.getProbabilityOfT());
 					}
 				}
 			}
@@ -125,6 +161,10 @@ public class Vehicle {
 	public void changeProbability(){
 	}
 //Set methods-------------------------------------------
+	private void something(){
+		isShopping = true;
+		//tillQueueArrival = tick;
+	}
 	protected void startsFilling(int tick){
 		hasStartedFilling = true;
 		fillingStartTime = tick;
@@ -153,12 +193,12 @@ public class Vehicle {
 	}
 	
 //Get methods------------------------------------------
-	protected boolean removeFromPump(){
-		return removeFromPump;
+	protected boolean removeFromStation(){
+		return removeFromStation;
 	}
-	protected boolean removeFromTill(){
+	/*protected boolean removeFromTill(){
 		return removeFromTill;
-	}
+	}*/
 	protected boolean hasStartedFilling(){
 		return hasStartedFilling;
 	}
@@ -172,7 +212,7 @@ public class Vehicle {
 		return currentTill;
 	}
 	public String getName(){
-		return name;
+		return name + creationTime;
 	}
 	public double getLength(){
 		return qSpace;

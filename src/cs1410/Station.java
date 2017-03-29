@@ -56,11 +56,11 @@ public class Station {
 				for(Iterator<Vehicle> v = pumps.getQueue().getArray().iterator(); v.hasNext();){
 				  Vehicle vehicle = v.next();
 				  vehicle.nextTickAction(tick);
-				  if(vehicle.removeFromPump) {
+				  /*if(vehicle.removeFromPump) {
 					  //updates pump queue length
 					  vehicle.getPump().getQueue().setCurrentLength(vehicle.getPump().getQueue().getCurrentLength() - vehicle.getLength());
 				    v.remove(); // Removes the 'current' item
-				  }
+				  }*/
 				}
 		}
 	}
@@ -71,7 +71,7 @@ public class Station {
 			for (Iterator<Vehicle> v = tills.getQueue().getArray().iterator(); v.hasNext(); ) {
 			    Vehicle vehicle = v.next();
 			    vehicle.nextTickAction(tick);	
-			    if(vehicle.removeFromTill && vehicle.removeFromPump){
+			    if(vehicle.removeFromStation){
 			    	vehicle.getPump().getQueue().removeFirstItem("pump");
 			    	vehicle.getTill().getQueue().setCurrentLength(vehicle.getTill().getQueue().getCurrentLength() - 1);
 			    	v.remove();	
@@ -183,7 +183,7 @@ public class Station {
 	public void vehicleLeaveBecauseQueueFull(Vehicle vehicle){
 		double newLoss = petrolPrice * vehicle.tankSize + vehicle.getShoppingMoney();
 		loss += newLoss;
-		System.out.print("at a loss of " + newLoss);;
+		System.out.print("at a loss of Â£" + newLoss);;
 	}
 	public void removeFromShop(Till till){
 		till.getQueue().removeFirstItem("till");
@@ -207,7 +207,7 @@ public class Station {
 	  return income; 
 	}
 	public static String getFormattedIncome(){
-		return String.format("£" + "%,.2f", income);
+		return String.format("Â£" + "%,.2f", income);
 	}
 	public static void setIncome(double i){
 		income = i;
@@ -226,7 +226,7 @@ public class Station {
 		return tillList;
 	}
 	public String getLoss(){
-		return String.format("£" + "%,.2f", loss);
+		return String.format("Â£" + "%,.2f", loss);
 	}
 	public int happyTrucks(){
 		return happyTrucks;
