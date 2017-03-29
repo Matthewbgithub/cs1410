@@ -136,31 +136,25 @@ public class Station {
 	/**
 	* decides if the vehicle can be added to a pump, if there are no available pumps the loss calculation method is called
 	*/
-	
-		
+			
 		public boolean addVehicleToPump(Vehicle vehicle){
 		if(!pumpList.isEmpty()){
-			if(choosePump().getQueue().checkspace(vehicle.getLength())){
-				
+			if(choosePump().getQueue().checkspace(vehicle.getLength())){			
 				//set arrival in queue time
 				vehicle.setPumpQueueArrival(Simulator.getTicks());
 				//tells the vehicle what pump it is in
 				vehicle.setPump(choosePump());
 				//add to pump
 				vehicle.getPump().add(vehicle);
-				System.out.print(vehicle.getName() + " added to pump number: " + vehicle.getPump().getNo() + ". Length: " + vehicle.getPump().getQueue().getCurrentLength() + ". ");
-				
+				System.out.print(vehicle.getName() + " added to pump number: " + vehicle.getPump().getNo() + ". Length: " + vehicle.getPump().getQueue().getCurrentLength() + ". ");				
 				return true;
 			}else{
 				System.out.print(vehicle.getName() + " has not been added to a queue. ");
 				vehicleLeaveBecauseQueueFull(vehicle);
 				return false;
 			}
-		} return false;
-		
+		} return false;	
 	}
-	
-	
 	
 	public boolean addToTill(int tick,Vehicle vehicle){
 		if(!tillList.isEmpty()){
@@ -225,8 +219,11 @@ public class Station {
 	public ArrayList<Till> getTillList(){
 		return tillList;
 	}
-	public String getLoss(){
+	public String getFormattedLoss(){
 		return String.format("£" + "%,.2f", loss);
+	}
+	public double getLoss(){
+		return loss;
 	}
 	public int happyTrucks(){
 		return happyTrucks;

@@ -9,12 +9,9 @@ public class Simulator
 	public static void main(String[] args)
 	{
 		//pump number, till number, p, q, trucks?
-
 		Station station = new Station(1, 1, 0.05, 0.05, true);
-
 		station.setPetrolPrice(1.20);
 		
-
 		for(ticker.getTick(); ticker.getTick() <= ticker.getMaxTicks(); ticker.increment()) {
 			delay(0);
 				System.out.print("Tick: " + ticker.getTick() + ": ");
@@ -23,7 +20,7 @@ public class Simulator
 				//station.generateVehicle();
 			}
 			System.out.println("-------------------------------------");
-			System.out.println("This has caused loss of: " + station.getLoss());
+			System.out.println("This has caused loss of: " + station.getFormattedLoss());
 			System.out.println("There has been profit of: " + station.getFormattedIncome());
 			System.out.println("There was " + station.happyTrucks() + " happy Trucks and " + station.sadTrucks() + " sad Trucks. ");
 			System.out.println("There was " + station.vehiclesGenerated() + " vehicles generated. ");
