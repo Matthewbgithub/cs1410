@@ -1,6 +1,10 @@
 	package cs1410;
 	import java.util.Random;
-	
+	/**
+	 * A subclass of Vehicle
+	 * @author 
+	 * @version
+	 */
 public class Sedan extends Vehicle{
 	public Sedan(Station s){
 		currentStation = s;
@@ -9,6 +13,10 @@ public class Sedan extends Vehicle{
 	public Sedan(){
 		generate();
 	}
+	
+	/**
+	 * Creates a new Sedan vehicle and randomises its tank size and time & money spent on shopping
+	 */
 	private void generate(){
 		name = "Sedan";
 		rnd = new Random();
