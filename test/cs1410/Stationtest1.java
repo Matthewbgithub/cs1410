@@ -36,12 +36,24 @@ public class Stationtest1 {
 
 	@Test
 	public void testScanPumpsForChanges() {
-		fail("Not yet implemented");
+		Station station = new Station(2, 3, 0, 0, false);
+		station.addVehicleToPump(c1);
+		station.addVehicleToPump(c2);
+		station.addVehicleToPump(m1);
+		station.addVehicleToPump(s1);
+		
+		
 	}
 
 	@Test
 	public void testScanTillsForChanges() {
-		fail("Not yet implemented");
+		Station station = new Station(3, 1, 0, 0, false);
+		station.addToTill(1, c1);
+		station.addToTill(2, c2);
+		station.addToTill(3, c3);
+		assertEquals(3, station.getTillList().get(0).getQueue().getCurrentLength(), 0);
+		till.getQueue().removeFirstItem("till");
+		assertEquals(2.0, till.getQueue().getCurrentLength(), 0);
 	}
 
 	@Test
@@ -93,9 +105,13 @@ public class Stationtest1 {
 
 	@Test
 	public void testGenerateVehicle() {
-		
-		//assertEquals()
-	}
+		Station station = new Station(1, 1, 1, 1, false);
+		station.generateVehicle();
+		station.addVehicleToPump(c1);
+		assertEquals("Car0", station.getPumpList().get(0).getQueue().getArray().get(0).getName());
+		assertEquals("Motorbike0", station.getPumpList().get(0).getQueue().getArray().get(0).getName());
+		assertEquals("Sedan0", station.getPumpList().get(0).getQueue().getArray().get(0).getName());
+		}
 
 	//@Test
 	/*public void testAddToTill() {
@@ -176,6 +192,7 @@ public class Stationtest1 {
 
 	@Test
 	public void testGetLoss() {
+
 		Station station = new Station(1, 1, 0, 0, false);
 		station.setPetrolPrice(1.20);
 		station.addVehicleToPump(c1);  
@@ -184,8 +201,7 @@ public class Stationtest1 {
 		station.addVehicleToPump(m1);
 		assertEquals(3.0, station.getPumpList().get(0).getQueue().getCurrentLength(), 0);
 		station.vehicleLeaveBecauseQueueFull(m1);
-		assertEquals("£12.00", station.getLoss());
-		
+		assertEquals(12.0, station.getLoss(), 0);
 		
 		
 	}

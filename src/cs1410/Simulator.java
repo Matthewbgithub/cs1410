@@ -6,10 +6,17 @@ package cs1410;
  */
 public class Simulator
 {
+
+
+	
+
 	private static Ticker ticker = new Ticker(1440);
+
+
 	/**
 	 * Runs the simulation with 1440 ticks
 	 */
+
 	public static void main(String[] args)
 	{
 		//pump number, till number, p, q, trucks?

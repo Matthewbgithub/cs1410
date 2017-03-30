@@ -21,12 +21,14 @@ public class Sedan extends Vehicle{
 		name = "Sedan";
 		rnd = new Random();
 		qSpace = 1.5;
-		tankSize = rnd.nextInt(3)+12;
+		tankSize = rnd.nextInt(7)+12;
 		timeToRefillIn = 10;
 		refillTime = tankSize / 6;
 		
 		shoppingProb = 0.4;
+
 		browseTime = rnd.nextInt(4)+2;
+
 		shoppingMoney = rnd.nextInt(9)+8;
 	}
 }
