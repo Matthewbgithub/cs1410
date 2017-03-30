@@ -28,7 +28,7 @@ private void generate(){
 	refillTime = tankSize / 6;
 	
 	shoppingProb = 1;
-	shoppingTime = rnd.nextInt(3)+4;
+	browseTime = rnd.nextInt(3)+4;
 	shoppingMoney = rnd.nextInt(6)+15;
 	/**
 	 * if refill time is less than or equal to 8 minutes, the truck driver will definitely shop
@@ -57,10 +57,6 @@ private void generate(){
 		return probabilityOfT;
 	}
 	
-	//get time spent shopping
-	public double getShoppingTime() {
-		return shoppingTime;
-	}
 	
 	//set refill time
 	private void setRefillTime(int time) {

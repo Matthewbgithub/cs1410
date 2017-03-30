@@ -13,9 +13,8 @@ public class Simulator
 	public static void main(String[] args)
 	{
 		//pump number, till number, p, q, trucks?
-		Station station = new Station(1, 1, 0.05, 0.05, true);
+		Station station = new Station(3, 3, 0.03, 0.03, true);
 		station.setPetrolPrice(1.20);
-		
 		for(ticker.getTick(); ticker.getTick() <= ticker.getMaxTicks(); ticker.increment()) {
 			delay(0);
 				System.out.print("Tick: " + ticker.getTick() + ": ");

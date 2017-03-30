@@ -12,7 +12,7 @@ public class Vehicle {
 	protected double shoppingProb;
 	protected double shoppingMoney;
 	protected double qSpace;
-	protected int shoppingTime;
+	protected int browseTime;
 	protected double refillTime;
 	protected Random rnd;
 	protected String name;
@@ -20,7 +20,7 @@ public class Vehicle {
 	protected int pumpQueueArrival;
 	protected int tillQueueArrival;
 	protected int fillingStartTime;
-	protected int shoppingStartTime;
+	protected int browseStartTime;
 	protected int creationTime;
 	
 	protected int timeToRefillIn;
@@ -42,7 +42,6 @@ public class Vehicle {
 		rnd = new Random();
 		creationTime = Simulator.getTicks();
 	}
-	
 
 //other
 	protected void nextTickAction(int tick){
@@ -64,16 +63,15 @@ public class Vehicle {
 				isInTheShopQueue = false;
 				isShopping = true;
 			}
-			
 		}else if(isBrowsing){
 			
 			if(hasStartedFilling){
-				setShoppingStartTime(tick);
-				System.out.print("(" + this.getName() + " shopstart = " + shoppingStartTime + ")");
+				setbrowseStartTime(tick);
+				System.out.print("(" + this.getName() + " shopstart = " + browseStartTime + ")");
 			}
 			hasStartedFilling = false;
 			if(willBuyItems){
-				double tickBrowseShouldBeDone = shoppingStartTime + shoppingTime;
+				double tickBrowseShouldBeDone = browseStartTime + browseTime;
 				if( tickBrowseShouldBeDone < tick){
 					if (this.getName().equals("Truck")){
 						Truck.happy();
@@ -87,18 +85,14 @@ public class Vehicle {
 						isBrowsing = true;
 					}else{
 						System.out.print(this.getName() + " is waiting for a till. ");
-
 					}
-					
 				}
 			}
 		}
 		else if(hasStartedFilling){
-			//is filling up			pumpQueueArrival
+			//is filling up
 			double timeFillingShouldBeDone = fillingStartTime + tankSize;
 			if( timeFillingShouldBeDone < tick){
-				//need to check if full--------------------------------------------------------------------------------------				
-				//-----------------------------------------------------------------------------------
 				if(goesToShop()){
 					willBuyItems = true;
 					System.out.print(this.getName() + " is currently browsing. ");
@@ -117,8 +111,6 @@ public class Vehicle {
 					}else{
 						System.out.print(this.getName() + " is waiting for a till. ");
 					}
-					//System.out.print(this.getName() +" has left before going to the shop.");
-					//spendFilling();
 					if (this.getName().contains("Truck")){
 						Truck.unHappy();
 						this.currentStation.incrementSadTrucks();
@@ -161,10 +153,7 @@ public class Vehicle {
 	public void changeProbability(){
 	}
 //Set methods-------------------------------------------
-	private void something(){
-		isShopping = true;
-		//tillQueueArrival = tick;
-	}
+	
 	protected void startsFilling(int tick){
 		hasStartedFilling = true;
 		fillingStartTime = tick;
@@ -182,8 +171,8 @@ public class Vehicle {
 	protected void setFillingStartTime(int tickNo){
 		fillingStartTime = tickNo;
 	}
-	protected void setShoppingStartTime(int tickNo){
-		shoppingStartTime = tickNo;
+	protected void setbrowseStartTime(int tickNo){
+		browseStartTime = tickNo;
 	}
 	protected void setPump(Pump p){
 		currentPump = p;
@@ -226,8 +215,8 @@ public class Vehicle {
 	public double getShoppingMoney(){
 		return shoppingMoney;
 	}
-	public double getShoppingTime(){
-		return shoppingTime;
+	public double getbrowseTime(){
+		return browseTime;
 	}
 	public double getRefillTime(){
 		return refillTime;	

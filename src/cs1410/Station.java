@@ -1,6 +1,7 @@
 package cs1410;
 import java.util.Random;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 /**
  * Represents the petrol station
@@ -65,7 +66,6 @@ public class Station {
 	 */
 	public void scanPumpsForChanges(int tick){
 		for(Pump pumps : pumpList){
-							
 				for(Iterator<Vehicle> v = pumps.getQueue().getArray().iterator(); v.hasNext();){
 				  Vehicle vehicle = v.next();
 				  vehicle.nextTickAction(tick);
@@ -83,7 +83,6 @@ public class Station {
 	 */
 	public void scanTillsForChanges(int tick){
 		for(Till tills : tillList){
-			
 			for (Iterator<Vehicle> v = tills.getQueue().getArray().iterator(); v.hasNext(); ) {
 			    Vehicle vehicle = v.next();
 			    vehicle.nextTickAction(tick);	
@@ -130,26 +129,26 @@ public class Station {
 	* Called on each tick, will generate vehicles if the probability matches
 	*/
 	public void generateVehicle(){
-		if((rnd.nextInt(100)+1)/10 <= probabilityP){
+		if((rnd.nextInt(100)+1)/100.0 <= probabilityP){
 			Car vehicle = new Car(this);
 			System.out.print("Created " + vehicle.getName() + ", ");
 			this.incrementVehiclesGenerated();
 			addVehicleToPump(vehicle);
 		}
-		if((rnd.nextInt(100)+1)/10 <= probabilityP){
+		if((rnd.nextInt(100)+1)/100.0 <= probabilityP){
 			Motorbike vehicle = new Motorbike(this);
 			System.out.print("Created " + vehicle.getName() + ", ");
 			this.incrementVehiclesGenerated();
 			addVehicleToPump(vehicle);
 		}
-		if((rnd.nextInt(100)+1)/10 <= probabilityQ){
+		if((rnd.nextInt(100)+1)/100.0 <= probabilityQ){
 			Sedan vehicle = new Sedan(this);
 			System.out.print("Created " + vehicle.getName() + ", ");
 			this.incrementVehiclesGenerated();
 			addVehicleToPump(vehicle);
 		}
 		if(isTruck){
-			if((rnd.nextInt(100)+1)/10 <= Truck.getProbabilityOfT()){
+			if((rnd.nextInt(100)+1)/100.0 <= Truck.getProbabilityOfT()){
 				Truck vehicle = new Truck(this);
 				System.out.print("Created " + vehicle.getName() + ", ");
 				this.incrementVehiclesGenerated();
@@ -239,7 +238,7 @@ public class Station {
 	  return income; 
 	}
 	public static String getFormattedIncome(){
-		return String.format("Â£" + "%,.2f", income);
+		return String.format("£" + "%,.2f", income);
 	}
 	public static void setIncome(double i){
 		income = i;
@@ -258,7 +257,7 @@ public class Station {
 		return tillList;
 	}
 	public String getFormattedLoss(){
-		return String.format("Â£" + "%,.2f", loss);
+		return String.format("£" + "%,.2f", loss);
 	}
 	public double getLoss(){
 		return loss;

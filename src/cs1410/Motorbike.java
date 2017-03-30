@@ -30,7 +30,7 @@ public class Motorbike extends Vehicle{
 		refillTime = tankSize / 6;
 		
 		shoppingProb = 1;
-		shoppingTime = rnd.nextInt(2)+2;
+		browseTime = rnd.nextInt(2)+2;
 		shoppingMoney = 0;
 	}
 }

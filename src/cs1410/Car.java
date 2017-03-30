@@ -32,7 +32,7 @@ public class Car extends Vehicle{
 		refillTime = tankSize / 6;
 		
 		shoppingProb = 0.3;
-		shoppingTime = rnd.nextInt(3)+2;
+		browseTime = rnd.nextInt(3)+2;
 		shoppingMoney = rnd.nextInt(6)+5;
 	}
 }
