@@ -41,7 +41,10 @@ public class Stationtest1 {
 		station.addVehicleToPump(c2);
 		station.addVehicleToPump(m1);
 		station.addVehicleToPump(s1);
-		
+		assertEquals(1.75, station.getPumpList().get(0).getQueue().getCurrentLength(), 0);
+		assertEquals(2.5, station.getPumpList().get(1).getQueue().getCurrentLength(), 0);
+		station.getPumpList().get(0).getQueue().removeFirstItem("pump");
+		assertEquals(0.75, station.getPumpList().get(0).getQueue().getCurrentLength(), 0);
 		
 	}
 
@@ -52,8 +55,10 @@ public class Stationtest1 {
 		station.addToTill(2, c2);
 		station.addToTill(3, c3);
 		assertEquals(3, station.getTillList().get(0).getQueue().getCurrentLength(), 0);
-		till.getQueue().removeFirstItem("till");
-		assertEquals(2.0, till.getQueue().getCurrentLength(), 0);
+		//till.getQueue().removeFirstItem("till");
+		station.getTillList().get(0).getQueue().removeFirstItem("till");
+		assertEquals(2.0, station.getTillList().get(0).getQueue().getCurrentLength(), 0);
+		//assertEquals(2.0, till.getQueue().getCurrentLength(), 0);
 	}
 
 	@Test
@@ -113,8 +118,8 @@ public class Stationtest1 {
 		assertEquals("Sedan0", station.getPumpList().get(0).getQueue().getArray().get(0).getName());
 		}
 
-	//@Test
-	/*public void testAddToTill() {
+	@Test
+	public void testAddToTill() {
 		Station station = new Station(2, 2, 0, 0, false);
 		station.addToTill(1, m1);
 		assertEquals(1.0, station.getTillList().get(0).getQueue().getCurrentLength(), 0);
@@ -128,11 +133,11 @@ public class Stationtest1 {
 		assertEquals(3.0, station.getTillList().get(0).getQueue().getCurrentLength(), 0);
 		station.addToTill(6, c3);
 		assertEquals(3.0, station.getTillList().get(1).getQueue().getCurrentLength(), 0);
-		//station.addToTill(7, s2);
-		//assertEquals(false , station.getTillList().get(1).getQueue().getCurrentLength());
+		station.addToTill(7, s2);
+		assertNotEquals(4.0, station.getTillList().get(1).getQueue().getCurrentLength());
 		
 	}
-	*/
+	
 	
 	@Test
 	public void testAddVehicleToPump(){
