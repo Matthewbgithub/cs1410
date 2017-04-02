@@ -121,20 +121,27 @@ public class Stationtest1 {
 	@Test
 	public void testAddToTill() {
 		Station station = new Station(2, 2, 0, 0, false);
+		assertEquals(true, till.getQueue().checkspace(1.0));
 		station.addToTill(1, m1);
 		assertEquals(1.0, station.getTillList().get(0).getQueue().getCurrentLength(), 0);
+		assertEquals(true, till.getQueue().checkspace(1.0));
 		station.addToTill(2, s1);
 		assertEquals(1.0, station.getTillList().get(1).getQueue().getCurrentLength(), 0);
+		assertEquals(true, till.getQueue().checkspace(1.0));
 		station.addToTill(3, c1);
 		assertEquals(2.0, station.getTillList().get(0).getQueue().getCurrentLength(), 0);
+		assertEquals(true, till.getQueue().checkspace(1.0));
 		station.addToTill(4, c2);
 		assertEquals(2.0, station.getTillList().get(1).getQueue().getCurrentLength(), 0);
+		assertEquals(true, till.getQueue().checkspace(1.0));
 		station.addToTill(5, m2);
 		assertEquals(3.0, station.getTillList().get(0).getQueue().getCurrentLength(), 0);
+		assertEquals(true, till.getQueue().checkspace(1.0));
 		station.addToTill(6, c3);
 		assertEquals(3.0, station.getTillList().get(1).getQueue().getCurrentLength(), 0);
-		station.addToTill(7, s2);
-		assertNotEquals(4.0, station.getTillList().get(1).getQueue().getCurrentLength());
+		assertEquals(false, till.getQueue().checkspace(1.0));
+		station.addToTill(8, s2);
+		//assertNotEquals(4.0, station.getTillList().get(1).getQueue().getCurrentLength());
 		
 	}
 	
