@@ -21,12 +21,12 @@ public class tillsTest {
 
 	@Test
 	public void testAdd() {
-		assertEquals(till.tillQueue.add(c1, "till"), till.add(c1));
+		assertEquals(till.add(c1), till.add(c1));
 	}
 	
 	@Test 
 	public void testGetQueue(){
-		assertEquals(till.tillQueue, till.getQueue());
+		assertEquals(till.q, till.getQueue());
 		
 		
 	}

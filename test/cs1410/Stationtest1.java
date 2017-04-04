@@ -113,9 +113,9 @@ public class Stationtest1 {
 		Station station = new Station(1, 1, 1, 1, false);
 		station.generateVehicle();
 		station.addVehicleToPump(c1);
-		assertEquals("Car0", station.getPumpList().get(0).getQueue().getArray().get(0).getName());
-		assertEquals("Motorbike0", station.getPumpList().get(0).getQueue().getArray().get(0).getName());
-		assertEquals("Sedan0", station.getPumpList().get(0).getQueue().getArray().get(0).getName());
+		assertEquals("Car0", station.getPumpList().get(0).getQueueArray().get(0).getName());
+		assertEquals("Motorbike0", station.getPumpList().get(0).getQueueArray().get(0).getName());
+		assertEquals("Sedan0", station.getPumpList().get(0).getQueueArray().get(0).getName());
 		}
 
 	@Test
