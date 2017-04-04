@@ -13,8 +13,9 @@ public class QueueableTest {
 	private Vehicle s1;
 	private Vehicle m1;
 	private Vehicle m2;
-	Queueable queueable = new Queueable();
-	//why cant i create an object queueable, is it because its abstract/super?
+	Till till = new Till();
+	Pump pump = new Pump();
+	
 	Station station = new Station(1, 2, 0, 0, false);
  
 	@Before
@@ -31,86 +32,93 @@ public class QueueableTest {
 
 	@Test
 	public void testGetCurrentLength() {
-		assertEquals(true, queueable.checkspace(1.0));
-		queueable.addTo(c1, "pump");
+		assertEquals(true, pump.checkspace(1.0));
+		pump.addTo(c1, "pump");
 		
 		
-		assertEquals(true, queueable.checkspace(1.0));
-		queueable.addTo(c2, "pump");
+		assertEquals(true, pump.checkspace(1.0));
+		pump.addTo(c2, "pump");
 		
 		
-		assertEquals(true, queueable.checkspace(1.0));
-		queueable.addTo(c3, "pump");
+		assertEquals(true, pump.checkspace(1.0));
+		pump.addTo(c3, "pump");
 		
 		
-		assertEquals(false, queueable.checkspace(1.0));
+		assertEquals(false, pump.checkspace(1.0));
 		
-		assertNotEquals(2.0, queueable.getCurrentLength());
-		assertNotEquals(4.0, queueable.getCurrentLength());
-		assertEquals(3.0, queueable.getCurrentLength(), 0);
+		assertNotEquals(2.0, pump.getCurrentLength());
+		assertNotEquals(4.0, pump.getCurrentLength());
+		assertEquals(3.0, pump.getCurrentLength(), 0);
 		}
 	
 
 	@Test
 	public void testSetCurrentLength() {
-		queueable.setCurrentLength(1.0);
-		assertEquals(1.0, queueable.getCurrentLength(),0);	
-		}
+		pump.setCurrentLength(1.0);
+		assertEquals(1.0, pump.getCurrentLength(),0);	
+		
+		till.setCurrentLength(1.0);
+		assertEquals(1.0, till.getCurrentLength(), 0);
+	}
 
 	@Test
 	public void testCheckspace() {
-		assertEquals(true, queueable.checkspace(1.0));
-		queueable.addTo(c1, "pump");
+		assertEquals(true, pump.checkspace(1.0));
+		pump.addTo(c1, "pump");
 		
-		assertEquals(true, queueable.checkspace(1.0));
-		queueable.addTo(c2, "pump");
+		assertEquals(true, pump.checkspace(1.0));
+		pump.addTo(c2, "pump");
 		
-		assertEquals(false, queueable.checkspace(1.5));
-		assertEquals(true, queueable.checkspace(0.75));
+		assertEquals(false, pump.checkspace(1.5));
+		assertEquals(true, pump.checkspace(0.75));
 	}
 
 	@Test
 	public void testRemoveF() {
-		assertEquals(true, queueable.checkspace(1.5));
-		queueable.addTo(s1, "pump");
-		queueable.addTo(s1, "till");
+		assertEquals(true, pump.checkspace(1.5));
+		pump.addTo(s1, "pump");
+		till.addTo(s1, "till");
 		
-		assertEquals(true, queueable.checkspace(0.75));
-		queueable.addTo(m1, "pump");
-		queueable.addTo(m1, "till");
+		assertEquals(true, pump.checkspace(0.75));
+		pump.addTo(m1, "pump");
+		till.addTo(m1, "till");
 		
-		assertEquals(true, queueable.checkspace(0.75));
-		queueable.addTo(m2, "pump");
-		queueable.addTo(m2, "till");
+		assertEquals(true, pump.checkspace(0.75));
+		pump.addTo(m2, "pump");
+		till.addTo(m2, "till");
 		
-		assertEquals(3.0, station.getPumpList().get(0).getCurrentLength(), 0);
-		assertEquals(3.0, station.getTillList().get(0).getCurrentLength(), 0);
+		assertEquals(3.0, pump.getCurrentLength(), 0);
+		assertEquals(3.0, till.getCurrentLength(), 0);
 		
-		queueable.removeF("pump");
-		assertEquals(1.5, station.getPumpList().get(0).getCurrentLength(), 0);
-		queueable.removeF("till");
-		assertEquals(2.0, station.getTillList().get(0).getCurrentLength(), 0);
+		pump.removeF("pump");
+		assertEquals(1.5, pump.getCurrentLength(), 0);
+		till.removeF("till");
+		assertEquals(2.0, till.getCurrentLength(), 0);
 		
-		queueable.removeF("pump");
-		assertEquals(0.75, station.getPumpList().get(0).getCurrentLength(), 0);
-		queueable.removeF("till");
-		assertEquals(1.0, station.getTillList().get(0).getCurrentLength(), 0);
+		pump.removeF("pump");
+		assertEquals(0.75, pump.getCurrentLength(), 0);
+		till.removeF("till");
+		assertEquals(1.0, till.getCurrentLength(), 0);
 		
-		queueable.removeF("pump");
-		assertEquals(0.0, station.getPumpList().get(0).getCurrentLength(), 0);
-		queueable.removeF("till");
-		assertEquals(0.0, station.getTillList().get(0).getCurrentLength(), 0);
+		pump.removeF("pump");
+		assertEquals(0.0, pump.getCurrentLength(), 0);
+		till.removeF("till");
+		assertEquals(0.0, till.getCurrentLength(), 0);
 		
 	}
 
 	@Test
 	public void testAddTo() {
-		assertEquals(true, queueable.addTo(c1, "pump"));
-		assertEquals(true, queueable.addTo(c1, "till"));
+		assertEquals(true, pump.addTo(c1, "pump"));
+		assertEquals(true, till.addTo(c1, "till"));
+		assertEquals(1.0, pump.getCurrentLength(), 0);
+		assertEquals(1.0, till.getCurrentLength(), 0);
 		
-		assertEquals(true, queueable.addTo(s1, "pump"));
-		assertEquals(true, queueable.addTo(s1, "till"));
+		assertEquals(true, pump.addTo(s1, "pump"));
+		assertEquals(true, till.addTo(s1, "till"));
+		assertEquals(2.5, pump.getCurrentLength(), 0);
+		assertEquals(2.0, till.getCurrentLength(), 0);
 		
-		assertNotEquals(true, queueable.addTo(m1, "pump"));		
+		assertNotEquals(true, pump.addTo(m1, "pump"));		
 	}
 }

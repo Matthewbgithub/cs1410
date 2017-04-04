@@ -8,7 +8,6 @@ import org.junit.Test;
 public class tillsTest {
 	Station station = new Station(2, 1, 0, 0, true);
 	Till till = new Till();
-	//do i need to make a queueable object??
 	private Vehicle c1;
 	private Vehicle c2;
 	private Vehicle t1;
@@ -26,14 +25,13 @@ public class tillsTest {
 	@Test
 	public void testAdd() {
 		assertEquals(true, till.add(c1));
-		assertEquals(1.0, station.getTillList().get(0).getCurrentLength(), 0);
-		//can i use assertEquals(1.0, queueable.getCurrentLength(), 0); here instead??
+		assertEquals(1.0, till.getCurrentLength(), 0);
 		
 		assertEquals(true, till.add(c2));
-		assertEquals(2.0, station.getTillList().get(0).getCurrentLength(), 0);
+		assertEquals(2.0, till.getCurrentLength(), 0);
 		
 		assertEquals(true, till.add(t1));
-		assertEquals(3.0, station.getTillList().get(0).getCurrentLength(), 0);
+		assertEquals(3.0, till.getCurrentLength(), 0);
 		
 	}
 	
