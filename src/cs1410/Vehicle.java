@@ -59,7 +59,7 @@ public class Vehicle {
 			}
 		}else if(isInTheShopQueue){
 			//is at the front of the queue
-			if(getTill().getQueue().getArray().get(0) == this){
+			if(getTill().getQueueArray().get(0) == this){
 				isInTheShopQueue = false;
 				isShopping = true;
 			}
@@ -121,7 +121,7 @@ public class Vehicle {
 		}else{
 		//is in the queue to begin filling up
 			//if at the front of the queue
-			if(getPump().getQueue().getArray().get(0) == this){
+			if(getPump().getQueueArray().get(0) == this){
 				startsFilling(tick);
 			}
 		}

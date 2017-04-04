@@ -66,7 +66,7 @@ public class Station {
 	 */
 	public void scanPumpsForChanges(int tick){
 		for(Pump pumps : pumpList){
-				for(Iterator<Vehicle> v = pumps.getQueue().getArray().iterator(); v.hasNext();){
+				for(Iterator<Vehicle> v = pumps.getQueueArray().iterator(); v.hasNext();){
 				  Vehicle vehicle = v.next();
 				  vehicle.nextTickAction(tick);
 				  /*if(vehicle.removeFromPump) {
@@ -83,7 +83,7 @@ public class Station {
 	 */
 	public void scanTillsForChanges(int tick){
 		for(Till tills : tillList){
-			for (Iterator<Vehicle> v = tills.getQueue().getArray().iterator(); v.hasNext(); ) {
+			for (Iterator<Vehicle> v = tills.getQueueArray().iterator(); v.hasNext(); ) {
 			    Vehicle vehicle = v.next();
 			    vehicle.nextTickAction(tick);	
 			    if(vehicle.removeFromStation){

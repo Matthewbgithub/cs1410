@@ -26,7 +26,6 @@ public class Sedan extends Vehicle{
 		refillTime = tankSize / 6;
 		
 		shoppingProb = 0.4;
-
 		browseTime = rnd.nextInt(4)+2;
 
 		shoppingMoney = rnd.nextInt(9)+8;

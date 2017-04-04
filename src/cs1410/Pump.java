@@ -1,30 +1,20 @@
 package cs1410;
+
+import java.util.ArrayList;
+
 /**
  * Represents a pump in which vehicles queue up to and fill their tank with
  * @author
  * @version
  */
-public class Pump
+public class Pump extends Queueable
 {
-	Queue pumpQueue;
-	private int number;
 	
-	public Pump(){
-		pumpQueue = new Queue();
-	}
 	public boolean add(Vehicle vehicle){
 		
-		return pumpQueue.add(vehicle, "pump");
+		return q.add(vehicle, "pump");
 	}
-	public Queue getQueue(){
-		return pumpQueue;
-	}
-	public void setNo(int i){
-		number = i;
-	}
-	public int getNo(){
-		return number;
-	}
+	
 }
 
 		

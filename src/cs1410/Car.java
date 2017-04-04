@@ -7,9 +7,7 @@
 package cs1410;
 import java.util.Random;
 
-public class Car extends Vehicle{
-	private double probToAppearP;
-	
+public class Car extends Vehicle{	
 	/**
 	* Creates a <code> Car </code> and automatically sets the queue space to 1
 	*/
