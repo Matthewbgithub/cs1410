@@ -4,7 +4,9 @@ public class Till extends Queueable
 {
 	
 	public boolean add(Vehicle vehicle){
-		return q.add(vehicle, "till");
+		return this.addTo(vehicle, "till");
 	}
-
+	public void removeFirstItem(){
+		this.removeF("till");
+	}
 }

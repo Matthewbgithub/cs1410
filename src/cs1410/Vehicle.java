@@ -7,7 +7,7 @@ import java.util.Random;
  * @version 1.00
  */
 
-public class Vehicle {
+public abstract class Vehicle {
 	protected int tankSize;
 	protected double shoppingProb;
 	protected double shoppingMoney;

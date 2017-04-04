@@ -31,17 +31,17 @@ public class Simulator
 			}
 			System.out.println("-------------------------------------");
 			System.out.println("This has caused loss of: " + station.getFormattedLoss());
-			System.out.println("There has been profit of: " + station.getFormattedIncome());
+			System.out.println("There has been profit of: " + Station.getFormattedIncome());
 			System.out.println("There was " + station.happyTrucks() + " happy Trucks and " + station.sadTrucks() + " sad Trucks. ");
 			System.out.println("There was " + station.vehiclesGenerated() + " vehicles generated. ");
 			System.out.println("Truck happiness: " + Truck.getProbabilityOfT());
 			System.out.println("The pump queues look like: ");			
 			for(Pump i : station.getPumpList()){
-				System.out.println("\t" + i.getQueue().toString());
+				System.out.println("\t" + i.toString());
 			}
 				System.out.println("The till queues look like: ");
 			for(Till tick : station.getTillList()){
-				System.out.println("\t" + tick.getQueue().toString());
+				System.out.println("\t" + tick.toString());
 			}
 			System.out.println("-------------------------------------");
 	}	

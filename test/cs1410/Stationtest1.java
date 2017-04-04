@@ -41,10 +41,10 @@ public class Stationtest1 {
 		station.addVehicleToPump(c2);
 		station.addVehicleToPump(m1);
 		station.addVehicleToPump(s1);
-		assertEquals(1.75, station.getPumpList().get(0).getQueue().getCurrentLength(), 0);
-		assertEquals(2.5, station.getPumpList().get(1).getQueue().getCurrentLength(), 0);
-		station.getPumpList().get(0).getQueue().removeFirstItem("pump");
-		assertEquals(0.75, station.getPumpList().get(0).getQueue().getCurrentLength(), 0);
+		assertEquals(1.75, station.getPumpList().get(0).getCurrentLength(), 0);
+		assertEquals(2.5, station.getPumpList().get(1).getCurrentLength(), 0);
+		station.getPumpList().get(0).removeFirstItem();
+		assertEquals(0.75, station.getPumpList().get(0).getCurrentLength(), 0);
 		
 	}
 
@@ -54,38 +54,38 @@ public class Stationtest1 {
 		station.addToTill(1, c1);
 		station.addToTill(2, c2);
 		station.addToTill(3, c3);
-		assertEquals(3, station.getTillList().get(0).getQueue().getCurrentLength(), 0);
-		//till.getQueue().removeFirstItem("till");
-		station.getTillList().get(0).getQueue().removeFirstItem("till");
-		assertEquals(2.0, station.getTillList().get(0).getQueue().getCurrentLength(), 0);
-		//assertEquals(2.0, till.getQueue().getCurrentLength(), 0);
+		assertEquals(3, station.getTillList().get(0).getCurrentLength(), 0);
+		//till.removeFirstItem("till");
+		station.getTillList().get(0).removeFirstItem();
+		assertEquals(2.0, station.getTillList().get(0).getCurrentLength(), 0);
+		//assertEquals(2.0, till.getCurrentLength(), 0);
 	}
 
 	@Test
 	public void testChoosePump() {
 		Station station = new Station(3, 3, 0, 0, false);
-		assertEquals(0.0, station.getPumpList().get(0).getQueue().getCurrentLength(), 0);
-		assertEquals(0.0, station.getPumpList().get(1).getQueue().getCurrentLength(), 0);
-		assertEquals(0.0, station.getPumpList().get(2).getQueue().getCurrentLength(), 0);
+		assertEquals(0.0, station.getPumpList().get(0).getCurrentLength(), 0);
+		assertEquals(0.0, station.getPumpList().get(1).getCurrentLength(), 0);
+		assertEquals(0.0, station.getPumpList().get(2).getCurrentLength(), 0);
 		
 		station.addVehicleToPump(c1); //adds a car to the pump 
-		assertEquals(1.0, station.getPumpList().get(0).getQueue().getCurrentLength(), 0);//checks it goes to first pump
+		assertEquals(1.0, station.getPumpList().get(0).getCurrentLength(), 0);//checks it goes to first pump
 		
 		station.addVehicleToPump(s1); //adds a sedan to the pump 
-		assertEquals(1.5, station.getPumpList().get(1).getQueue().getCurrentLength(), 0); //checks it goes to second pump
+		assertEquals(1.5, station.getPumpList().get(1).getCurrentLength(), 0); //checks it goes to second pump
 		
 		station.addVehicleToPump(m1);
-		assertNotEquals(2.25, station.getPumpList().get(1).getQueue().getCurrentLength(), 0); //checks the motorbike didnt go to second pump
-		assertEquals(0.75, station.getPumpList().get(2).getQueue().getCurrentLength(), 0);
+		assertNotEquals(2.25, station.getPumpList().get(1).getCurrentLength(), 0); //checks the motorbike didnt go to second pump
+		assertEquals(0.75, station.getPumpList().get(2).getCurrentLength(), 0);
 		
 		station.addVehicleToPump(c2);
-		assertEquals(1.75, station.getPumpList().get(2).getQueue().getCurrentLength(), 0); //checks it goes to second pump
+		assertEquals(1.75, station.getPumpList().get(2).getCurrentLength(), 0); //checks it goes to second pump
 		
 		station.addVehicleToPump(c3);
 		//assertEquals(station.getPumpList().get(0), station.choosePump());
 		System.out.println(station.getPumpList().toString()+"1st-------");
 		System.out.println(station.choosePump().toString()+ " HERE");
-		assertEquals(2.0, station.getPumpList().get(0).getQueue().getCurrentLength(), 0); //checks it goes to first pump
+		assertEquals(2.0, station.getPumpList().get(0).getCurrentLength(), 0); //checks it goes to first pump
 		
 		
 	}
@@ -93,19 +93,19 @@ public class Stationtest1 {
 	@Test
 	public void testChooseTill() {
 		Station station = new Station(3, 3, 0, 0, false);
-		assertEquals(0.0, station.getTillList().get(0).getQueue().getCurrentLength(), 0);
-		assertEquals(0.0, station.getTillList().get(1).getQueue().getCurrentLength(), 0);
-		assertEquals(0.0, station.getTillList().get(2).getQueue().getCurrentLength(), 0);
+		assertEquals(0.0, station.getTillList().get(0).getCurrentLength(), 0);
+		assertEquals(0.0, station.getTillList().get(1).getCurrentLength(), 0);
+		assertEquals(0.0, station.getTillList().get(2).getCurrentLength(), 0);
 		station.addToTill(1, c1);
 		station.addToTill(2, c2);
 		station.addToTill(3, m1);
-		assertEquals(1, station.getTillList().get(0).getQueue().getCurrentLength(), 0);
-		assertEquals(1, station.getTillList().get(1).getQueue().getCurrentLength(), 0);
-		assertEquals(1, station.getTillList().get(2).getQueue().getCurrentLength(), 0);
+		assertEquals(1, station.getTillList().get(0).getCurrentLength(), 0);
+		assertEquals(1, station.getTillList().get(1).getCurrentLength(), 0);
+		assertEquals(1, station.getTillList().get(2).getCurrentLength(), 0);
 		station.addToTill(4, c3);
-		assertEquals(2, station.getTillList().get(0).getQueue().getCurrentLength(), 0);
+		assertEquals(2, station.getTillList().get(0).getCurrentLength(), 0);
 		station.addToTill(5, s1);
-		assertEquals(2, station.getTillList().get(1).getQueue().getCurrentLength(), 0);
+		assertEquals(2, station.getTillList().get(1).getCurrentLength(), 0);
 	}
 
 	@Test
@@ -121,27 +121,27 @@ public class Stationtest1 {
 	@Test
 	public void testAddToTill() {
 		Station station = new Station(2, 2, 0, 0, false);
-		assertEquals(true, till.getQueue().checkspace(1.0));
+		assertEquals(true, till.checkspace(1.0));
 		station.addToTill(1, m1);
-		assertEquals(1.0, station.getTillList().get(0).getQueue().getCurrentLength(), 0);
-		assertEquals(true, till.getQueue().checkspace(1.0));
+		assertEquals(1.0, station.getTillList().get(0).getCurrentLength(), 0);
+		assertEquals(true, till.checkspace(1.0));
 		station.addToTill(2, s1);
-		assertEquals(1.0, station.getTillList().get(1).getQueue().getCurrentLength(), 0);
-		assertEquals(true, till.getQueue().checkspace(1.0));
+		assertEquals(1.0, station.getTillList().get(1).getCurrentLength(), 0);
+		assertEquals(true, till.checkspace(1.0));
 		station.addToTill(3, c1);
-		assertEquals(2.0, station.getTillList().get(0).getQueue().getCurrentLength(), 0);
-		assertEquals(true, till.getQueue().checkspace(1.0));
+		assertEquals(2.0, station.getTillList().get(0).getCurrentLength(), 0);
+		assertEquals(true, till.checkspace(1.0));
 		station.addToTill(4, c2);
-		assertEquals(2.0, station.getTillList().get(1).getQueue().getCurrentLength(), 0);
-		assertEquals(true, till.getQueue().checkspace(1.0));
+		assertEquals(2.0, station.getTillList().get(1).getCurrentLength(), 0);
+		assertEquals(true, till.checkspace(1.0));
 		station.addToTill(5, m2);
-		assertEquals(3.0, station.getTillList().get(0).getQueue().getCurrentLength(), 0);
-		assertEquals(true, till.getQueue().checkspace(1.0));
+		assertEquals(3.0, station.getTillList().get(0).getCurrentLength(), 0);
+		assertEquals(true, till.checkspace(1.0));
 		station.addToTill(6, c3);
-		assertEquals(3.0, station.getTillList().get(1).getQueue().getCurrentLength(), 0);
-		assertEquals(false, till.getQueue().checkspace(1.0));
+		assertEquals(3.0, station.getTillList().get(1).getCurrentLength(), 0);
+		assertEquals(false, till.checkspace(1.0));
 		station.addToTill(8, s2);
-		//assertNotEquals(4.0, station.getTillList().get(1).getQueue().getCurrentLength());
+		//assertNotEquals(4.0, station.getTillList().get(1).getCurrentLength());
 		
 	}
 	
@@ -150,15 +150,15 @@ public class Stationtest1 {
 	public void testAddVehicleToPump(){
 		Station station = new Station(2, 3, 0, 0, false);
 		station.addVehicleToPump(c1); //adds a car to the pump 
-		assertEquals(1.0, station.getPumpList().get(0).getQueue().getCurrentLength(), 0); //checks the first pump has a car in it
+		assertEquals(1.0, station.getPumpList().get(0).getCurrentLength(), 0); //checks the first pump has a car in it
 		station.addVehicleToPump(c2); //adds a car to the pump
-		assertEquals(1.0, station.getPumpList().get(1).getQueue().getCurrentLength(), 0); //checks it goes to the second pump
+		assertEquals(1.0, station.getPumpList().get(1).getCurrentLength(), 0); //checks it goes to the second pump
 		station.addVehicleToPump(m1); //adds a motor bike to the pump
-		assertEquals(1.75, station.getPumpList().get(0).getQueue().getCurrentLength(), 0); //checks it goes to first pump
+		assertEquals(1.75, station.getPumpList().get(0).getCurrentLength(), 0); //checks it goes to first pump
 		station.addVehicleToPump(s1); //adds a sedan to the pump
-		assertEquals(2.5, station.getPumpList().get(1).getQueue().getCurrentLength(), 0); //checks it goes to the second pump
+		assertEquals(2.5, station.getPumpList().get(1).getCurrentLength(), 0); //checks it goes to the second pump
 		station.addVehicleToPump(c3); //adds a car to pump
-		assertEquals(2.75, station.getPumpList().get(0).getQueue().getCurrentLength(), 0); //checks it goes to first pump
+		assertEquals(2.75, station.getPumpList().get(0).getCurrentLength(), 0); //checks it goes to first pump
 		assertEquals(false, station.addVehicleToPump(s2) );//tries to add sedan to pump but both are full
 		
 		
@@ -168,16 +168,16 @@ public class Stationtest1 {
 	public void testRemoveFromShop() {
 		
 		
-		assertEquals(true, till.getQueue().checkspace(1.0));
+		assertEquals(true, till.checkspace(1.0));
 		till.add(c1);
-		assertEquals(true, till.getQueue().checkspace(1.0));
+		assertEquals(true, till.checkspace(1.0));
 		till.add(c2);
-		assertEquals(true, till.getQueue().checkspace(0.75));
+		assertEquals(true, till.checkspace(0.75));
 		till.add(m1);
 		
-		assertEquals(3.0, till.getQueue().getCurrentLength(), 0);
-		till.getQueue().removeFirstItem("till");
-		assertEquals(2.0, till.getQueue().getCurrentLength(), 0);	
+		assertEquals(3.0, till.getCurrentLength(), 0);
+		till.removeFirstItem();
+		assertEquals(2.0, till.getCurrentLength(), 0);	
 	}
 
 	@Test
@@ -191,13 +191,13 @@ public class Stationtest1 {
 		station.addVehicleToPump(c3); //adds car to first pump
 		station.addVehicleToPump(m1); //adds motor bike to second pumps
 		
-		station.getPumpList().get(0).getQueue().removeFirstItem("pump");
-		assertEquals(1.0, station.getPumpList().get(0).getQueue().getCurrentLength(), 0); //length of first pump when first car is removed
-		assertEquals(1.75, station.getPumpList().get(1).getQueue().getCurrentLength(), 0); //length of second pump
-		station.getPumpList().get(0).getQueue().removeFirstItem("pump"); //removes c3 from first pump
-		station.getPumpList().get(1).getQueue().removeFirstItem("pump"); //removes c2 from second pump
-		assertEquals(0.0, station.getPumpList().get(0).getQueue().getCurrentLength(), 0); //there are no vehicles in this pump queue
-		assertEquals(0.75, station.getPumpList().get(1).getQueue().getCurrentLength(), 0); //there is only a motor bike here 
+		station.getPumpList().get(0).removeFirstItem();
+		assertEquals(1.0, station.getPumpList().get(0).getCurrentLength(), 0); //length of first pump when first car is removed
+		assertEquals(1.75, station.getPumpList().get(1).getCurrentLength(), 0); //length of second pump
+		station.getPumpList().get(0).removeFirstItem(); //removes c3 from first pump
+		station.getPumpList().get(1).removeFirstItem(); //removes c2 from second pump
+		assertEquals(0.0, station.getPumpList().get(0).getCurrentLength(), 0); //there are no vehicles in this pump queue
+		assertEquals(0.75, station.getPumpList().get(1).getCurrentLength(), 0); //there is only a motor bike here 
 		
 	}
 
@@ -211,7 +211,7 @@ public class Stationtest1 {
 		station.addVehicleToPump(c2);	
 		station.addVehicleToPump(c3); 
 		station.addVehicleToPump(m1);
-		assertEquals(3.0, station.getPumpList().get(0).getQueue().getCurrentLength(), 0);
+		assertEquals(3.0, station.getPumpList().get(0).getCurrentLength(), 0);
 		station.vehicleLeaveBecauseQueueFull(m1);
 		assertEquals(12.0, station.getLoss(), 0);
 		
@@ -223,8 +223,8 @@ public class Stationtest1 {
 		pump.add(c1);
 		pump.add(c2);
 		pump.add(c3);
-		assertEquals(false, pump.getQueue().checkspace(0.75));
-		assertEquals(3.0, pump.getQueue().getCurrentLength(), 0);		
+		assertEquals(false, pump.checkspace(0.75));
+		assertEquals(3.0, pump.getCurrentLength(), 0);		
 	}
 }
 

@@ -24,12 +24,12 @@ public class tillsTest {
 		assertEquals(till.add(c1), till.add(c1));
 	}
 	
+	/* removed because getQueue is now unused
 	@Test 
 	public void testGetQueue(){
 		assertEquals(till.q, till.getQueue());
-		
-		
 	}
+	*/
 	@Test
 	public void testGetNo() {
 		till.setNo(1);

@@ -8,9 +8,9 @@ import org.junit.Test;
 public class pumpTest {
 	Station station = new Station(3, 3, 0, 0, false);
 	Pump pump = new Pump();
-	private Vehicle c1;
-	private Vehicle c2;
-	private Vehicle s1;
+	private Car c1;
+	private Car c2;
+	private Sedan s1;
 	
 	@Before
 	public void setUp(){
@@ -22,17 +22,19 @@ public class pumpTest {
 
 	@Test
 	public void testAdd() {
-		assertEquals(pump.pumpQueue.add(c1, "pump"), pump.add(c1));
+		assertEquals(pump.add(c1), pump.add(c1));
 		//assertEquals(pump.pumpQueue.add(c2, "pump"), pump.add(c2));
 		//assertEquals(false, pump.add(s1));
 		
 	}
 
+	/*removed because getQueue is now unused
 	@Test
+	
 	public void testGetQueue() {
-		assertEquals(pump.pumpQueue, pump.getQueue());
+		assertEquals(pump.q, pump.getQueue());
 	}
-
+	 */
 	
 	@Test
 	public void testGetNo() {

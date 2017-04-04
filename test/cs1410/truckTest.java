@@ -45,7 +45,7 @@ public class truckTest {
 
 	@Test
 	public void testGetProbabilityOfT(){
-		assertEquals(0.02, truck.getProbabilityOfT(), 0);
+		assertEquals(0.02, Truck.getProbabilityOfT(), 0);
 	}
 
 }

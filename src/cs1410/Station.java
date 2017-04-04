@@ -1,7 +1,6 @@
 package cs1410;
 import java.util.Random;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 /**
  * Represents the petrol station
@@ -71,7 +70,7 @@ public class Station {
 				  vehicle.nextTickAction(tick);
 				  /*if(vehicle.removeFromPump) {
 					  //updates pump queue length
-					  vehicle.getPump().getQueue().setCurrentLength(vehicle.getPump().getQueue().getCurrentLength() - vehicle.getLength());
+					  vehicle.getPump().setCurrentLength(vehicle.getPump().getCurrentLength() - vehicle.getLength());
 				    v.remove(); // Removes the 'current' item
 				  }*/
 				}
@@ -87,8 +86,8 @@ public class Station {
 			    Vehicle vehicle = v.next();
 			    vehicle.nextTickAction(tick);	
 			    if(vehicle.removeFromStation){
-			    	vehicle.getPump().getQueue().removeFirstItem("pump");
-			    	vehicle.getTill().getQueue().setCurrentLength(vehicle.getTill().getQueue().getCurrentLength() - 1);
+			    	vehicle.getPump().removeFirstItem();
+			    	vehicle.getTill().setCurrentLength(vehicle.getTill().getCurrentLength() - 1);
 			    	v.remove();	
 				}
 			}
@@ -99,11 +98,11 @@ public class Station {
 	 * @return the pump number
 	 */
 	public Pump choosePump(){
-		double small = pumpList.get(0).getQueue().getCurrentLength();
+		double small = pumpList.get(0).getCurrentLength();
 		int pumpNo = 0;
 		for(int i = 1; i < (pumpList.size()); i++){
-			if(pumpList.get(i).getQueue().getCurrentLength() < small){
-				small = pumpList.get(i).getQueue().getCurrentLength();
+			if(pumpList.get(i).getCurrentLength() < small){
+				small = pumpList.get(i).getCurrentLength();
 				pumpNo = i;
 			}
 		}
@@ -114,12 +113,12 @@ public class Station {
 	 * @return the till number
 	 */
 	public Till chooseTill(){
-		double small = tillList.get(0).getQueue().getCurrentLength();
+		double small = tillList.get(0).getCurrentLength();
 		int tillNo = 0;
 		int i;
 		for(i = 1; i < (tillList.size()); i++){
-			if(tillList.get(i).getQueue().getCurrentLength() < small){
-				small = tillList.get(i).getQueue().getCurrentLength();
+			if(tillList.get(i).getCurrentLength() < small){
+				small = tillList.get(i).getCurrentLength();
 				tillNo = i;
 			}
 		}
@@ -165,14 +164,14 @@ public class Station {
 
 		public boolean addVehicleToPump(Vehicle vehicle){
 		if(!pumpList.isEmpty()){
-			if(choosePump().getQueue().checkspace(vehicle.getLength())){			
+			if(choosePump().checkspace(vehicle.getLength())){			
 				//set arrival in queue time
 				vehicle.setPumpQueueArrival(Simulator.getTicks());
 				//tells the vehicle what pump it is in
 				vehicle.setPump(choosePump());
 				//add to pump
 				vehicle.getPump().add(vehicle);
-				System.out.print(vehicle.getName() + " added to pump number: " + vehicle.getPump().getNo() + ". Length: " + vehicle.getPump().getQueue().getCurrentLength() + ". ");				
+				System.out.print(vehicle.getName() + " added to pump number: " + vehicle.getPump().getNo() + ". Length: " + vehicle.getPump().getCurrentLength() + ". ");				
 				return true;
 			}else{
 				System.out.print(vehicle.getName() + " has not been added to a queue. ");
@@ -190,15 +189,15 @@ public class Station {
 	 */
 	public boolean addToTill(int tick,Vehicle vehicle){
 		if(!tillList.isEmpty()){
-			if(chooseTill().getQueue().checkspace(vehicle.getLength())){
+			if(chooseTill().checkspace(vehicle.getLength())){
 				vehicle.enterShopQueue(tick);
 				vehicle.setTill(chooseTill());
 				vehicle.getTill().add(vehicle);
-				System.out.print(vehicle.getName() + " added to till number: " + vehicle.getTill().getNo() + ". Length: " + vehicle.getTill().getQueue().getCurrentLength() + ". ");
+				System.out.print(vehicle.getName() + " added to till number: " + vehicle.getTill().getNo() + ". Length: " + vehicle.getTill().getCurrentLength() + ". ");
 				return true;
 			}else{
 				System.out.print(vehicle.getName() + " did not join a queue. ");
-				vehicle.getPump().getQueue().removeFirstItem("pump");
+				vehicle.getPump().removeFirstItem();
 				return false;
 			}
 		}return false;
@@ -217,10 +216,10 @@ public class Station {
 	 * @param till
 	 */
 	public void removeFromShop(Till till){
-		till.getQueue().removeFirstItem("till");
+		till.removeFirstItem();
 	}
 	public void removeBeforeShop(Pump pump){
-		pump.getQueue().removeFirstItem("pump");
+		pump.removeFirstItem();
 	}
 	/**
 	*Gives the option to set the current price of petrol
