@@ -17,6 +17,11 @@ public class Station {
 	private ArrayList<Till> tillList;
 	private Random rnd;
 	private boolean isTruck;
+	public static int Car = 0;
+	public static int Motorbike = 0;
+	public static int Sedan = 0;
+	public static int Trucks = 0;
+	
 	
 	private int vehiclesGenerated = 0;
 	private int happyTrucks = 0;
@@ -132,18 +137,21 @@ public class Station {
 			Car vehicle = new Car(this);
 			System.out.print("Created " + vehicle.getName() + ", ");
 			this.incrementVehiclesGenerated();
+			this.incrementCar();
 			addVehicleToPump(vehicle);
 		}
 		if((rnd.nextInt(100)+1)/100.0 <= probabilityP){
 			Motorbike vehicle = new Motorbike(this);
 			System.out.print("Created " + vehicle.getName() + ", ");
 			this.incrementVehiclesGenerated();
+			this.incrementMotorbike();
 			addVehicleToPump(vehicle);
 		}
 		if((rnd.nextInt(100)+1)/100.0 <= probabilityQ){
 			Sedan vehicle = new Sedan(this);
 			System.out.print("Created " + vehicle.getName() + ", ");
 			this.incrementVehiclesGenerated();
+			this.incrementSedan();
 			addVehicleToPump(vehicle);
 		}
 		if(isTruck){
@@ -151,10 +159,28 @@ public class Station {
 				Truck vehicle = new Truck(this);
 				System.out.print("Created " + vehicle.getName() + ", ");
 				this.incrementVehiclesGenerated();
+				this.incrementTruck();
 				addVehicleToPump(vehicle);
 			}
 		}
 	}
+	
+	public static int incrementCar(){
+		return Car++;
+	}
+	
+	public static int incrementMotorbike(){
+		return Motorbike++;
+	}
+	
+	public static int incrementSedan(){
+		return Sedan++;
+	}
+	
+	public static void incrementTruck(){
+		Trucks++;
+	}
+	
 	/**
 
 	 * Decides if the vehicle can be added to a pump, if there are no available pumps the loss calculation method is called

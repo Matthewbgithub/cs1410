@@ -17,27 +17,11 @@ public class truckTest {
 		}
 
 	@Test
-	public void testChangeProbability() {
-		//truck.setRefillTime(5);
-		Truck.happy();
-		//assertEquals(0.021, truck.getProbability(), 0);
-		//says 1 for some reason
-	}
-
-	@Test
 	public void testGetRefillTime() {
-		fail("Not yet implemented");
+		station.addVehicleToPump(t1);
+		assertEquals(5.0, station.getPumpList().get(0).getQueueArray().get(0).getRefillTime(), 0);
 	}
 
-	@Test
-	public void testHappy() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testUnHappy() {
-		fail("Not yet implemented");
-	}
 
 	@Test
 	public void testGetProbabilityOfT(){

@@ -110,16 +110,6 @@ public class Stationtest1 {
 	}
 
 	@Test
-	public void testGenerateVehicle() {
-		Station station = new Station(1, 1, 1, 1, false);
-		station.generateVehicle();
-		station.addVehicleToPump(c1);
-		assertEquals("Car0", station.getPumpList().get(0).getQueueArray().get(0).getName());
-		assertEquals("Motorbike0", station.getPumpList().get(0).getQueueArray().get(0).getName());
-		assertEquals("Sedan0", station.getPumpList().get(0).getQueueArray().get(0).getName());
-		}
-
-	@Test
 	public void testAddToTill() {
 		Station station = new Station(2, 2, 0, 0, false);
 		assertEquals(true, till.checkspace(1.0));

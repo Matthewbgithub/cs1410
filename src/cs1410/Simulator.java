@@ -20,7 +20,7 @@ public class Simulator
 	public static void main(String[] args)
 	{
 		//pump number, till number, p, q, trucks?
-		Station station = new Station(3, 1, 0.03, 0.03, false);
+		Station station = new Station(3, 3, 0.03, 0.03, true);
 		station.setPetrolPrice(1.20);
 		for(ticker.getTick(); ticker.getTick() <= ticker.getMaxTicks(); ticker.increment()) {
 			delay(0);
@@ -39,6 +39,10 @@ public class Simulator
 				System.out.println("Trucks are disabled.");
 			}
 			System.out.println("There was " + station.vehiclesGenerated() + " vehicles generated. ");
+			System.out.println("The number of Cars generated were: " + station.Car);
+			System.out.println("The number of Motorbikes generated were: " + station.Motorbike);
+			System.out.println("The number of Sedans generated were: " + station.Sedan);
+			System.out.println("The number of Trucks generated were: " + station.Trucks);
 			System.out.println("The pump queues look like: ");			
 			for(Pump i : station.getPumpList()){
 				System.out.println("\t" + i.toString());
