@@ -20,7 +20,7 @@ public class Simulator
 	public static void main(String[] args)
 	{
 		//pump number, till number, p, q, trucks?
-		Station station = new Station(3, 3, 0.03, 0.03, true);
+		Station station = new Station(3, 1, 0.03, 0.03, false);
 		station.setPetrolPrice(1.20);
 		for(ticker.getTick(); ticker.getTick() <= ticker.getMaxTicks(); ticker.increment()) {
 			delay(0);
@@ -32,9 +32,13 @@ public class Simulator
 			System.out.println("-------------------------------------");
 			System.out.println("This has caused loss of: " + station.getFormattedLoss());
 			System.out.println("There has been profit of: " + Station.getFormattedIncome());
-			System.out.println("There was " + station.happyTrucks() + " happy Trucks and " + station.sadTrucks() + " sad Trucks. ");
+			if(station.isTruck()){
+				System.out.println("There was " + station.happyTrucks() + " happy Trucks and " + station.sadTrucks() + " sad Trucks. ");
+				System.out.println("Truck happiness: " + Truck.getProbabilityOfT());
+			}else{
+				System.out.println("Trucks are disabled.");
+			}
 			System.out.println("There was " + station.vehiclesGenerated() + " vehicles generated. ");
-			System.out.println("Truck happiness: " + Truck.getProbabilityOfT());
 			System.out.println("The pump queues look like: ");			
 			for(Pump i : station.getPumpList()){
 				System.out.println("\t" + i.toString());

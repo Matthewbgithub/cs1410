@@ -38,6 +38,8 @@ public abstract class Vehicle {
 	protected boolean isBrowsing = false;
 	
 	protected boolean paid = false;
+	
+	
 	public Vehicle(){
 		rnd = new Random();
 		creationTime = Simulator.getTicks();
@@ -60,11 +62,12 @@ public abstract class Vehicle {
 		}else if(isInTheShopQueue){
 			//is at the front of the queue
 			if(getTill().getQueueArray().get(0) == this){
+				System.out.print(this.getName() + " is at the front of the queue. ");
 				isInTheShopQueue = false;
 				isShopping = true;
 			}
 		}else if(isBrowsing){
-			
+			//this is only so that it counts the start time only once
 			if(hasStartedFilling){
 				setbrowseStartTime(tick);
 				System.out.print("(" + this.getName() + " shopstart = " + browseStartTime + ")");
@@ -93,9 +96,11 @@ public abstract class Vehicle {
 			//is filling up
 			double timeFillingShouldBeDone = fillingStartTime + tankSize;
 			if( timeFillingShouldBeDone < tick){
+				//finished filling up
 				if(goesToShop()){
 					willBuyItems = true;
 					System.out.print(this.getName() + " is currently browsing. ");
+					//will go to browsing
 					isBrowsing = true;
 					if (this.getName().contains("Truck")){
 						Truck.happy();
@@ -107,9 +112,11 @@ public abstract class Vehicle {
 					
 					if(currentStation.addToTill(tick, this)){
 						System.out.print(this.getName() + " is in the shop to pay for fuel. ");
+						//will go to the shop queue
 						isInTheShopQueue = true;
 					}else{
-						System.out.print(this.getName() + " is waiting for a till. ");
+						System.out.println(this.getName() + " is waiting for a till. ");
+						
 					}
 					if (this.getName().contains("Truck")){
 						Truck.unHappy();
@@ -159,7 +166,6 @@ public abstract class Vehicle {
 		fillingStartTime = tick;
 	}
 	protected void enterShopQueue(int tick){
-		isShopping = true;
 		tillQueueArrival = tick;
 	}
 	protected void setTillQueueArrival(int tickNo){

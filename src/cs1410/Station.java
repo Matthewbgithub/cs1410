@@ -196,8 +196,8 @@ public class Station {
 				System.out.print(vehicle.getName() + " added to till number: " + vehicle.getTill().getNo() + ". Length: " + vehicle.getTill().getCurrentLength() + ". ");
 				return true;
 			}else{
-				System.out.print(vehicle.getName() + " did not join a queue. ");
-				vehicle.getPump().removeFirstItem();
+				//System.out.print(vehicle.getName() + " is waiting to join a till. ");
+				//vehicle.getPump().removeFirstItem();
 				return false;
 			}
 		}return false;
@@ -264,6 +264,9 @@ public class Station {
 	}
 	public double getLoss(){
 		return loss;
+	}
+	public boolean isTruck(){
+		return isTruck;
 	}
 	public int happyTrucks(){
 		return happyTrucks;
