@@ -13,10 +13,9 @@ public class QueueableTest {
 	private Vehicle s1;
 	private Vehicle m1;
 	private Vehicle m2;
-	Till till = new Till();
-	Pump pump = new Pump();
-	
-	Station station = new Station(1, 2, 0, 0, false);
+	private Station station;
+	private Pump pump;
+	private Till till;
  
 	@Before
 	public void setUp(){
@@ -26,6 +25,9 @@ public class QueueableTest {
 		s1 = new Sedan();
 		m1 = new Motorbike();
 		m2 = new Motorbike();
+		till = new Till();
+		pump = new Pump();
+		station = new Station(1, 2, 0, 0, false);
 		
 		
 	}
