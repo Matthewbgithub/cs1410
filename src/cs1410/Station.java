@@ -87,7 +87,7 @@ public class Station {
 			    vehicle.nextTickAction(tick);	
 			    if(vehicle.removeFromStation){
 			    	vehicle.getPump().removeFirstItem();
-			    	vehicle.getTill().setCurrentLength(vehicle.getTill().getCurrentLength() - 1);
+			    	//vehicle.getTill().setCurrentLength(vehicle.getTill().getCurrentLength() - 1);
 			    	v.remove();	
 				}
 			}
@@ -189,17 +189,17 @@ public class Station {
 	 */
 	public boolean addToTill(int tick,Vehicle vehicle){
 		if(!tillList.isEmpty()){
-			if(chooseTill().checkspace(vehicle.getLength())){
+			//if(chooseTill().checkspace(vehicle.getLength())){
 				vehicle.enterShopQueue(tick);
 				vehicle.setTill(chooseTill());
 				vehicle.getTill().add(vehicle);
 				System.out.print(vehicle.getName() + " added to till number: " + vehicle.getTill().getNo() + ". Length: " + vehicle.getTill().getCurrentLength() + ". ");
 				return true;
-			}else{
+			//}else{
 				//System.out.print(vehicle.getName() + " is waiting to join a till. ");
 				//vehicle.getPump().removeFirstItem();
-				return false;
-			}
+			//	return false;
+			//}
 		}return false;
 	}
 	/**

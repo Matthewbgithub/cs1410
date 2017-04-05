@@ -116,7 +116,7 @@ public abstract class Vehicle {
 						isInTheShopQueue = true;
 					}else{
 						System.out.println(this.getName() + " is waiting for a till. ");
-						
+						throw new RuntimeException();
 					}
 					if (this.getName().contains("Truck")){
 						Truck.unHappy();
