@@ -92,19 +92,19 @@ public class QueueableTest {
 		assertEquals(3.0, pump.getCurrentLength(), 0);
 		assertEquals(3.0, till.getCurrentLength(), 0);
 		
-		pump.removeF("pump");
+		pump.removeFirstItem();
 		assertEquals(1.5, pump.getCurrentLength(), 0);
-		till.removeF("till");
+		till.removeFirstItem();
 		assertEquals(2.0, till.getCurrentLength(), 0);
 		
-		pump.removeF("pump");
+		pump.removeFirstItem();
 		assertEquals(0.75, pump.getCurrentLength(), 0);
-		till.removeF("till");
+		till.removeFirstItem();
 		assertEquals(1.0, till.getCurrentLength(), 0);
 		
-		pump.removeF("pump");
+		pump.removeFirstItem();
 		assertEquals(0.0, pump.getCurrentLength(), 0);
-		till.removeF("till");
+		till.removeFirstItem();
 		assertEquals(0.0, till.getCurrentLength(), 0);
 		
 	}

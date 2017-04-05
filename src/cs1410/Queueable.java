@@ -6,9 +6,8 @@ public abstract class Queueable {
 	private int number;
 	
 	private ArrayList<Vehicle> vehicleArray;
-	private final int qLength=3;
 	private double currentLength=0.0;
-	
+	protected int qLength;
 	public Queueable(){
 		vehicleArray = new ArrayList<Vehicle>();
 	}
@@ -85,13 +84,13 @@ public abstract class Queueable {
 				return false;
 			}
 		}else{
-			if(checkspace(1)){
+			//if(checkspace(1)){
 				vehicleArray.add(vehicle);
 				currentLength += 1;
 				return true;
-			}else{
-				return false;
-			}
+			//}else{
+			//	return false;
+			//}
 		}
 	}
 	/**

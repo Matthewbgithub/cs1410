@@ -19,9 +19,8 @@ public class truckTest {
 	@Test
 	public void testGetRefillTime() {
 		station.addVehicleToPump(t1);
-		assertEquals(5.0, station.getPumpList().get(0).getQueueArray().get(0).getRefillTime(), 0);
+		assertEquals(5.0, station.getPumpList().get(0).getQueueArray().get(0).getRefillTime(), 0);	
 	}
-
 
 	@Test
 	public void testGetProbabilityOfT(){

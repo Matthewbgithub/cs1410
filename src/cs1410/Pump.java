@@ -7,6 +7,9 @@ package cs1410;
  */
 public class Pump extends Queueable
 {
+	public Pump(){
+		qLength=3;
+	}
 	
 	public boolean add(Vehicle vehicle){
 		
