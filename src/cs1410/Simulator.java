@@ -2,6 +2,7 @@ package cs1410;
 
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 /**
  * Simulates a petrol station that generates vehicles and runs in ticks
@@ -12,24 +13,61 @@ public class Simulator
 {	
 
 	private static Ticker ticker = new Ticker(1440);
-
+	private static int pumpNo = 3;
+	private static int tillNo = 3;
+	private static double p = 0.03;
+	private static double q = 0.03;
+	private static boolean trucks = true;
 
 	/**
 	 * Runs the simulation with 1440 ticks
 	 */
 
-	public static void main(String[] args)
-	{
-		//pump number, till number, p, q, trucks?
-		   
-		  Station station = new Station(3, 3, 0.03, 0.03, true);
+//	public static void main(String[] args)
+	public void runSim()
+	{   
+		Station station = new Station(pumpNo, tillNo, p, q, trucks);
+		SimulatorView simView = new SimulatorView(pumpNo, tillNo); 
 		station.setPetrolPrice(1.20);
+	
+		ArrayList <ArrayList <ArrayList<Vehicle>>> pumpInfoToPassToSim = new ArrayList <ArrayList <ArrayList<Vehicle>>>();
+		ArrayList <ArrayList <ArrayList<Vehicle>>> tillInfoToPassToSim = new ArrayList <ArrayList <ArrayList<Vehicle>>>();
+		
 		for(ticker.getTick(); ticker.getTick() <= ticker.getMaxTicks(); ticker.increment()) {
-			delay(0);
+//			delay(10);
 				System.out.print("Tick: " + ticker.getTick() + ": ");
 				station.tick(ticker.getTick());
 				System.out.println();
-				//station.generateVehicle();
+
+				ArrayList <ArrayList<Vehicle>> pumpListOfVehicleList = new ArrayList <ArrayList<Vehicle>>();
+				
+				for(int i = 0; i<pumpNo; i++)
+				{
+					ArrayList <Vehicle> vehiclesToAdd = new ArrayList <Vehicle>();
+					for(int i2=0; i2<station.getPumpList().get(i).getArray().size(); i2++)
+					{
+						Vehicle vehicleToAdd = new Vehicle();
+						vehicleToAdd = station.getPumpList().get(i).getArray().get(i2);
+						vehiclesToAdd.add(vehicleToAdd);						
+					}
+					pumpListOfVehicleList.add(vehiclesToAdd);		
+				}
+				pumpInfoToPassToSim.add(pumpListOfVehicleList);
+				
+				ArrayList <ArrayList<Vehicle>> tillListOfVehicleList = new ArrayList <ArrayList<Vehicle>>();
+				
+				for(int i = 0; i<tillNo; i++)
+				{
+					ArrayList <Vehicle> vehiclesToAdd = new ArrayList <Vehicle>();
+					for(int i2=0; i2<station.getTillList().get(i).getArray().size(); i2++)
+					{
+						Vehicle vehicleToAdd = new Vehicle();
+						vehicleToAdd = station.getTillList().get(i).getArray().get(i2);
+						vehiclesToAdd.add(vehicleToAdd);						
+					}
+					tillListOfVehicleList.add(vehiclesToAdd);		
+				}
+				tillInfoToPassToSim.add(tillListOfVehicleList);				
 			}
 		 PrintWriter writer;
 			try {
@@ -88,6 +126,19 @@ public class Simulator
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
 			}
+		
+		simView.setTillInfo(tillInfoToPassToSim);
+		simView.setPumpInfo(pumpInfoToPassToSim);
+		
+		simView.setOverallLoss(station.getFormattedLoss());
+		simView.setOverallProfit(station.getFormattedIncome());
+		simView.setOverallHappyTrucks(station.happyTrucks());
+		simView.setOverallSadTrucks(station.sadTrucks());
+		simView.setOverallVehiclesGenerated(station.vehiclesGenerated());
+		simView.setOverallTruckHappiness(Truck.getProbabilityOfT());
+		
+		simView.runSimulation();
+		ticker.reset();	
 	}	
 	/**
 	 * @return number of ticks that have passed so far
@@ -108,4 +159,24 @@ public class Simulator
         catch (InterruptedException ie) {
         }
     }
+	
+	public void setP(double sP){
+		p = sP;
+	}
+	
+	public void setQ(double sQ){
+		q = sQ;
+	}
+	
+	public void setPumps(int sPumps){
+		pumpNo = sPumps;
+	}
+	
+	public void setTills(int sTills){
+		tillNo = sTills;
+	}
+	
+	public void setIsTruck(boolean sIsTruck){
+		trucks = sIsTruck;
+	}
 }
