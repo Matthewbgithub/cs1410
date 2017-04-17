@@ -112,25 +112,25 @@ public class Stationtest1 {
 	@Test
 	public void testAddToTill() {
 		Station station = new Station(2, 2, 0, 0, false);
-		assertEquals(true, till.checkspace(1.0));
+		
 		station.addToTill(1, m1);
 		assertEquals(1.0, station.getTillList().get(0).getCurrentLength(), 0);
-		assertEquals(true, till.checkspace(1.0));
+	
 		station.addToTill(2, s1);
 		assertEquals(1.0, station.getTillList().get(1).getCurrentLength(), 0);
-		assertEquals(true, till.checkspace(1.0));
+	
 		station.addToTill(3, c1);
 		assertEquals(2.0, station.getTillList().get(0).getCurrentLength(), 0);
-		assertEquals(true, till.checkspace(1.0));
+	
 		station.addToTill(4, c2);
 		assertEquals(2.0, station.getTillList().get(1).getCurrentLength(), 0);
-		assertEquals(true, till.checkspace(1.0));
+
 		station.addToTill(5, m2);
 		assertEquals(3.0, station.getTillList().get(0).getCurrentLength(), 0);
-		assertEquals(true, till.checkspace(1.0));
+
 		station.addToTill(6, c3);
 		assertEquals(3.0, station.getTillList().get(1).getCurrentLength(), 0);
-		assertEquals(true, till.checkspace(1.0));
+
 		
 		
 		
@@ -158,13 +158,8 @@ public class Stationtest1 {
 
 	@Test
 	public void testRemoveFromShop() {
-		
-		
-		assertEquals(true, till.checkspace(1.0));
 		till.add(c1);
-		assertEquals(true, till.checkspace(1.0));
 		till.add(c2);
-		assertEquals(true, till.checkspace(0.75));
 		till.add(m1);
 		
 		assertEquals(3.0, till.getCurrentLength(), 0);

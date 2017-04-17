@@ -59,7 +59,7 @@ private void generate(){
 	
 	
 	//set refill time
-	private void setRefillTime(int time) {
+	public void setRefillTime(int time) {
 		refillTime = time;
 	}
 	
