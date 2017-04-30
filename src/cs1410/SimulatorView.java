@@ -1,5 +1,4 @@
 package cs1410;
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -38,6 +37,10 @@ public class SimulatorView {
 		tickCount = new JLabel("Tick: 0");
 		skipToEnd = new JButton("Skip to end");
 		JPanel southPanel = new JPanel();
+		Color colButtons = new Color(236, 76, 147);
+		Color colPanelBackground = new Color (144, 12, 63);
+		Color colFrameBackground = new Color(88, 24, 69);
+		Color colLabelBackground = new Color(199, 0, 57); 
 		southPanel.setLayout(new FlowLayout());
 		
 		simulation.setPreferredSize(new Dimension(size, size));
@@ -75,9 +78,25 @@ public class SimulatorView {
 			}
 		});
 		
+		southPanel.setBorder(BorderFactory.createRaisedBevelBorder());
+		southPanel.setBackground(new Color(199, 0, 57, 123));
+		simPanel.setBackground(colPanelBackground);
+		simPanel.setBorder(BorderFactory.createRaisedBevelBorder());
+		simPanelTill.setBackground(colPanelBackground);
+		simPanelTill.setBorder(BorderFactory.createRaisedBevelBorder());
+		
+		tickCount.setForeground(Color.WHITE);
+		tickCount.setBackground(colLabelBackground);
+		tickCount.setBorder(BorderFactory.createLoweredBevelBorder());
+		skipToEnd.setForeground(Color.WHITE);
+		skipToEnd.setBackground(colButtons);
+		skipToEnd.setBorder(BorderFactory.createRaisedBevelBorder());
+		simulation.getContentPane().setBackground(colFrameBackground);
+		
+
+		
 		southPanel.add(tickCount);
 		southPanel.add(skipToEnd);
-		
 		simulation.add(simPanelTill, BorderLayout.NORTH);
 		simulation.add(simPanel, BorderLayout.CENTER);		
 		simulation.add(southPanel, BorderLayout.SOUTH);
