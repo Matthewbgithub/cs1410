@@ -1,8 +1,11 @@
+package Simulation;
 
 
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+
+import View.SimulatorView;
 
 /**
  * Simulates a petrol station that generates vehicles and runs in ticks
@@ -11,24 +14,26 @@ import java.util.ArrayList;
  */
 public class Simulator
 {	
-
-	private static Ticker ticker = new Ticker(1440);
+	private static int ticksToRun = 1440;
+	private static Ticker ticker;
 	private static int pumpNo = 3;
 	private static int tillNo = 3;
 	private static double p = 0.03;
 	private static double q = 0.03;
 	private static boolean trucks = true;
+	private static double petrolPrice = 1.20;
 
 	/**
-	 * Runs the simulation with 1440 ticks
+	 * Runs the simulation with the set number of ticks (1440 by default).
 	 */
 
 //	public static void main(String[] args)
 	public void runSim()
 	{   
+		ticker = new Ticker(ticksToRun);
 		Station station = new Station(pumpNo, tillNo, p, q, trucks);
-		SimulatorView simView = new SimulatorView(pumpNo, tillNo); 
-		station.setPetrolPrice(1.20);
+		SimulatorView simView = new SimulatorView(pumpNo, tillNo, ticksToRun); 
+		station.setPetrolPrice(petrolPrice);
 	
 		ArrayList <ArrayList <ArrayList<Vehicle>>> pumpInfoToPassToSim = new ArrayList <ArrayList <ArrayList<Vehicle>>>();
 		ArrayList <ArrayList <ArrayList<Vehicle>>> tillInfoToPassToSim = new ArrayList <ArrayList <ArrayList<Vehicle>>>();
@@ -178,5 +183,13 @@ public class Simulator
 	
 	public void setIsTruck(boolean sIsTruck){
 		trucks = sIsTruck;
+	}
+	
+	public void setPetrolPrice(double setPetrolPrice){
+		petrolPrice = setPetrolPrice;
+	}
+	
+	public void setTicksToRun(int setTicks){
+		ticksToRun = setTicks;
 	}
 }

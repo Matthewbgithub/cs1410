@@ -1,3 +1,4 @@
+package Simulation;
 /**
 *Represents a subclass of vehicle
 * @author

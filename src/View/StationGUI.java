@@ -1,6 +1,4 @@
-
-
-
+package View;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -11,6 +9,9 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.plaf.ColorUIResource;
 
+import Simulation.Scroller;
+import Simulation.Simulator;
+
 public class StationGUI{	
 	private JFrame mainFrame;
 	private double pValue = 0.03;
@@ -18,11 +19,20 @@ public class StationGUI{
 	private int pumpsValue = 4;
 	private int tillsValue = 4;
 	private boolean trucksValue = true;
+	private double petrolPrice = 1.20;
+	private int ticksValue = 1440;
 	
+	/**
+	 * The main string. Called when ran as a Java Application so it knows where to start
+	 * @param args The arguments to run 'main' with
+	 */
 	public static void main(String[] args){
 	    StationGUI stationGUI = new StationGUI();
 	}
 	
+	/**
+	 * Constructor for the Station GUI. Builds the initial menu and interface for operating the program
+	 */
 	public StationGUI()	{
 		
 		final int blankSpace = 5;
@@ -38,14 +48,20 @@ public class StationGUI{
 		JLabel tillsAmount = new JLabel();
 		JLabel tillsTitle = new JLabel("Tills Scroller");
 		JLabel pumpsAmount = new JLabel();
-		JLabel pumpsTitle = new JLabel("Pumps Scroller");
+		JLabel pumpsTitle = new JLabel("Pumps Scroller");		
 		JLabel setPLabel = new JLabel("Set probability of p: ");
 		JLabel setQLabel = new JLabel("Set probability of q: ");
 		JLabel setTrucksLabel = new JLabel("Set trucks to On/Off: ");
+		JLabel setPetrolPriceLabel = new JLabel("Set the price per gallon for petrol: ");
+		JLabel setTicksLabel = new JLabel("Set the num of ticks the sim should run for: ");
 		Scroller tillsScroller = new Scroller(tillsAmount, 1, 3, 0, tillsTitle);
 		Scroller pumpsScroller = new Scroller(pumpsAmount, 1, 3, 0, pumpsTitle);
 		JTextField setP = new JTextField();
 		JTextField setQ = new JTextField();
+		JTextField setPumps = new JTextField();
+		JTextField setTills = new JTextField();
+		JTextField setPetrolPrice = new JTextField();
+		JTextField setTicks = new JTextField();
 		JRadioButton setTrucksTrue = new JRadioButton("True");
 		JRadioButton setTrucksFalse = new JRadioButton("False");
 		ButtonGroup group = new ButtonGroup();
@@ -53,8 +69,6 @@ public class StationGUI{
 		Color colUpperPanelBackground = new Color(199, 0, 57);
 		Color colPanelBackground = new Color (144, 12, 63);
 		Color colFrameBackground = new Color(88, 24, 69);
-		Color colLabelBackground = new Color(199, 0, 57); 
-	
 		
 		simulateButton.setText("Simulate");
 		simulateButton.setToolTipText("Start the simulation");
@@ -75,13 +89,24 @@ public class StationGUI{
 		helpButton.setForeground(Color.WHITE);
 		mainFrame.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 		mainFrame.getContentPane().setBackground(colFrameBackground);
-		mainFrame.setPreferredSize(new Dimension(350,500));
-		mainFrame.setMinimumSize(new Dimension(350,500));
+		mainFrame.setPreferredSize(new Dimension(500,650));
+		mainFrame.setMinimumSize(new Dimension(500,650));
 		
 		ImageIcon titleIcon = new ImageIcon("ImagesForCars/PetrolStationSimulation.jpg");
 		title.setIcon(titleIcon);
 		title.setHorizontalAlignment(JLabel.CENTER);
 		
+		mainFrame.setLayout(new BorderLayout());
+		((JPanel)mainFrame.getContentPane()).setBorder(new EmptyBorder(blankSpace, blankSpace, blankSpace, blankSpace));
+		
+		buttonContainer.setLayout(new FlowLayout());
+		buttonContainer.setBorder(new EmptyBorder(blankSpace, blankSpace, blankSpace, blankSpace));
+		buttonContainer.add(simulateButton);
+		buttonContainer.add(quitButton);
+		
+		group.add(setTrucksFalse);
+		group.add(setTrucksTrue);
+				
 		setTrucksTrue.setForeground(Color.WHITE);
 		setTrucksFalse.setForeground(Color.WHITE);
 		setTrucksTrue.setBackground(colUpperPanelBackground);
@@ -89,20 +114,28 @@ public class StationGUI{
 		setPLabel.setForeground(Color.WHITE);
 		setQLabel.setForeground(Color.WHITE);
 		setTrucksLabel.setForeground(Color.WHITE);
+		setPetrolPriceLabel.setForeground(Color.WHITE);
+		setTicksLabel.setForeground(Color.WHITE);
 		submitPreferences.setForeground(Color.WHITE);
 		
 		setPLabel.setBorder(BorderFactory.createCompoundBorder(new EmptyBorder(0, 40, 0, 0), BorderFactory.createRaisedBevelBorder()));
-		setPLabel.setBackground(colLabelBackground);
+//		setPLabel.setBackground(colLabelBackground);
 		setQLabel.setBorder(BorderFactory.createCompoundBorder(new EmptyBorder(0, 40, 0, 0), BorderFactory.createRaisedBevelBorder()));
-		setQLabel.setBackground(colLabelBackground);
+//		setQLabel.setBackground(colLabelBackground);
 		setTrucksLabel.setBorder(BorderFactory.createCompoundBorder(new EmptyBorder(0, 0, 0, 0), BorderFactory.createRaisedBevelBorder()));
-		setTrucksLabel.setBackground(colLabelBackground);
+//		setTrucksLabel.setBackground(colLabelBackground);
+		setPetrolPriceLabel.setBorder(BorderFactory.createCompoundBorder(new EmptyBorder(0, 40, 0, 0), BorderFactory.createRaisedBevelBorder()));
+		setTicksLabel.setBorder(BorderFactory.createCompoundBorder(new EmptyBorder(0, 40, 0, 0), BorderFactory.createRaisedBevelBorder()));
 		
 		setP.setMaximumSize(new Dimension(600, 30));
 		setQ.setMaximumSize(new Dimension(600, 30));
 		setTrucksTrue.setMaximumSize(new Dimension(600, 30));
 		setTrucksFalse.setMaximumSize(new Dimension(600, 30));
-		
+		setPetrolPrice.setMaximumSize(new Dimension(600, 30));
+		setTicks.setMaximumSize(new Dimension(600, 30));
+		setPumps.setMaximumSize(new Dimension(600, 30));
+		setTills.setMaximumSize(new Dimension(600, 30));
+
 		submitPreferences.setBackground(colUpperPanelBackground);
 		submitPreferences.setBorder(BorderFactory.createCompoundBorder(new EmptyBorder(0, 0, 0, 0), BorderFactory.createRaisedBevelBorder()));
 		
@@ -129,6 +162,10 @@ public class StationGUI{
 		optionsContainer.add(setP);
 		optionsContainer.add(setQLabel);
 		optionsContainer.add(setQ);
+		optionsContainer.add(setPetrolPriceLabel);
+		optionsContainer.add(setPetrolPrice);
+		optionsContainer.add(setTicksLabel);
+		optionsContainer.add(setTicks);
 		optionsContainer.add(tillsScroller);
 		optionsContainer.add(pumpsScroller);
 		optionsContainer.add(setTrucksLabel);
@@ -213,7 +250,8 @@ public class StationGUI{
 				
 				String tempSetP = setP.getText();
 				String tempSetQ = setQ.getText();
-			
+				String tempSetPetrolPrice = setPetrolPrice.getText();
+				String tempSetTicks = setTicks.getText();
 				Boolean trucksSelected = true;
 				
 				if(setTrucksFalse.isSelected()){
@@ -221,6 +259,11 @@ public class StationGUI{
 					}
 				Double tempSetPValue = null;
 				Double tempSetQValue = null;
+				Double tempSetPetrolPriceValue = null;
+				Integer tempSetPumpsValue = null;
+				Integer tempSetTillsValue = null;
+				Integer tempSetTicksValue = null;
+				
 				try{
 					tempSetPValue = Double.parseDouble(tempSetP);
 				}catch(Exception exception){
@@ -231,12 +274,28 @@ public class StationGUI{
 				}catch(Exception exception){
 					//ignore
 				}
+				try{
+					tempSetPetrolPriceValue = Double.parseDouble(tempSetPetrolPrice);
+				}catch(Exception exception){
+					//ignore
+				}
+				try{
+					tempSetTicksValue = Integer.parseInt(tempSetTicks);
+				}catch(Exception exception){
+					//ignore
+				}
 				//as long as the values are not null, then use them to create the sim, otherwise use default values...
-				if(tempSetPValue != null){
+				if(tempSetPValue != null && !(tempSetPValue > 1.00) && !(tempSetPValue < 0.00)){
 					pValue = tempSetPValue;
 				}
-				if(tempSetQValue != null){
+				if(tempSetQValue != null && !(tempSetPValue > 1.00) && !(tempSetPValue < 0.00)){
 					qValue = tempSetQValue;
+				}
+				if(tempSetPetrolPriceValue != null && !(tempSetPetrolPriceValue < 0.00)){
+					petrolPrice = tempSetPetrolPriceValue;
+				}
+				if(tempSetTicksValue != null && tempSetTicksValue > 0){
+					ticksValue = tempSetTicksValue;
 				}
 				trucksValue = trucksSelected;
 			}
@@ -246,6 +305,9 @@ public class StationGUI{
 		mainFrame.setVisible(true);
 	}
 	
+	/**
+	 * Used for correctly closing the program when the user is finished
+	 */	
 	private void exitApp()
 	{
 		
@@ -255,13 +317,14 @@ public class StationGUI{
 		if (response == JOptionPane.YES_OPTION){
 			System.exit(0);
 		}
-		
-		
 	}
 	
+	/**
+	 * Creates the popUp window with help information when the help button is pressed
+	 */
 	private void showHelp(){
 		int xSize = 700;
-		int ySize = 300;
+		int ySize = 350;
 		int blankSpace = 5;
 		JFrame helpWindow = new JFrame("GUI Help");
 		helpWindow.setPreferredSize(new Dimension(xSize,ySize));
@@ -283,14 +346,13 @@ public class StationGUI{
 		"“Set number of tills” – Integer – Sets the number of tills in the simulation." + "\n" +
 		"“Set whether simulation has trucks” – Boolean – Sets whether the simulation has the ability to spawn trucks or not." + "\n" + "\n" +
 		"Once you’ve started the simulation, there is a button called “Skip to end”," + "\n" + 
-		"which will fast-forward the simulation to the final step and display the simulation’s results.";		
+		"which will fast-forward the simulation to the final step and display the simulation’s results."+ "\n" + "\n" +
+		"Note: If invalid values are entered, default values will be used in their place(s) when the simulation runs.";		
 		JTextArea helpText = new JTextArea(helpInput);
 		helpText.setLayout(new FlowLayout());
 		helpText.setEditable(false);
 		helpText.setForeground(Color.WHITE);
 		helpText.setBackground(new Color(199,0,57));
-		
-		
 		
 		helpWindow.getContentPane().setBackground(new Color(88, 24, 69));
 		helpWindow.add(helpText);
@@ -305,6 +367,8 @@ public class StationGUI{
 		sim.setPumps(pumpsValue);
 		sim.setTills(tillsValue);
 		sim.setIsTruck(trucksValue);
+		sim.setPetrolPrice(petrolPrice);
+		sim.setTicksToRun(ticksValue);
 		sim.runSim();
 	}
 }
