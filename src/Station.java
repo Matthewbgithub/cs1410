@@ -1,4 +1,4 @@
-package cs1410;
+
 import java.util.Random;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -133,29 +133,34 @@ public class Station {
 	* Called on each tick, will generate vehicles if the probability matches
 	*/
 	public void generateVehicle(){
-		if((rnd.nextInt(100)+1)/100.0 <= probabilityP){
+		double chance = (rnd.nextInt(100)+1)/100.0;
+		if(chance <= probabilityP)
+		{
 			Car vehicle = new Car(this);
 			System.out.print("Created " + vehicle.getName() + ", ");
 			this.incrementVehiclesGenerated();
 			this.incrementCar();
 			addVehicleToPump(vehicle);
 		}
-		if((rnd.nextInt(100)+1)/100.0 <= probabilityP){
+		if( chance > probabilityP && chance <= (probabilityP * 2))
+		{
 			Motorbike vehicle = new Motorbike(this);
 			System.out.print("Created " + vehicle.getName() + ", ");
 			this.incrementVehiclesGenerated();
 			this.incrementMotorbike();
 			addVehicleToPump(vehicle);
 		}
-		if((rnd.nextInt(100)+1)/100.0 <= probabilityQ){
+		if(chance > (probabilityP * 2) && chance <= ((probabilityP * 2) + probabilityQ))
+		{
 			Sedan vehicle = new Sedan(this);
 			System.out.print("Created " + vehicle.getName() + ", ");
 			this.incrementVehiclesGenerated();
 			this.incrementSedan();
 			addVehicleToPump(vehicle);
 		}
-		if(isTruck){
-			if((rnd.nextInt(100)+1)/100.0 <= Truck.getProbabilityOfT()){
+		if(isTruck)
+		{
+			if((chance > ((probabilityP * 2) + probabilityQ) && chance <= ((probabilityP * 2) + probabilityQ) + Truck.getProbabilityOfT())){
 				Truck vehicle = new Truck(this);
 				System.out.print("Created " + vehicle.getName() + ", ");
 				this.incrementVehiclesGenerated();

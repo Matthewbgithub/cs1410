@@ -4,7 +4,6 @@
 * @version
 */
 
-package cs1410;
 import java.util.Random;
 
 public class Car extends Vehicle{	
