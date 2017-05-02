@@ -324,7 +324,7 @@ public class StationGUI{
 	 */
 	private void showHelp(){
 		int xSize = 700;
-		int ySize = 350;
+		int ySize = 400;
 		int blankSpace = 5;
 		JFrame helpWindow = new JFrame("GUI Help");
 		helpWindow.setPreferredSize(new Dimension(xSize,ySize));
@@ -334,17 +334,19 @@ public class StationGUI{
 		
 		String helpInput = 
 		"This GUI controls a fuel station simulation." + "\n" +
-		"Either input values into the GUI and click “Submit Preferences”, followed by “Simulate”." + "\n" +
+		"Input values into the GUI and click “Submit Preferences”, followed by “Simulate”." + "\n" +
 		"Alternatively, just press “Simulate” for the default simulation to be carried out." + "\n" +
-		"Pressing the “Quit” button and confirming closes and exits the program." + "\n" + "\n" + 
+		"Pressing the “Quit” button and confirming, closes and exits the program." + "\n" + "\n" + 
 		
 		"GUI Values:" + "\n" + "\n" +
 		
 		"“Set probability of p” – Double – Sets the probability of small cars and motorbikes spawning." + "\n" +
 		"“Set probability of q” – Double – Sets the probability of sedans spawning." + "\n" +
-		"“Set number of pumps” – Integer – Sets the number of pumps in the simulation." + "\n" +
-		"“Set number of tills” – Integer – Sets the number of tills in the simulation." + "\n" +
-		"“Set whether simulation has trucks” – Boolean – Sets whether the simulation has the ability to spawn trucks or not." + "\n" + "\n" +
+		"“Set the price per gallon for petrol” – Double – Sets the price per gallon of petrol for this simulation." + "\n" +
+		"“Set the number of ticks sim should run for” – Integer – Sets the number of ticks that the simulation runs for." + "\n" +
+		"“Tills Scroller” – Integer – Sets the number of pumps in the simulation." + "\n" +
+		"“Pumps Scroller” – Integer – Sets the number of tills in the simulation." + "\n" +
+		"“Set trucks to on/off” – Boolean – Sets whether the simulation has the ability to spawn trucks or not." + "\n" + "\n" +
 		"Once you’ve started the simulation, there is a button called “Skip to end”," + "\n" + 
 		"which will fast-forward the simulation to the final step and display the simulation’s results."+ "\n" + "\n" +
 		"Note: If invalid values are entered, default values will be used in their place(s) when the simulation runs.";		

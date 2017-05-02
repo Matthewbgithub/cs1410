@@ -164,31 +164,52 @@ public class Simulator
         catch (InterruptedException ie) {
         }
     }
-	
+	/**
+	 * Sets the probability of p
+	 * @param sP The probability to set p to
+	 */
 	public void setP(double sP){
 		p = sP;
 	}
-	
+	/**
+	 * Sets the probability of q
+	 * @param sQ The probability to set q to
+	 */
 	public void setQ(double sQ){
 		q = sQ;
 	}
-	
+	/**
+	 * Sets the number of pumps
+	 * @param sPumps The number of pumps to run the simulation with
+	 */
 	public void setPumps(int sPumps){
 		pumpNo = sPumps;
 	}
-	
+	/**
+	 * Sets the number of tills
+	 * @param sTills The number of tills to run the simulation with
+	 */
 	public void setTills(int sTills){
 		tillNo = sTills;
 	}
-	
+	/**
+	 * Sets whether the simulation uses trucks
+	 * @param sIsTruck True/False value, whether to include trucks in this simulation
+	 */
 	public void setIsTruck(boolean sIsTruck){
 		trucks = sIsTruck;
 	}
-	
+	/**
+	 * Sets the price of petrol per gallon
+	 * @param setPetrolPrice The price of petrol to run the simulation with
+	 */
 	public void setPetrolPrice(double setPetrolPrice){
 		petrolPrice = setPetrolPrice;
 	}
-	
+	/**
+	 * Sets the number of ticks to run the simulation for 
+	 * @param setTicks The number of ticks that the simulation should run for
+	 */
 	public void setTicksToRun(int setTicks){
 		ticksToRun = setTicks;
 	}
