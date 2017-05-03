@@ -48,38 +48,10 @@ private void generate(){
 	protected static void unHappy(){
 		probabilityOfT *= 0.8;
 	}
-	//set arrival probability
-	private void setProbabilityOfT(double probability) {
-		probabilityOfT = probability;	
-	}
 	
 	//get arrival probability
 	public static double getProbabilityOfT() {
 		return probabilityOfT;
 	}
 	
-	
-	//set refill time
-	public void setRefillTime(int time) {
-		refillTime = time;
 	}
-	
-	//get refill time
-	public double getRefillTime() {
-		return refillTime;
-	}
-	
-	/**
-	 * changes the probability of other trucks arriving depending on if the truck driver is happy or not
-	 */
-	public void changeProbability() {
-		if(isHappy) {
-			probabilityOfT *= 1.05;
-			System.out.print("Happy trucker ("+ probabilityOfT +")");
-		}
-		else {
-			probabilityOfT *= 0.8;
-			System.out.print("Unhappy trucker ("+ probabilityOfT +")");
-		}
-	}
-}

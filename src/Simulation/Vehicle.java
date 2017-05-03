@@ -71,7 +71,7 @@ public class Vehicle {
 			//this is only so that it counts the start time only once
 			if(hasStartedFilling){
 				setbrowseStartTime(tick);
-				System.out.print("(" + this.getName() + " shopstart = " + browseStartTime + ")");
+				//System.out.print("(" + this.getName() + " shopstart = " + browseStartTime + ")");
 			}
 			hasStartedFilling = false;
 			if(willBuyItems){
@@ -117,7 +117,7 @@ public class Vehicle {
 						isInTheShopQueue = true;
 					}else{
 						System.out.println(this.getName() + " is waiting for a till. ");
-						throw new RuntimeException();
+						//throw new RuntimeException();
 					}
 					if (this.getName().contains("Truck")){
 						Truck.unHappy();
@@ -158,10 +158,7 @@ public class Vehicle {
 		Station.setIncome(Station.getIncome() + getShoppingMoney());
 		paid = true;
 	}
-	public void changeProbability(){
-	}
-//Set methods-------------------------------------------
-	
+		
 	protected void startsFilling(int tick){
 		hasStartedFilling = true;
 		fillingStartTime = tick;
@@ -188,19 +185,6 @@ public class Vehicle {
 		currentTill = t;
 	}
 	
-//Get methods------------------------------------------
-	protected boolean removeFromStation(){
-		return removeFromStation;
-	}
-	/*protected boolean removeFromTill(){
-		return removeFromTill;
-	}*/
-	protected boolean hasStartedFilling(){
-		return hasStartedFilling;
-	}
-	protected boolean isInTheShop(){
-		return isShopping;
-	}
 	public Pump getPump(){
 		return currentPump;
 	}
@@ -213,23 +197,25 @@ public class Vehicle {
 	public double getLength(){
 		return qSpace;
 	}
-	public int getTankSize(){
-		return this.tankSize;
-	}
+	
 	public double getProbability(){
 		return shoppingProb;
 	}
 	public double getShoppingMoney(){
 		return shoppingMoney;
 	}
-	public double getbrowseTime(){
-		return browseTime;
+	/*private int getTankSize(){
+	return this.tankSize;
 	}
-	public double getRefillTime(){
-		return refillTime;	
+	/*private boolean removeFromStation(){
+		return removeFromStation;
 	}
-
-	protected int getFillingStartTime(){
-		return fillingStartTime;
+	
+	/*private boolean hasStartedFilling(){
+		return hasStartedFilling;
 	}
+	private boolean isInTheShop(){
+		return isShopping;
+	}*/
+	
 }
