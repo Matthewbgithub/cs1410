@@ -1,18 +1,21 @@
 -------------------------------------
-This has caused loss of: £0.00
-There has been profit of: £5,684.80
-Trucks are disabled.
-There was 47 vehicles generated. 
-The number of Cars generated were: 32
-The number of Motorbikes generated were: 26
-The number of Sedans generated were: 35
-The number of Trucks generated were: 197
+This has caused loss of: £392.80
+There has been profit of: £2,870.60
+There was 10 happy Trucks and 4 sad Trucks. 
+Truck happiness: 0.01334390478256081
+There was 144 vehicles generated. 
+The number of Cars generated were: 48
+The number of Motorbikes generated were: 34
+The number of Sedans generated were: 42
+The number of Trucks generated were: 20
 The pump queues look like: 
-	[Car@4e5e93d8]
+	[Simulation.Car@35112372]
 	[]
-	[]
-	[]
+	[Simulation.Motorbike@6154934e, Simulation.Sedan@163d6849]
+	[Simulation.Truck@67bf8be7]
 The till queues look like: 
 	[]
 	[]
+	[]
+	[Simulation.Motorbike@6154934e]
 -------------------------------------

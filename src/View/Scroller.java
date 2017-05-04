@@ -1,4 +1,4 @@
-package Simulation;
+package View;
 
 
 import java.awt.*;

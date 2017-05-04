@@ -9,7 +9,6 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.plaf.ColorUIResource;
 
-import Simulation.Scroller;
 import Simulation.Simulator;
 
 public class StationGUI{	

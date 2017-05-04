@@ -23,6 +23,7 @@ public class Vehicle {
 	protected int fillingStartTime;
 	protected int browseStartTime;
 	protected int creationTime;
+	protected int timeStartPaying;
 	
 	protected int timeToRefillIn;
 	protected Pump currentPump;
@@ -37,13 +38,15 @@ public class Vehicle {
 	protected boolean removeFromStation = false;
 	protected boolean willBuyItems = false;
 	protected boolean isBrowsing = false;
+	protected boolean isPayingCurrently = false;
 	
 	protected boolean paid = false;
-	
+	protected int timeInTill;
 	
 	public Vehicle(){
 		rnd = new Random();
 		creationTime = Simulator.getTicks();
+		timeInTill = rnd.nextInt(7)+12;
 	}
 
 //other
@@ -51,14 +54,19 @@ public class Vehicle {
 		if(isShopping){
 			//is at the front of queue and will pay then leave
 			if(!paid){
-				//add the money
-				spendFilling();
-				if(willBuyItems){
-					spendShopping();
+				if(!isPayingCurrently){
+					startPaying(tick);
 				}
-				//then leave both the till and the pump
-				System.out.print(this.getName() + " paid and left shop.");
-				removeFromStation = true;
+				//add the money
+				if( (timeStartPaying + timeInTill) < tick){
+					spendFilling();
+					if(willBuyItems){
+						spendShopping();
+					}
+					//then leave both the till and the pump
+					System.out.print(this.getName() + " paid and left shop.");
+					removeFromStation = true;
+				}
 			}
 		}else if(isInTheShopQueue){
 			//is at the front of the queue
@@ -134,7 +142,10 @@ public class Vehicle {
 			}
 		}
 	}
-	
+	private void startPaying(int tick){
+		timeStartPaying = tick;
+		isPayingCurrently = true;
+	}
 	public boolean staysToShop(){
 		if(rnd.nextDouble()<= shoppingProb){
 			return true;
